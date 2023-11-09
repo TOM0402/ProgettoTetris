@@ -1,16 +1,12 @@
-#include <iostream>
+#include <string>
 #include <fstream>
 using namespace std;
 
-
-class fileManagment {
-  private:
-      const string nameFile = "classifica.json";
-      fstream file;
-      void openFile();
-  public:
-      fileManagment() {
-          openFile();
-      }
-      bool writeFile(string s);
+class FileManager {
+public:
+    FileManager(const string& filename);
+    bool write(const string& content);
+    string read();
+private:
+    string filename;
 };
