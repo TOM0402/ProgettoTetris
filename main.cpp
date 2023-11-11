@@ -3,17 +3,27 @@
 using namespace std;
 
 int main() {
+  FileManager fileManager("example.json");
+  json content {
+    {"name", "John Doe"},
+    {"age", 30},
+    {"city", "New York"}
+  };
 
-  FileManager fm("classifica.json");
-  char s []= "Prova classifica!";
-  if(fm.write(s)){
-    cout << "File written successfully!" << endl;
-  }else{
-    cout << "Error writing file." << endl;
+  bool result = fileManager.write(content);
+  if (result) {
+      cout << "Successfully written to file." << endl;
+  } else {
+      cout << "Failed to write to file." << endl;
   }
-
-  cout<<fm.read();
-
+  try {
+    json readContent = fileManager.read();
+    cout << "Name: " << readContent["name"] << endl;
+    cout << "Age: " << readContent["age"] << endl;
+    cout << "City: " << readContent["city"] << endl;
+  } catch (const runtime_error& e) {
+      cout << "Error: " << e.what() << endl;
+  }
   return 0;
 }
 
