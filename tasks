@@ -10,15 +10,22 @@ ANGELO
 
 BERSA E ALE
 -logica:
-   -collisioni
-   -spawn pezzi
-   -generazione random pezzi
+	Classe pezzo:
+	   -collisioni
+	   -spawn pezzi
+	   -generazione random pezzi
+	   -movimento pezzi
+	   -rotazione pezzi
+   
+   Classe 2:
    -punteggio
    -fine gioco
-   -movimento pezzi
-   -rotazione pezzi ??
    -eliminazione delle righe
+   
+   Classe Giocatore:
    -aggiungere nome giocatore
+   
+   Classifica:
    -classifica su file
 
 
