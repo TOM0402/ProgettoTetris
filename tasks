@@ -2,10 +2,10 @@ Tasks Da Fare:
 
 ANGELO
 -grafica: 
-	-tetramini 
+	-tetramini (una sottoclasse per ogni tetramino)
 	-griglia
-	-menu iniziate
-	-colonna laterale durante gioco
+	-menu iniziale
+	-sidebar del gioco
 	-pagina per classifica
 
 BERSA E ALE
