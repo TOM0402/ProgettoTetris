@@ -14,8 +14,10 @@ BERSA E ALE
 	   -collisioni
 	   -spawn pezzi
 	   -generazione random pezzi
-	   -movimento pezzi
-	   -rotazione pezzi
+	
+		sottoclasse movimento:	
+	   		-movimento pezzi
+	   		-rotazione pezzi
    
    Classe 2:
    -punteggio
