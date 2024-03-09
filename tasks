@@ -1,9 +1,10 @@
 Tasks Da Fare:
 
--tetramini 
-
--griglia
-
+-grafica: 
+	-tetramini 
+	-griglia
+	-menu
+	
 -logica:
    -collisioni
    -spawn pezzi
@@ -13,10 +14,7 @@ Tasks Da Fare:
    -movimento pezzi
    -rotazione pezzi ??
    -eliminazione delle righe
-   
--menu
    -aggiungere nome giocatore
-
--calssifica su file
+   -calssifica su file
 
 
