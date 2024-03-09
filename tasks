@@ -1,10 +1,14 @@
 Tasks Da Fare:
 
+ANGELO
 -grafica: 
 	-tetramini 
 	-griglia
-	-menu
-	
+	-menu iniziate
+	-colonna laterale durante gioco
+	-pagina per classifica
+
+BERSA E ALE
 -logica:
    -collisioni
    -spawn pezzi
