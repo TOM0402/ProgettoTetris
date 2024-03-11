@@ -80,6 +80,7 @@ void moveTetrimino(Tetrimino* tetrimino, int dx, int dy) {
 
 // Funzione principale
 int main() {
+
     init(); // Inizializza la libreria curses
 
     // Inizializza un array di Tetrimini
