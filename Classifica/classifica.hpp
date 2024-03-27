@@ -1,11 +1,20 @@
-#include <string>
-using namespace std;
-
-class Classifica {
-public:
-    void add_player(char name[], int score);
-    void update();
-    void getClassification();
-private:
-    char classification[];
+#include <cstring>
+#include "Giocatore.hpp"
+#define ngiocatori 10;
+struct classifica{
+    Giocatore giocatori[ngiocatori];
 };
+
+class HandlerClassifica {
+public:
+    HandlerClassifica();
+    bool aggiungi(Giocatore g);
+    Giocatore [] getClassifica();
+    bool rimuovi(Giocatore g);
+private:
+    classifica data;
+};
+
+/*
+ * Classifica contiene: tutte info giocatore e posizione
+ */

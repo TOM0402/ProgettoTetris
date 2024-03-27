@@ -1,21 +1,20 @@
 //
 // Created by tommaso on 11/03/24.
 //
-#include <iostream>
-#include "Giocatore.hpp"
+#include "../fileManagement/file.hpp"
 using namespace std;
 int main() {
-    // Create a new Giocatore object with name "Alice" and score 0
-    Giocatore alice("Alice");
-    cout<<alice.getNome()<<" ";
-    cout<<alice.getPunteggio()<<" ";
-    // Set the name and score of the object
-    alice.setNome("Bob");
-    alice.setPunteggio(100);
-
-    // Print the name and score of the object
-    std::cout << "Name: " << alice.getNome() << ", Score: " << alice.getPunteggio() << std::endl;
-    std::cout << "Data del punteggio: " << alice.getDataPunteggio()<<endl;
-
+    File * f = new File("prova.txt");
+    Giocatore giocatori [10];
+    //la write funziona
+    //Giocatore g("Andrea",15,"11/06/2024");
+    //f->write(g);
+    f->read(giocatori);
+    for (int i = 0; i < 10; i++) {
+        cout << "Nome: " << giocatori[i].getNome() << endl;
+        cout << "Punteggio: " << giocatori[i].getPunteggio() << endl;
+        cout << "Data Punteggio: " << giocatori[i].getDataPunteggio() << endl;
+        cout << "------------------------" << endl;
+    }
     return 0;
 }

@@ -1,7 +1,9 @@
 #ifndef GIOCATORE_HPP
 #define GIOCATORE_HPP
-#include <string>
+#include <cstring>
 #include <ctime>
+#define lnome 100
+
 struct Punteggio {
     int punti;
     std::time_t data; // Campo per la data
@@ -9,15 +11,19 @@ struct Punteggio {
 
 class Giocatore {
 private:
-    std::string nome;
+    char nome[lnome];
     Punteggio punteggio;
 public:
-    Giocatore(const std::string& nome);
-    void setNome(const std::string&);
-    std::string getNome() const;
+    Giocatore();
+    Giocatore(const char* nome);
+    Giocatore(const char*, int, const char*);
+
+    void setNome(const char*);
+    const char* getNome() const;
     void setPunteggio(int);
     int getPunteggio() const;
-    std::string getDataPunteggio() const;
+    const char* getDataPunteggio() const;
+    void setDataPunteggio(const char* data) ;
 };
 
 #endif

@@ -1,18 +1,20 @@
+#ifndef FILE_HPP
+#define FILE_HPP
 #include <fstream>
-#include <string>
+#include <iostream>
+#include <cstring>
+#include "../Giocatore/Giocatore.hpp"
+#define lpunteggio  6
+#define ldata 10
+
 using namespace std;
 
-class FileManager {
+class File {
 public:
-    FileManager(const string& filename);
-    bool write(const json& content);
-    json read();
+    File(const char*  filename);
+    bool write(Giocatore g);
+    void read(Giocatore g[]);
 private:
-    string filename;
+    char filename[lnome];
 };
-
-
-
-
-
-
+#endif
