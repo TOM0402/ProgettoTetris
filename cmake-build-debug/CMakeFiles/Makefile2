@@ -63,7 +63,7 @@ CMAKE_BINARY_DIR = /home/tommaso/Desktop/GitHub/ProgettoTetris/cmake-build-debug
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/progetto.dir/all
+all: CMakeFiles/ProgettoTetris.dir/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
@@ -71,34 +71,34 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/progetto.dir/clean
+clean: CMakeFiles/ProgettoTetris.dir/clean
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/progetto.dir
+# Target rules for target CMakeFiles/ProgettoTetris.dir
 
 # All Build rule for target.
-CMakeFiles/progetto.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/progetto.dir/build.make CMakeFiles/progetto.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/progetto.dir/build.make CMakeFiles/progetto.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/tommaso/Desktop/GitHub/ProgettoTetris/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5 "Built target progetto"
-.PHONY : CMakeFiles/progetto.dir/all
+CMakeFiles/ProgettoTetris.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ProgettoTetris.dir/build.make CMakeFiles/ProgettoTetris.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ProgettoTetris.dir/build.make CMakeFiles/ProgettoTetris.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/tommaso/Desktop/GitHub/ProgettoTetris/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5 "Built target ProgettoTetris"
+.PHONY : CMakeFiles/ProgettoTetris.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/progetto.dir/rule: cmake_check_build_system
+CMakeFiles/ProgettoTetris.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/tommaso/Desktop/GitHub/ProgettoTetris/cmake-build-debug/CMakeFiles 5
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/progetto.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/ProgettoTetris.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/tommaso/Desktop/GitHub/ProgettoTetris/cmake-build-debug/CMakeFiles 0
-.PHONY : CMakeFiles/progetto.dir/rule
+.PHONY : CMakeFiles/ProgettoTetris.dir/rule
 
 # Convenience name for target.
-progetto: CMakeFiles/progetto.dir/rule
-.PHONY : progetto
+ProgettoTetris: CMakeFiles/ProgettoTetris.dir/rule
+.PHONY : ProgettoTetris
 
 # clean rule for target.
-CMakeFiles/progetto.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/progetto.dir/build.make CMakeFiles/progetto.dir/clean
-.PHONY : CMakeFiles/progetto.dir/clean
+CMakeFiles/ProgettoTetris.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ProgettoTetris.dir/build.make CMakeFiles/ProgettoTetris.dir/clean
+.PHONY : CMakeFiles/ProgettoTetris.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

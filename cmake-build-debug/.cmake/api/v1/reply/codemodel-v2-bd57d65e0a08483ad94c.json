@@ -27,7 +27,7 @@
 					[
 						0
 					],
-					"name" : "progetto",
+					"name" : "ProgettoTetris",
 					"targetIndexes" : 
 					[
 						0
@@ -38,9 +38,9 @@
 			[
 				{
 					"directoryIndex" : 0,
-					"id" : "progetto::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-progetto-Debug-aac5e37e32cdca73c1da.json",
-					"name" : "progetto",
+					"id" : "ProgettoTetris::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ProgettoTetris-Debug-81fa38010dfe05837a6a.json",
+					"name" : "ProgettoTetris",
 					"projectIndex" : 0
 				}
 			]

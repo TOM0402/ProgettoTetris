@@ -117,24 +117,24 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named progetto
+# Target rules for targets named ProgettoTetris
 
 # Build rule for target.
-progetto: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 progetto
-.PHONY : progetto
+ProgettoTetris: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ProgettoTetris
+.PHONY : ProgettoTetris
 
 # fast build rule for target.
-progetto/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/progetto.dir/build.make CMakeFiles/progetto.dir/build
-.PHONY : progetto/fast
+ProgettoTetris/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ProgettoTetris.dir/build.make CMakeFiles/ProgettoTetris.dir/build
+.PHONY : ProgettoTetris/fast
 
 Classifica/classifica.o: Classifica/classifica.cpp.o
 .PHONY : Classifica/classifica.o
 
 # target to build an object file
 Classifica/classifica.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/progetto.dir/build.make CMakeFiles/progetto.dir/Classifica/classifica.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ProgettoTetris.dir/build.make CMakeFiles/ProgettoTetris.dir/Classifica/classifica.cpp.o
 .PHONY : Classifica/classifica.cpp.o
 
 Classifica/classifica.i: Classifica/classifica.cpp.i
@@ -142,7 +142,7 @@ Classifica/classifica.i: Classifica/classifica.cpp.i
 
 # target to preprocess a source file
 Classifica/classifica.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/progetto.dir/build.make CMakeFiles/progetto.dir/Classifica/classifica.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ProgettoTetris.dir/build.make CMakeFiles/ProgettoTetris.dir/Classifica/classifica.cpp.i
 .PHONY : Classifica/classifica.cpp.i
 
 Classifica/classifica.s: Classifica/classifica.cpp.s
@@ -150,7 +150,7 @@ Classifica/classifica.s: Classifica/classifica.cpp.s
 
 # target to generate assembly for a file
 Classifica/classifica.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/progetto.dir/build.make CMakeFiles/progetto.dir/Classifica/classifica.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ProgettoTetris.dir/build.make CMakeFiles/ProgettoTetris.dir/Classifica/classifica.cpp.s
 .PHONY : Classifica/classifica.cpp.s
 
 Giocatore/Giocatore.o: Giocatore/Giocatore.cpp.o
@@ -158,7 +158,7 @@ Giocatore/Giocatore.o: Giocatore/Giocatore.cpp.o
 
 # target to build an object file
 Giocatore/Giocatore.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/progetto.dir/build.make CMakeFiles/progetto.dir/Giocatore/Giocatore.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ProgettoTetris.dir/build.make CMakeFiles/ProgettoTetris.dir/Giocatore/Giocatore.cpp.o
 .PHONY : Giocatore/Giocatore.cpp.o
 
 Giocatore/Giocatore.i: Giocatore/Giocatore.cpp.i
@@ -166,7 +166,7 @@ Giocatore/Giocatore.i: Giocatore/Giocatore.cpp.i
 
 # target to preprocess a source file
 Giocatore/Giocatore.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/progetto.dir/build.make CMakeFiles/progetto.dir/Giocatore/Giocatore.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ProgettoTetris.dir/build.make CMakeFiles/ProgettoTetris.dir/Giocatore/Giocatore.cpp.i
 .PHONY : Giocatore/Giocatore.cpp.i
 
 Giocatore/Giocatore.s: Giocatore/Giocatore.cpp.s
@@ -174,7 +174,7 @@ Giocatore/Giocatore.s: Giocatore/Giocatore.cpp.s
 
 # target to generate assembly for a file
 Giocatore/Giocatore.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/progetto.dir/build.make CMakeFiles/progetto.dir/Giocatore/Giocatore.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ProgettoTetris.dir/build.make CMakeFiles/ProgettoTetris.dir/Giocatore/Giocatore.cpp.s
 .PHONY : Giocatore/Giocatore.cpp.s
 
 fileManagement/file.o: fileManagement/file.cpp.o
@@ -182,7 +182,7 @@ fileManagement/file.o: fileManagement/file.cpp.o
 
 # target to build an object file
 fileManagement/file.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/progetto.dir/build.make CMakeFiles/progetto.dir/fileManagement/file.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ProgettoTetris.dir/build.make CMakeFiles/ProgettoTetris.dir/fileManagement/file.cpp.o
 .PHONY : fileManagement/file.cpp.o
 
 fileManagement/file.i: fileManagement/file.cpp.i
@@ -190,7 +190,7 @@ fileManagement/file.i: fileManagement/file.cpp.i
 
 # target to preprocess a source file
 fileManagement/file.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/progetto.dir/build.make CMakeFiles/progetto.dir/fileManagement/file.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ProgettoTetris.dir/build.make CMakeFiles/ProgettoTetris.dir/fileManagement/file.cpp.i
 .PHONY : fileManagement/file.cpp.i
 
 fileManagement/file.s: fileManagement/file.cpp.s
@@ -198,7 +198,7 @@ fileManagement/file.s: fileManagement/file.cpp.s
 
 # target to generate assembly for a file
 fileManagement/file.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/progetto.dir/build.make CMakeFiles/progetto.dir/fileManagement/file.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ProgettoTetris.dir/build.make CMakeFiles/ProgettoTetris.dir/fileManagement/file.cpp.s
 .PHONY : fileManagement/file.cpp.s
 
 main.o: main.cpp.o
@@ -206,7 +206,7 @@ main.o: main.cpp.o
 
 # target to build an object file
 main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/progetto.dir/build.make CMakeFiles/progetto.dir/main.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ProgettoTetris.dir/build.make CMakeFiles/ProgettoTetris.dir/main.cpp.o
 .PHONY : main.cpp.o
 
 main.i: main.cpp.i
@@ -214,7 +214,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/progetto.dir/build.make CMakeFiles/progetto.dir/main.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ProgettoTetris.dir/build.make CMakeFiles/ProgettoTetris.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -222,7 +222,7 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/progetto.dir/build.make CMakeFiles/progetto.dir/main.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ProgettoTetris.dir/build.make CMakeFiles/ProgettoTetris.dir/main.cpp.s
 .PHONY : main.cpp.s
 
 # Help Target
@@ -233,7 +233,7 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... progetto"
+	@echo "... ProgettoTetris"
 	@echo "... Classifica/classifica.o"
 	@echo "... Classifica/classifica.i"
 	@echo "... Classifica/classifica.s"

@@ -1,10 +1,10 @@
 cmake_minimum_required(VERSION 3.27)
-project(progetto)
+project(ProgettoTetris)
 
 set(CMAKE_CXX_STANDARD 17)
 find_package( Curses REQUIRED )
 include_directories( ${CURSES_INCLUDE_DIR} )
-add_executable( progetto
+add_executable( ProgettoTetris
         main.cpp
         fileManagement/file.cpp
         fileManagement/file.hpp
@@ -14,4 +14,4 @@ add_executable( progetto
         Classifica/classifica.cpp
         Classifica/classifica.hpp
 )
-target_link_libraries( progetto ${CURSES_LIBRARIES} )
+target_link_libraries( ProgettoTetris ${CURSES_LIBRARIES} )
