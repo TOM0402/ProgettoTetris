@@ -38,7 +38,12 @@ int main() {
     cout<<"Test classe gestione classifica"<<endl;
     HandlerClassifica * c = new HandlerClassifica("prova.txt");
     classifica * cla;
-    //TODO in read passare current player (ora è sempre zero se leggo da file
+    //TODO segmentation fault a caso
+    c->getClassifica(cla);
+    for(int i = 0; i<c->getCurrentPlayer();i++){
+        cout<<cla->giocatori[i].getNome()<<" "<<cla->giocatori[i].getPunteggio()<<" "<<cla->giocatori[i].getDataPunteggio()<<endl;
+    }
+    c->aggiungi(Giocatore("Mitico",1000,"20/03/2000"));
     c->getClassifica(cla);
     for(int i = 0; i<c->getCurrentPlayer();i++){
         cout<<cla->giocatori[i].getNome()<<" "<<cla->giocatori[i].getPunteggio()<<" "<<cla->giocatori[i].getDataPunteggio()<<endl;

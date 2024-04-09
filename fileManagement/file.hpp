@@ -15,7 +15,7 @@ class File {
 public:
     File(const char*  filename);
     bool write(Giocatore g[]);
-    void read(Giocatore g[]);
+    int read(Giocatore g[]);
 private:
     char filename[lnome];
 };

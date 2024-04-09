@@ -33,5 +33,5 @@ bool HandlerClassifica::aggiungi(Giocatore g){
 }
 
 void HandlerClassifica::getClassifica(classifica * g){
-    f->read(g->giocatori);
+    currentplayer = f->read(g->giocatori);
 }

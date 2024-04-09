@@ -19,10 +19,11 @@ bool File::write(Giocatore g [])
     return true;
 }
 
-void File::read(Giocatore g[])
+int File::read(Giocatore g[])
 {
     ifstream file;
     file.open(this->filename);
+
     int count = 0;
     if (file.is_open())
     {
@@ -53,6 +54,8 @@ void File::read(Giocatore g[])
             g[count] = gn;
             count++;
         }
+
+        return count-1;
         file.close();
     }
 }
