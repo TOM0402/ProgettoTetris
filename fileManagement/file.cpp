@@ -29,9 +29,9 @@ void File::read(Giocatore g[])
         char linea;
         while (!file.eof())
         {
-            char nome[100];
-            char punteggio[lpunteggio];
-            char data[ldata];
+            char nome[100] = "";
+            char punteggio[lpunteggio] = "";
+            char data[ldata] = "";
             int countl = 0;
             while(file.get(linea) && linea != ' ' ){
                 nome[countl] = linea;

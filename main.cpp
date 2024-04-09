@@ -1,7 +1,20 @@
 #include "fileManagement/file.hpp"
 #include "Classifica/classifica.hpp"
+#include <curses.h>
+#include <stdlib.h>
+
 using namespace std;
+
+void init() {
+    initscr(); // Inizializza la libreria curses
+    noecho(); // Disabilita l'echo delle caratteri
+    curs_set(0); // Nasconde il cursore
+    keypad(stdscr, TRUE); // Abilita la lettura delle tasti speciali
+    timeout(100); // Imposta un timeout per la lettura delle tasti
+}
+
 int main() {
+    //init();
     /*
     File * f = new File("prova.txt");
     Giocatore giocatori [3];
@@ -24,11 +37,11 @@ int main() {
 */
     cout<<"Test classe gestione classifica"<<endl;
     HandlerClassifica * c = new HandlerClassifica("prova.txt");
-    classifica cla;
-    //TODO non salva bene la classifica /legge 
+    classifica * cla;
+    //TODO in read passare current player (ora è sempre zero se leggo da file
     c->getClassifica(cla);
-    for(int i = 0; i<ngiocatori;i++){
-        cout<<cla.giocatori[i].getNome()<<" "<<cla.giocatori[i].getPunteggio()<<" "<<cla.giocatori[i].getDataPunteggio()<<endl;
+    for(int i = 0; i<c->getCurrentPlayer();i++){
+        cout<<cla->giocatori[i].getNome()<<" "<<cla->giocatori[i].getPunteggio()<<" "<<cla->giocatori[i].getDataPunteggio()<<endl;
     }
     return 0;
 }

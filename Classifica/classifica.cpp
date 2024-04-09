@@ -8,6 +8,9 @@ HandlerClassifica::HandlerClassifica(char name[]) {
     currentplayer = 0;
 }
 
+int HandlerClassifica::getCurrentPlayer() {
+    return this->currentplayer;
+}
 
 bool HandlerClassifica::aggiungi(Giocatore g){
     bool found = false;
@@ -29,6 +32,6 @@ bool HandlerClassifica::aggiungi(Giocatore g){
     return found;
 }
 
-void HandlerClassifica::getClassifica(classifica g){
-    f->read(g.giocatori);
+void HandlerClassifica::getClassifica(classifica * g){
+    f->read(g->giocatori);
 }

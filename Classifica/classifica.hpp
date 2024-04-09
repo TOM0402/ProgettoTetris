@@ -10,8 +10,9 @@ struct classifica{
 class HandlerClassifica {
 public:
     HandlerClassifica(char name[]);
+    int getCurrentPlayer();
     bool aggiungi(Giocatore g);
-    void getClassifica(classifica c);
+    void getClassifica(classifica * c);
 private:
     File * f;
     classifica data;

@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/home/tommaso/Desktop/progetto/cmake-build-debug",
-		"source" : "/home/tommaso/Desktop/progetto"
+		"build" : "/home/tommaso/Desktop/GitHub/ProgettoTetris/cmake-build-debug",
+		"source" : "/home/tommaso/Desktop/GitHub/ProgettoTetris"
 	},
 	"version" : 
 	{
