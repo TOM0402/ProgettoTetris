@@ -5,6 +5,9 @@
 using namespace std;
 int main() {
     File * f = new File("prova.txt");
+    Giocatore gio("Tommasooo");
+    cout <<"Test get nomeee "<<endl<< "Nome: " << gio.getNome() << endl;
+
     Giocatore giocatori [10];
     //la write funziona
     //Giocatore g("Andrea",15,"11/06/2024");

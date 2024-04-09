@@ -1,7 +1,6 @@
 #include "Giocatore.hpp"
 Giocatore::Giocatore() {
     strcpy(this->nome, "");
-    this->setPunteggio(0);
 }
 
 Giocatore::Giocatore(const char* nome) {

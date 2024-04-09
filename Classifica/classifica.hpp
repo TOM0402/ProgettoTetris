@@ -1,20 +1,21 @@
-#include <cstring>
-#include "Giocatore.hpp"
-#define ngiocatori 10;
+#include "../Giocatore/Giocatore.hpp"
+#include "../fileManagement/file.hpp"
+
+
+
 struct classifica{
     Giocatore giocatori[ngiocatori];
 };
 
 class HandlerClassifica {
 public:
-    HandlerClassifica();
+    HandlerClassifica(char name[]);
     bool aggiungi(Giocatore g);
-    Giocatore [] getClassifica();
-    bool rimuovi(Giocatore g);
+    void getClassifica(classifica c);
 private:
+    File * f;
     classifica data;
+    int currentplayer;
 };
 
-/*
- * Classifica contiene: tutte info giocatore e posizione
- */
+
