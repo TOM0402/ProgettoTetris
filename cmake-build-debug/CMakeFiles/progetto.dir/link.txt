@@ -1,1 +1,0 @@
-/usr/bin/c++ -g CMakeFiles/progetto.dir/main.cpp.o CMakeFiles/progetto.dir/fileManagement/file.cpp.o CMakeFiles/progetto.dir/Giocatore/Giocatore.cpp.o CMakeFiles/progetto.dir/Classifica/classifica.cpp.o -o progetto  -lcurses /usr/lib/x86_64-linux-gnu/libform.so 
