@@ -12,7 +12,7 @@ public:
     HandlerClassifica(char name[]);
     int getCurrentPlayer();
     bool aggiungi(Giocatore g);
-    void getClassifica(classifica * c);
+    void getClassifica(Giocatore  []);
 private:
     File * f;
     classifica data;

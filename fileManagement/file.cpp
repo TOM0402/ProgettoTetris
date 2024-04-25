@@ -54,8 +54,8 @@ int File::read(Giocatore g[])
             g[count] = gn;
             count++;
         }
-
-        return count-1;
         file.close();
+        return count-1;
+
     }
 }

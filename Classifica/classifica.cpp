@@ -4,8 +4,7 @@ using namespace std;
 
 HandlerClassifica::HandlerClassifica(char name[]) {
     f = new File(name);
-    f->read(data.giocatori);
-    currentplayer = 0;
+    currentplayer =f->read(data.giocatori);
 }
 
 int HandlerClassifica::getCurrentPlayer() {
@@ -29,9 +28,10 @@ bool HandlerClassifica::aggiungi(Giocatore g){
         }
     }
     if(found)currentplayer++;
+    f->write(this->data.giocatori);
     return found;
 }
 
-void HandlerClassifica::getClassifica(classifica * g){
-    currentplayer = f->read(g->giocatori);
+void HandlerClassifica::getClassifica(Giocatore g[]){
+    currentplayer = f->read(g);
 }

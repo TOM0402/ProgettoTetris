@@ -27,6 +27,7 @@ int main() {
         cout << "Punteggio: " << giocatori[i].getPunteggio() << endl;
         cout << "Data Punteggio: " << giocatori[i].getDataPunteggio() << endl;
         cout << "------------------------" << endl;
+        cout << "------------------------" << endl;
     }
 
 
@@ -34,19 +35,24 @@ int main() {
         cout<<cla.giocatori[i].getNome()<<" "<<cla.giocatori[i].getPunteggio()<<" "<<cla.giocatori[i].getDataPunteggio()<<endl;
     }
 
-*/
-    cout<<"Test classe gestione classifica"<<endl;
-    HandlerClassifica * c = new HandlerClassifica("prova.txt");
-    classifica * cla;
-    //TODO segmentation fault a caso
-    c->getClassifica(cla);
-    for(int i = 0; i<c->getCurrentPlayer();i++){
-        cout<<cla->giocatori[i].getNome()<<" "<<cla->giocatori[i].getPunteggio()<<" "<<cla->giocatori[i].getDataPunteggio()<<endl;
+*/ cout<<"Test classe gestione classifica"<<endl;
+     HandlerClassifica * c = new HandlerClassifica("prova.txt");
+     Giocatore gio[c->getCurrentPlayer()];
+     //TODO segmentation fault a caso
+
+     c->getClassifica(gio);
+    for (int i = 0; i < c->getCurrentPlayer(); i++) {
+        cout<<gio[i].getNome()<<endl;
     }
-    c->aggiungi(Giocatore("Mitico",1000,"20/03/2000"));
-    c->getClassifica(cla);
-    for(int i = 0; i<c->getCurrentPlayer();i++){
-        cout<<cla->giocatori[i].getNome()<<" "<<cla->giocatori[i].getPunteggio()<<" "<<cla->giocatori[i].getDataPunteggio()<<endl;
-    }
+  /*   for(int i = 0; i<c->getCurrentPlayer();i++){
+         cout<<gio[i].getNome()<<" "<<gio[i].getPunteggio()<<" "<<gio[i].getDataPunteggio()<<endl;
+   }
+     /*
+     Giocatore g  = Giocatore("Added",70,"10/09/2024");
+     c->aggiungi(g);
+     cout<<c->getCurrentPlayer();
+    */
+
+
     return 0;
 }
