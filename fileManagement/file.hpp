@@ -13,8 +13,8 @@ using namespace std;
 
 class File {
 public:
-    File(const char*  filename);
-    bool write(Giocatore g[]);
+    File(char filename[]);
+    bool write(Giocatore g[], int);
     int read(Giocatore g[]);
 private:
     char filename[lnome];

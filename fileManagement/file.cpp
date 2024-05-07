@@ -1,19 +1,19 @@
 #include "file.hpp"
 
 
-File::File(const char *filename)
+File::File(char filename[])
 {
     strcpy(this->filename, filename);
 }
 
-bool File::write(Giocatore g [])
+bool File::write(Giocatore g [], int l)
 {
     ofstream file(this->filename);
     if (!file)
     {
         return false;
     }
-    for(int i = 0; i< ngiocatori; i++){
+    for(int i = 0; i< l; i++){
         file << g[i].getNome() << " " << g[i].getPunteggio() << " " << g[i].getDataPunteggio() << "\n";
     }
     return true;

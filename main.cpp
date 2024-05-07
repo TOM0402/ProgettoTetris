@@ -13,6 +13,13 @@ void init() {
     timeout(100); // Imposta un timeout per la lettura delle tasti
 }
 
+void stampa_gioca(Giocatore g[], int n){
+    for (int i = 0; i < n; i++) {
+        cout<<g[i].getNome()<<" punteggio: "<<g[i].getPunteggio()<<", data "<<g[i].getDataPunteggio()<<endl;
+    }
+}
+
+
 int main() {
     //init();
     /*
@@ -36,23 +43,26 @@ int main() {
     }
 
 */ cout<<"Test classe gestione classifica"<<endl;
-     HandlerClassifica * c = new HandlerClassifica("prova.txt");
-     Giocatore gio[c->getCurrentPlayer()];
-     //TODO segmentation fault a caso
+     HandlerClassifica c ("prova.txt");
+    Giocatore gio[c.getCurrentPlayer()];
+     c.getClassifica(gio);
+     stampa_gioca(gio, c.getCurrentPlayer());
+     cout<<"Test"<<endl;
+     c.aggiungi(Giocatore("ale3",102,"11/06/2023"));
+    Giocatore gio2[c.getCurrentPlayer()];
+    c.getClassifica(gio2);
+    stampa_gioca(gio2, c.getCurrentPlayer());
+    /*
+    c->aggiungi(Giocatore("ale1",2000,"10/09/2024"));
+    c->aggiungi(Giocatore("ale2",2,"10/09/2024"));
+    c->aggiungi(Giocatore("ale3",10,"10/09/2024"));
+    c->aggiungi(Giocatore("ale4",30,"10/09/2024"));
 
-     c->getClassifica(gio);
-    for (int i = 0; i < c->getCurrentPlayer(); i++) {
-        cout<<gio[i].getNome()<<endl;
-    }
-  /*   for(int i = 0; i<c->getCurrentPlayer();i++){
-         cout<<gio[i].getNome()<<" "<<gio[i].getPunteggio()<<" "<<gio[i].getDataPunteggio()<<endl;
-   }
-     /*
-     Giocatore g  = Giocatore("Added",70,"10/09/2024");
-     c->aggiungi(g);
-     cout<<c->getCurrentPlayer();
-    */
-
-
+    c->aggiungi(Giocatore("ale5",120,"10/09/2024"));
+    Giocatore gio2[c->getCurrentPlayer()];
+    c->getClassifica(gio2);
+    cout<<"Stampa con aggiunta"<<endl;
+    stampa_gioca(gio2, c->getCurrentPlayer());
+*/
     return 0;
 }

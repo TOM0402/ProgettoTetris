@@ -1,0 +1,22 @@
+# ninja log v5
+193	251	1712142733583872783	progetto	abce550f447791aa
+1	48	1712139209935986551	CMakeFiles/progetto.dir/Giocatore/Giocatore.cpp.o	dd3ac3a340a9db7
+0	193	1712142733527872783	CMakeFiles/progetto.dir/main.cpp.o	3efeb445acfa1f1d
+0	17	1712143208415870971	build.ninja	4016661393d7bb98
+1	331	1712142644959873121	CMakeFiles/progetto.dir/fileManagement/file.cpp.o	acaaf949d8725938
+4	203	1712219055459988052	CMakeFiles/progetto.dir/Giocatore/Giocatore.cpp.o	dd3ac3a340a9db7
+5	203	1712219055459988052	CMakeFiles/progetto.dir/Classifica/classifica.cpp.o	a9d86790f8d99fc0
+4	679	1712219055939988050	CMakeFiles/progetto.dir/main.cpp.o	3efeb445acfa1f1d
+680	803	1712219056059988050	progetto	feab68b3b4b9d540
+1	460	1712219130763987765	CMakeFiles/progetto.dir/main.cpp.o	3efeb445acfa1f1d
+460	563	1712219130863987764	progetto	feab68b3b4b9d540
+2	498	1712219175387987595	CMakeFiles/progetto.dir/main.cpp.o	3efeb445acfa1f1d
+499	609	1712219175499987594	progetto	feab68b3b4b9d540
+2	766	1712220022047984365	CMakeFiles/progetto.dir/fileManagement/file.cpp.o	acaaf949d8725938
+1	823	1712220022103984365	CMakeFiles/progetto.dir/main.cpp.o	3efeb445acfa1f1d
+2	887	1712220022167984364	CMakeFiles/progetto.dir/Classifica/classifica.cpp.o	a9d86790f8d99fc0
+887	995	1712220022275984364	progetto	feab68b3b4b9d540
+1	454	1712220117351984001	CMakeFiles/progetto.dir/Classifica/classifica.cpp.o	a9d86790f8d99fc0
+454	561	1712220117455984001	progetto	feab68b3b4b9d540
+1	471	1712220516247982480	CMakeFiles/progetto.dir/main.cpp.o	3efeb445acfa1f1d
+471	578	1712220516351982479	progetto	feab68b3b4b9d540

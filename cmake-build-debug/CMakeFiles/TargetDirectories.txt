@@ -1,0 +1,3 @@
+/home/tommaso/Desktop/GitHub/ProgettoTetris/cmake-build-debug/CMakeFiles/ProgettoTetris.dir
+/home/tommaso/Desktop/GitHub/ProgettoTetris/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/tommaso/Desktop/GitHub/ProgettoTetris/cmake-build-debug/CMakeFiles/rebuild_cache.dir
