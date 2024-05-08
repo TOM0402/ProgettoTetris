@@ -1,7 +1,0 @@
-# ninja log v5
-1	423	1715164445419983616	CMakeFiles/ProgettoTetris.dir/fileManagement/file.cpp.o	acc3cbd755737e13
-1	55	1715164445051983617	CMakeFiles/ProgettoTetris.dir/Giocatore/Giocatore.cpp.o	2760aa1008777606
-0	355	1715164445351983616	CMakeFiles/ProgettoTetris.dir/main.cpp.o	f54b526a9ef80168
-1	49	1715164466699983535	build.ninja	67e75b2c52b5921a
-1	383	1715164445379983616	CMakeFiles/ProgettoTetris.dir/Classifica/classifica.cpp.o	4a9b5c882d49c477
-423	473	1715164445467983615	ProgettoTetris	3cfe4131b08c985b
