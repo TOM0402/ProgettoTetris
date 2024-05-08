@@ -69,7 +69,7 @@ bool HandlerClassifica::aggiungi(Giocatore g){
 void HandlerClassifica::getClassifica(Giocatore g[]){
     Giocatore g_tmp[ngiocatori];
     currentplayer = f->read(g_tmp);
-    for(int i = 0; i < this->getCurrentPlayer();i++){
+    for(int i = 0; i < this->getCurrentPlayer();i++) {
         g[i] = g_tmp[i];
     }
 }

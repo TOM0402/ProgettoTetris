@@ -44,15 +44,22 @@ int main() {
 
 */ cout<<"Test classe gestione classifica"<<endl;
      HandlerClassifica c ("prova.txt");
+    /*Giocatore gio[c.getCurrentPlayer()];
+    c.getClassifica(gio);
+    stampa_gioca(gio, c.getCurrentPlayer());
+    */
     Giocatore gio[c.getCurrentPlayer()];
-     c.getClassifica(gio);
+    c.getClassifica(gio);
+    stampa_gioca(gio, c.getCurrentPlayer());
+
+     /* c.getClassifica(gio);
      stampa_gioca(gio, c.getCurrentPlayer());
      cout<<"Test"<<endl;
      c.aggiungi(Giocatore("ale3",102,"11/06/2023"));
     Giocatore gio2[c.getCurrentPlayer()];
     c.getClassifica(gio2);
     stampa_gioca(gio2, c.getCurrentPlayer());
-    /*
+
     c->aggiungi(Giocatore("ale1",2000,"10/09/2024"));
     c->aggiungi(Giocatore("ale2",2,"10/09/2024"));
     c->aggiungi(Giocatore("ale3",10,"10/09/2024"));
