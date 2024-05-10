@@ -5,7 +5,6 @@
 #include <cstring>
 #include "../Giocatore/Giocatore.hpp"
 #define lpunteggio  6
-#define ldata 10
 #define ngiocatori 10
 
 

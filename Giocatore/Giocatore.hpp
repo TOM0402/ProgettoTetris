@@ -3,27 +3,24 @@
 #include <cstring>
 #include <ctime>
 #define lnome 100
-
-struct Punteggio {
-    int punti;
-    std::time_t data; // Campo per la data
-};
+#define ldata 11
 
 class Giocatore {
 private:
     char nome[lnome];
-    Punteggio punteggio;
+    int punti;
+    char data[ldata];
 public:
     Giocatore();
-    Giocatore(const char* nome);
-    Giocatore(const char*, int, const char*);
+    Giocatore(char []);
+    Giocatore(char [], int, char []);
 
-    void setNome(const char*);
-    const char* getNome() const;
+    void setNome(char []);
+    char* getNome();
     void setPunteggio(int);
-    int getPunteggio() const;
-    const char* getDataPunteggio() const;
-    void setDataPunteggio(const char* data) ;
+    int getPunteggio();
+    char* getDataPunteggio();
+    void setDataPunteggio( char []) ;
 };
 
 #endif

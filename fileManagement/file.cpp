@@ -28,7 +28,8 @@ int File::read(Giocatore g[])
     if (file.is_open())
     {
         char linea;
-        while (!file.eof())
+        bool end = false;
+        while (!file.eof() && !end)
         {
             char nome[100] = "";
             char punteggio[lpunteggio] = "";
@@ -53,9 +54,11 @@ int File::read(Giocatore g[])
             Giocatore gn(nome, atoi(punteggio), data);
             g[count] = gn;
             count++;
+            //leggo solo i primi 10
+            if(count == ngiocatori) end = true;
         }
         file.close();
-        return count-1;
+        return count;
 
     }
 }
