@@ -1,7 +1,9 @@
 #include "fileManagement/file.hpp"
-#include "Classifica/classifica.hpp"
-#include <curses.h>
+//#include "Classifica/classifica.hpp"
+#include "ScreenLeaderboard/Lead.hpp"
+#include <ncurses.h>
 #include <stdlib.h>
+
 
 using namespace std;
 
@@ -10,7 +12,7 @@ void init() {
     noecho(); // Disabilita l'echo delle caratteri
     curs_set(0); // Nasconde il cursore
     keypad(stdscr, TRUE); // Abilita la lettura delle tasti speciali
-    timeout(100); // Imposta un timeout per la lettura delle tasti
+    //timeout(100); // Imposta un timeout per la lettura delle tasti
 }
 
 void stampa_gioca(Giocatore g[], int n){
@@ -19,6 +21,29 @@ void stampa_gioca(Giocatore g[], int n){
     }
 }
 
+/*
+void initgrill(WINDOW* griglia,int h, int w) {
+    int yMax,xMax;
+    getmaxyx(stdscr,yMax,xMax);
+    int startY=(yMax/2)-h/2;
+    int startX=(xMax/2)-w/2;
+    griglia=newwin(h,w, startY,startX);
+
+    init_pair(1,COLOR_BLUE,COLOR_BLACK);
+
+    wattron(griglia,COLOR_PAIR(1));
+    wattron(griglia,A_ALTCHARSET);
+
+    //box(griglia, 0,0);
+    wborder(griglia, 'Y', 'Y', 'R', 'R', 'C', 'B', 'D', 'A');
+
+    wattroff(griglia,COLOR_PAIR(1));
+    wattroff(griglia,A_ALTCHARSET);
+
+    refresh();
+    wrefresh(griglia);
+}
+*/
 
 int main() {
     //init();
@@ -42,7 +67,12 @@ int main() {
         cout<<cla.giocatori[i].getNome()<<" "<<cla.giocatori[i].getPunteggio()<<" "<<cla.giocatori[i].getDataPunteggio()<<endl;
     }
 
-*/ cout<<"Test classe gestione classifica"<<endl;
+
+*/
+
+    //init();
+
+    cout<<"Test classe gestione classifica"<<endl;
      HandlerClassifica c ("prova.txt");
     /*Giocatore gio[c.getCurrentPlayer()];
     c.getClassifica(gio);
@@ -71,5 +101,13 @@ int main() {
     cout<<"Stampa con aggiunta"<<endl;
     stampa_gioca(gio2, c->getCurrentPlayer());
 */
+
+    /*
+    Lead top10;
+    top10.Lead::printLead();
+    wgetch(top10.getLeadscr());
+    endwin();
+    */
+
     return 0;
 }
