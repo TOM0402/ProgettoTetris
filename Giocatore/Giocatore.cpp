@@ -43,3 +43,13 @@ char* Giocatore::getDataPunteggio() {
 void Giocatore::setDataPunteggio(char data[]) {
     strcpy(this->data,data);
 }
+
+bool Giocatore::updatePunteggio(int p){
+  if(p>this->punti){
+    if (p>0){
+      this->setPunteggio(p);
+      return true;
+    }
+  }
+  return false;
+}

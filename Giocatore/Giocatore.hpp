@@ -21,6 +21,7 @@ public:
     int getPunteggio();
     char* getDataPunteggio();
     void setDataPunteggio( char []) ;
+    bool updatePunteggio (int );
 };
 
 #endif
