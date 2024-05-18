@@ -13,7 +13,7 @@ add_executable(ProgettoTetris
         prova.txt
         Classifica/classifica.cpp
         Classifica/classifica.hpp
-        ScreenLeaderboard/Lead.cpp
-        ScreenLeaderboard/Lead.hpp
+        Screen/ScreenG.cpp
+        Screen/ScreenG.hpp
 )
 target_link_libraries( ProgettoTetris ${CURSES_LIBRARIES} )

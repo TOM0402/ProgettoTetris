@@ -1,6 +1,6 @@
 #include "fileManagement/file.hpp"
 //#include "Classifica/classifica.hpp"
-#include "ScreenLeaderboard/Lead.hpp"
+#include "Screen/ScreenG.hpp"
 #include <ncurses.h>
 #include <stdlib.h>
 
@@ -13,6 +13,10 @@ void init() {
     curs_set(0); // Nasconde il cursore
     keypad(stdscr, TRUE); // Abilita la lettura delle tasti speciali
     //timeout(100); // Imposta un timeout per la lettura delle tasti
+    if(!has_colors())
+        printw("NO COLORS");
+    else
+        start_color();
 }
 
 void stampa_gioca(Giocatore g[], int n){
@@ -71,16 +75,20 @@ int main() {
 */
 
     //init();
-
+    // TODO
+    /* da
     cout<<"Test classe gestione classifica"<<endl;
      HandlerClassifica c ("prova.txt");
+    */ //a
     /*Giocatore gio[c.getCurrentPlayer()];
     c.getClassifica(gio);
     stampa_gioca(gio, c.getCurrentPlayer());
     */
+    /* da
     Giocatore gio[c.getCurrentPlayer()];
     c.getClassifica(gio);
     stampa_gioca(gio, c.getCurrentPlayer());
+    */ //a
 
      /* c.getClassifica(gio);
      stampa_gioca(gio, c.getCurrentPlayer());
@@ -101,13 +109,15 @@ int main() {
     cout<<"Stampa con aggiunta"<<endl;
     stampa_gioca(gio2, c->getCurrentPlayer());
 */
+    init();
+    //printw("ciao","stronzo");
+    Screen lead(25,37);
+    lead.borderscreen();
+    lead.printTop();
 
-    /*
-    Lead top10;
-    top10.Lead::printLead();
-    wgetch(top10.getLeadscr());
+    getch();
     endwin();
-    */
+
 
     return 0;
 }
