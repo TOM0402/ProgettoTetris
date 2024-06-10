@@ -31,7 +31,7 @@ int File::read(Giocatore g[])
         bool end = false;
         while (!file.eof() && !end)
         {
-            char nome[100] = "";
+            char nome[lnome] = "";
             char punteggio[lpunteggio] = "";
             char data[ldata] = "";
             int countl = 0;

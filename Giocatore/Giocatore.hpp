@@ -2,7 +2,7 @@
 #define GIOCATORE_HPP
 #include <cstring>
 #include <ctime>
-#define lnome 100
+#define lnome 10
 #define ldata 11
 
 class Giocatore {
