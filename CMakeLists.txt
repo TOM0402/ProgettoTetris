@@ -17,5 +17,13 @@ add_executable(ProgettoTetris
         Screen/ScreenG.hpp
         Tetramino/Tetramino.cpp
         Tetramino/Tetramino.hpp
+        Screen/Leaderboard.cpp
+        Screen/Leaderboard.hpp
+        Screen/Home.cpp
+        Screen/Home.hpp
+        Screen/Name.cpp
+        Screen/Name.hpp
+        Screen/Game.cpp
+        Screen/Game.hpp
 )
 target_link_libraries( ProgettoTetris ${CURSES_LIBRARIES} )

@@ -4,6 +4,11 @@
 #include <ncurses.h>
 #include <stdlib.h>
 
+#include "Screen/Home.hpp"
+#include "Screen/Game.hpp"
+#include "Screen/Leaderboard.hpp"
+#include "Screen/Name.hpp"
+
 
 using namespace std;
 
