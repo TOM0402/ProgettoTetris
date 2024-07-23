@@ -1,4 +1,5 @@
 #include "ScreenG.hpp"
+#include "../Tetramino/Tetramino.hpp"
 #include <ncurses.h>
 using namespace std;
 
@@ -12,6 +13,8 @@ Screen::Screen(int h, int w) {
     int startY=(yMax/2)-high/2;
     int startX=(xMax/2)-wide/2;
     screen=newwin(high,wide, startY,startX);
+    Tetramino* T1= new Tetramino(startY, startX);
+    T1->drawTetramino(screen, startY+1, startX+1);
     //borderscreen();
 }
 

@@ -15,5 +15,7 @@ add_executable(ProgettoTetris
         Classifica/classifica.hpp
         Screen/ScreenG.cpp
         Screen/ScreenG.hpp
+        Tetramino/Tetramino.cpp
+        Tetramino/Tetramino.hpp
 )
 target_link_libraries( ProgettoTetris ${CURSES_LIBRARIES} )
