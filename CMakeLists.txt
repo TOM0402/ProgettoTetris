@@ -25,5 +25,7 @@ add_executable(ProgettoTetris
         Screen/Name.hpp
         Screen/Game.cpp
         Screen/Game.hpp
+        Collisioni/Collisioni.cpp
+        Collisioni/Collisioni.hpp
 )
 target_link_libraries( ProgettoTetris ${CURSES_LIBRARIES} )

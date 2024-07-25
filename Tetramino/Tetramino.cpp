@@ -3,9 +3,7 @@
 #include <ncurses.h>
 using namespace std;
 
-Tetramino::Tetramino(int x, int y) {
-    posX=x;
-    posY=y;
+Tetramino::Tetramino() {
 }
 
 int Tetramino::getPosX(){
@@ -25,9 +23,12 @@ void Tetramino::setPosY(int y){
 }
 
 // Disegna i Tetrimini
-void Tetramino::drawTetramino(WINDOW* screen, int y, int x){
-    mvwprintw(screen, y,x,"hwbdhbwdjhdsahjxwejdhjewnd");
-
+void Tetramino::drawTetramino(WINDOW* screen){
+    mvwprintw(screen,1,9,"XXXX");
+}
+void Tetramino::spawnTetramino(WINDOW* screen){
+    
+    mvwprintw(screen,1,9,"XXXX");
 }
 
 

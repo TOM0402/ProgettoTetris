@@ -8,7 +8,7 @@
 #include "Screen/Game.hpp"
 #include "Screen/Leaderboard.hpp"
 #include "Screen/Name.hpp"
-
+#include "Tetramino/Tetramino.hpp"
 
 using namespace std;
 
@@ -55,7 +55,10 @@ int main() {
 
         clear();
         Game playGrill(22,22);
+        Tetramino* T1= new Tetramino();
+        T1->drawTetramino(playGrill.getScreen());
         playGrill.borderscreen();
+
     }
     else { // CLASSIFICA
         Leaderboard lead(27,46);

@@ -9,12 +9,13 @@ protected:
     int posX, posY;
     int lunghezza, altezza;
 public:
-    Tetramino(int, int);
+    Tetramino();
     int getPosX();
     void setPosX(int);
     int getPosY();
     void setPosY(int);
-    void drawTetramino(WINDOW*, int , int);
+    void drawTetramino(WINDOW*);
+    void spawnTetramino(WINDOW*);
     //void moveTetramino(Tetramino* , int , int , char );
 };
 

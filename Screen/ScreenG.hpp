@@ -14,6 +14,7 @@ protected:
 public:
     Screen(int h, int w);
     void borderscreen();
+    WINDOW* getScreen();
 };
 
 
