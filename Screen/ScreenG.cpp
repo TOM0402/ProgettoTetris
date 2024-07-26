@@ -36,3 +36,11 @@ void Screen::borderscreen(){
 WINDOW* Screen::getScreen() {
     return screen;
 }
+
+int Screen::getHigh() {
+    return high;
+}
+
+int Screen::getWide() {
+    return wide;
+}

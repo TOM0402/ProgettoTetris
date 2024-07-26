@@ -55,7 +55,7 @@ int main() {
 
         clear();
         Game playGrill(22,22);
-        Tetramino* T1= new Tetramino();
+        Tetramino* T1= new Tetramino(playGrill);
         T1->drawTetramino(playGrill.getScreen());
         playGrill.borderscreen();
 

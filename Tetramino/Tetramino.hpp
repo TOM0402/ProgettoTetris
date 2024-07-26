@@ -2,6 +2,7 @@
 #ifndef ETRAMINO_HPP
 #define TETRAMINO_HPP
 #include <ncurses.h>
+#include "../Screen/ScreenG.hpp"
 
 
 class Tetramino {
@@ -9,7 +10,7 @@ protected:
     int posX, posY;
     int lunghezza, altezza;
 public:
-    Tetramino();
+    Tetramino(Screen);
     int getPosX();
     void setPosX(int);
     int getPosY();

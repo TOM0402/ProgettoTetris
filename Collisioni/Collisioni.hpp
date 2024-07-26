@@ -5,10 +5,15 @@
 #ifndef PROGETTOTETRIS_COLLISIONI_HPP
 #define PROGETTOTETRIS_COLLISIONI_HPP
 
+#define GRID_WIDE 22
+#define GRID_HIGH 22
 
 class Collisioni {
 protected:
-    bool occupiedMatrix[22][22];
+    bool occupiedMatrix[GRID_HIGH][GRID_WIDE];
+public:
+    Collisioni();
+    bool isEmpty(bool a);
 };
 
 

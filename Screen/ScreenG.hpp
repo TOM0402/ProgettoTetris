@@ -15,6 +15,8 @@ public:
     Screen(int h, int w);
     void borderscreen();
     WINDOW* getScreen();
+    int getHigh();
+    int getWide();
 };
 
 
