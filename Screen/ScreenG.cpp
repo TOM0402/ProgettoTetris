@@ -1,5 +1,5 @@
 #include "ScreenG.hpp"
-#include "../Tetramino/Tetramino.hpp"
+#include "../Collisioni/Collisioni.hpp"
 #include <ncurses.h>
 using namespace std;
 
@@ -13,7 +13,6 @@ Screen::Screen(int h, int w) {
     int startY=(yMax/2)-high/2;
     int startX=(xMax/2)-wide/2;
     screen=newwin(high,wide, startY,startX);
-
     //borderscreen();
 }
 

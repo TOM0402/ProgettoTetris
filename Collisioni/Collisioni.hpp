@@ -13,7 +13,12 @@ protected:
     bool occupiedMatrix[GRID_HIGH][GRID_WIDE];
 public:
     Collisioni();
-    bool isEmpty(bool a);
+    bool isEmpty(bool );
+    bool getMatrix(int , int );
+    void setMatrix(int , int, bool);
+    bool checkDown(int, int);
+    bool checkLeft(int, int);
+    bool checkRight(int, int);
 };
 
 

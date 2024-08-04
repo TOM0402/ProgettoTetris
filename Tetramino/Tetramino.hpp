@@ -3,6 +3,7 @@
 #define TETRAMINO_HPP
 #include <ncurses.h>
 #include "../Screen/ScreenG.hpp"
+#include "../Collisioni/Collisioni.hpp"
 
 
 class Tetramino {
@@ -17,7 +18,7 @@ public:
     void setPosY(int);
     void drawTetramino(WINDOW*);
     void spawnTetramino(WINDOW*);
-    //void moveTetramino(Tetramino* , int , int , char );
+    void moveTetramino(Tetramino* , int, int, Collisioni);
 };
 
 

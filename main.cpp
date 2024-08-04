@@ -3,7 +3,7 @@
 #include "Screen/ScreenG.hpp"
 #include <ncurses.h>
 #include <stdlib.h>
-
+#include "Collisioni/Collisioni.hpp"
 #include "Screen/Home.hpp"
 #include "Screen/Game.hpp"
 #include "Screen/Leaderboard.hpp"
@@ -58,6 +58,7 @@ int main() {
         Tetramino* T1= new Tetramino(playGrill);
         T1->drawTetramino(playGrill.getScreen());
         playGrill.borderscreen();
+
 
     }
     else { // CLASSIFICA
