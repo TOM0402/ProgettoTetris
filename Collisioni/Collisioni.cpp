@@ -9,6 +9,12 @@ Collisioni::Collisioni(){
             occupiedMatrix[i][j]=false;
         }
     }
+    for(int i=0;i<22;i++){
+        occupiedMatrix[0][i]=true;
+        occupiedMatrix[21][i]=true;
+        occupiedMatrix[i][0]=true;
+        occupiedMatrix[i][21]=true;
+    }
 
 }
 

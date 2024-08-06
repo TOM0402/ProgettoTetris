@@ -9,7 +9,7 @@
 #define GRID_HIGH 22
 
 class Collisioni {
-protected:
+public:
     bool occupiedMatrix[GRID_HIGH][GRID_WIDE];
 public:
     Collisioni();

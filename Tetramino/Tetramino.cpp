@@ -13,76 +13,90 @@ int Tetramino::getPosX(){
     return posX;
 }
 
-void Tetramino::setPosX(int x){
-    posX=x;
-}
-
 int Tetramino::getPosY(){
     return posY;
 }
 
-void Tetramino::setPosY(int y){
-    posY=y;
-}
-
 // Disegna i Tetrimini
-void Tetramino::drawTetramino(WINDOW* screen){
-    mvwprintw(screen,getPosY(),getPosX(),"XXXX");
-}
-void Tetramino::spawnTetramino(WINDOW* screen){
-    
-    mvwprintw(screen,getPosY(),getPosX(),"XXXX");
-}
-void Tetramino::moveTetramino(Tetramino * tetramino, int x, int y, Collisioni c) {
-    int ch;
-    while ((ch = getch()) != 'q') {
-        //mvprintw(y, x, " "); // Cancella il carattere precedente
+void Tetramino::drawTetramino(WINDOW* screen, Collisioni c){
 
+    mvwprintw(screen,getPosY(),getPosX(),"XXXX");
+    for(int i=0; i<4;i++){
+        c.setMatrix(posX+i, 1, true);
+    }
+}
+void Tetramino::spawnTetramino(Screen screen, Collisioni c){
+    mvwprintw(screen.getScreen(),1,(screen.getWide()/2)-2,"XXXX");
+    for(int i=0; i<4;i++){
+        c.setMatrix(posX+i, 1, true);
+    }
+}
 
-        // Calcola la nuova posizione
-        int newX = tetramino->posX + x;
-        int newY = tetramino->posY + y;
-        // Verifica se il movimento è valido
-        if (newX < 0 || newX + 5 > GRID_WIDE - 1 || newY < 0 || newY + 1 > GRID_HIGH - 1) {
-            // Il movimento è fuori dai limiti della griglia, quindi non lo eseguiamo
-            return;
-        }
+void Tetramino::clearTetramino(WINDOW* screen) {
+    mvwprintw(screen, getPosY(), getPosX(), "    ");
+}
+
+void Tetramino::moveTetramino(Tetramino * tetramino, Collisioni c, int ch, WINDOW* screen) {
+
+        int newX;
+        int newY;
+
         switch (ch) {
+
             case KEY_DOWN:
-                if (c.checkDown(newY, newX)) {
-                    c.setMatrix(posY, posX, false);
-                    c.setMatrix(posY, posX + 1, false);
-                    c.setMatrix(posY, posX + 2, false);
-                    c.setMatrix(posY, posX + 3, false);
-                    tetramino->posX = newX;
-                    tetramino->posY = newY;
-                    c.setMatrix(newY, newX, true);
-                    c.setMatrix(newY, newX + 1, true);
-                    c.setMatrix(newY, newX + 2, true);
-                    c.setMatrix(newY, newX + 3, true);
+                newX = tetramino->posX;
+                newY = tetramino->posY + 1;
+                if (newY<GRID_HIGH-1 && c.checkDown(newY, newX)) {
+                    for (int i = 0; i < 4; i++) {
+                        c.setMatrix(posX+i, posY, false);
+                    }
+
+                    clearTetramino(screen);
+
+                    for (int i = 0; i < 4; i++) {
+                        c.setMatrix(posX+i, posY+1, true);
+                    }
+                    posY++;
                 }
                 break;
+
             case KEY_LEFT:
-                if (c.checkLeft(newY, newY)) {
-                    c.setMatrix(posY, posX + 3, false);
-                    tetramino->posX = newX;
-                    tetramino->posY = newY;
-                    c.setMatrix(newY, newX, true);
+                newX = tetramino->posX -1;
+                newY = tetramino->posY ;
+
+                if (newX>0 && c.checkLeft(newY, newX)) {
+
+                    c.setMatrix(posX+3, posY, false);
+
+                    clearTetramino(screen);
+
+                    c.setMatrix(posX-1, posY, true);
+                    posX--;
                 }
                 break;
+
             case KEY_RIGHT:
-                if (c.checkLeft(newY, newY)) {
-                    c.setMatrix(posY, posX, false);
-                    tetramino->posX = newX;
-                    tetramino->posY = newY;
-                    c.setMatrix(newY, newX + 3, true);
+                newX = tetramino->posX +1;
+                newY = tetramino->posY ;
+
+                if (newX+3<GRID_WIDE-1 && c.checkRight(newY, newX)) {
+
+                    c.setMatrix(posX, posY, false);
+
+                    clearTetramino(screen);
+
+                    c.setMatrix(posX+4, posY, true);
+
+                    posX++;
                 }
                 break;
+
             default:
                 break;
         }
+    tetramino->drawTetramino(screen, c); // Disegna il tetramino nella nuova posizione
     }
-}
+
 
 /*
 void Tetramino::moveTetramino(Tetramino* tetrimino, int dx, int dy, char a){

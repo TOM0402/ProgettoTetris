@@ -3,14 +3,24 @@
 #include "Screen/ScreenG.hpp"
 #include <ncurses.h>
 #include <stdlib.h>
+#include <vector>
 #include "Collisioni/Collisioni.hpp"
 #include "Screen/Home.hpp"
 #include "Screen/Game.hpp"
 #include "Screen/Leaderboard.hpp"
 #include "Screen/Name.hpp"
-#include "Tetramino/Tetramino.hpp"
+#include "Tetramino/TetraminoQuadrato.hpp"
 
 using namespace std;
+
+void printBoolMatrix(WINDOW* win, const bool matrix[22][22]) {
+    for (int i = 0; i < 22; ++i) {
+        for (int j = 0; j < 22; ++j) {
+            mvwaddch(win, i, j * 2, (matrix[i][j] ? '1' : '0'));
+        }
+    }
+    wrefresh(win); // Aggiorna la finestra per visualizzare il contenuto
+}
 
 void init() {
     initscr(); // Inizializza la libreria curses
@@ -54,10 +64,26 @@ int main() {
         insName.insert();
 
         clear();
-        Game playGrill(22,22);
-        Tetramino* T1= new Tetramino(playGrill);
-        T1->drawTetramino(playGrill.getScreen());
+        Game playGrill(GRID_HIGH,GRID_WIDE);
+        int ch;
+        Collisioni c=Collisioni();
+        TetraminoQuadrato *T1 = new TetraminoQuadrato(playGrill);
+        T1->drawTetramino(playGrill.getScreen(), c);
+        printBoolMatrix(stdscr, c.occupiedMatrix);
         playGrill.borderscreen();
+
+        while ((ch = getch()) != 'q') {
+            T1->moveTetramino(T1, c, ch, playGrill.getScreen());
+            printBoolMatrix(stdscr, c.occupiedMatrix);
+            if(T1->getPosY()==GRID_HIGH-2){     //QUANDO ARRIVO IN FONDO SPAWN NUOVO TETRAMINO
+                T1 = new TetraminoQuadrato(playGrill);
+                T1->spawnTetramino(playGrill, c);
+                printBoolMatrix(stdscr, c.occupiedMatrix);
+            }
+            printBoolMatrix(stdscr, c.occupiedMatrix);
+            wrefresh(playGrill.getScreen());
+
+        }
 
 
     }

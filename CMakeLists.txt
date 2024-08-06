@@ -27,5 +27,7 @@ add_executable(ProgettoTetris
         Screen/Game.hpp
         Collisioni/Collisioni.cpp
         Collisioni/Collisioni.hpp
+        Tetramino/TetraminoQuadrato.cpp
+        Tetramino/TetraminoQuadrato.hpp
 )
 target_link_libraries( ProgettoTetris ${CURSES_LIBRARIES} )
