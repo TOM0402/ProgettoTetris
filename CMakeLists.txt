@@ -37,5 +37,7 @@ add_executable(ProgettoTetris
         Tetramino/TetraminoLungo.hpp
         Random/Random.cpp
         Random/Random.hpp
+        Screen/SideBar.cpp
+        Screen/SideBar.hpp
 )
 target_link_libraries( ProgettoTetris ${CURSES_LIBRARIES} )

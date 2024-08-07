@@ -13,6 +13,7 @@
 #include "Screen/Name.hpp"
 #include "Tetramino/TetraminoQuadrato.hpp"
 #include "Random/Random.hpp"
+#include "Screen/SideBar.hpp"
 
 
 using namespace std;
@@ -69,7 +70,12 @@ int main() {
         insName.insert();
 
         clear();
+        SideBar sideGrill(GRID_HIGH, GRID_WIDE);
+        sideGrill.printScores();
+        sideGrill.borderscreen();
+
         Game playGrill(GRID_HIGH,GRID_WIDE);
+
         int ch;
         Random r;
         CollisioniLungo cl=CollisioniLungo();
