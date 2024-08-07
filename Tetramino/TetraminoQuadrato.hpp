@@ -1,15 +1,17 @@
 #ifndef PROGETTOTETRIS_TETRAMINOQUADRATO_HPP
 #define PROGETTOTETRIS_TETRAMINOQUADRATO_HPP
-#include "Tetramino.hpp"
+
+#include "TetraminoLungo.hpp"
+#include "../Collisioni/CollisioniQuadrato.hpp"
 
 class TetraminoQuadrato:public Tetramino{
 
 public:
     TetraminoQuadrato(Screen);
-    void drawTetramino(WINDOW*, Collisioni c);
-    void spawnTetramino(Screen, Collisioni c);
-    void clearTetramino(WINDOW*);
-    void moveTetramino(TetraminoQuadrato* , Collisioni, int, WINDOW* screen);
+    void drawTetraminoQ(WINDOW*, CollisioniQuadrato c);
+    void spawnTetraminoQ(Screen, CollisioniQuadrato c);
+    void clearTetraminoQ(WINDOW*);
+    void moveTetraminoQ(TetraminoQuadrato* , CollisioniQuadrato , int, WINDOW* screen);
 };
 
 

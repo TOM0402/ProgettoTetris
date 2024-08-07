@@ -5,11 +5,15 @@
 #include <stdlib.h>
 #include <vector>
 #include "Collisioni/Collisioni.hpp"
+#include "Collisioni/CollisioniLungo.hpp"
+#include "Collisioni/CollisioniQuadrato.hpp"
 #include "Screen/Home.hpp"
 #include "Screen/Game.hpp"
 #include "Screen/Leaderboard.hpp"
 #include "Screen/Name.hpp"
 #include "Tetramino/TetraminoQuadrato.hpp"
+#include "Random/Random.hpp"
+
 
 using namespace std;
 
@@ -66,22 +70,29 @@ int main() {
         clear();
         Game playGrill(GRID_HIGH,GRID_WIDE);
         int ch;
-        Collisioni c=Collisioni();
-        TetraminoQuadrato *T1 = new TetraminoQuadrato(playGrill);
-        T1->drawTetramino(playGrill.getScreen(), c);
-        printBoolMatrix(stdscr, c.occupiedMatrix);
+        Random r;
+        CollisioniLungo cl=CollisioniLungo();
+        CollisioniQuadrato cq=CollisioniQuadrato();
+
+        TetraminoQuadrato *TQ= new TetraminoQuadrato(playGrill);
+        TetraminoLungo *TL = new TetraminoLungo(playGrill);
+        TQ->drawTetraminoQ(playGrill.getScreen(), cq);
+        printBoolMatrix(stdscr, cq.occupiedMatrix);
         playGrill.borderscreen();
 
         while ((ch = getch()) != 'q') {
-            T1->moveTetramino(T1, c, ch, playGrill.getScreen());
-            printBoolMatrix(stdscr, c.occupiedMatrix);
-            if(T1->getPosY()==GRID_HIGH-2){     //QUANDO ARRIVO IN FONDO SPAWN NUOVO TETRAMINO
-                T1 = new TetraminoQuadrato(playGrill);
-                T1->spawnTetramino(playGrill, c);
-                printBoolMatrix(stdscr, c.occupiedMatrix);
+            TQ->moveTetraminoQ(TQ, cq, ch, playGrill.getScreen());
+            cq.setMatrix(7,5,true);
+            printBoolMatrix(stdscr, cq.occupiedMatrix);
+            if(!cq.checkDownQ(TQ->getPosY()+2, TQ->getPosX())){     //QUANDO ARRIVO IN FONDO SPAWN NUOVO TETRAMINO
+                TQ = new TetraminoQuadrato(playGrill);
+                //T1 = new TetraminoLungo(playGrill);
+                TQ->spawnTetraminoQ(playGrill, cq);
+                printBoolMatrix(stdscr, cq.occupiedMatrix);
             }
-            printBoolMatrix(stdscr, c.occupiedMatrix);
+            printBoolMatrix(stdscr, cq.occupiedMatrix);
             wrefresh(playGrill.getScreen());
+            refresh();
 
         }
 

@@ -16,9 +16,6 @@ public:
     bool isEmpty(bool );
     bool getMatrix(int , int );
     void setMatrix(int , int, bool);
-    bool checkDown(int, int);
-    bool checkLeft(int, int);
-    bool checkRight(int, int);
 };
 
 

@@ -3,7 +3,7 @@
 using namespace std;
 TetraminoQuadrato::TetraminoQuadrato(Screen screen): Tetramino(screen){};
 
-void TetraminoQuadrato::drawTetramino(WINDOW* screen, Collisioni c){
+void TetraminoQuadrato::drawTetraminoQ(WINDOW* screen, CollisioniQuadrato c){
     mvwprintw(screen,getPosY(),getPosX(),"XX");
     mvwprintw(screen,getPosY()+1,getPosX(),"XX");
     c.setMatrix(posX, posY, true);
@@ -13,7 +13,7 @@ void TetraminoQuadrato::drawTetramino(WINDOW* screen, Collisioni c){
 
 }
 
-void TetraminoQuadrato::spawnTetramino(Screen screen, Collisioni c){
+void TetraminoQuadrato::spawnTetraminoQ(Screen screen, CollisioniQuadrato c){
     mvwprintw(screen.getScreen(),1,(screen.getWide()/2)-2,"XX");
     mvwprintw(screen.getScreen(),2,(screen.getWide()/2)-2,"XX");
     c.setMatrix((screen.getWide()/2)-2, 1, true);
@@ -22,12 +22,12 @@ void TetraminoQuadrato::spawnTetramino(Screen screen, Collisioni c){
     c.setMatrix((screen.getWide()/2)-1, 2, true);
 }
 
-void TetraminoQuadrato::clearTetramino(WINDOW* screen) {
+void TetraminoQuadrato::clearTetraminoQ(WINDOW* screen) {
     mvwprintw(screen, getPosY(), getPosX(), "  ");
     mvwprintw(screen, getPosY()+1, getPosX(), "  ");
 }
 
-void TetraminoQuadrato::moveTetramino(TetraminoQuadrato* tetraminoQ, Collisioni c, int ch, WINDOW* screen) {
+void TetraminoQuadrato::moveTetraminoQ(TetraminoQuadrato* tetraminoQ, CollisioniQuadrato c, int ch, WINDOW* screen) {
 
     int newX;
     int newY;
@@ -36,15 +36,15 @@ void TetraminoQuadrato::moveTetramino(TetraminoQuadrato* tetraminoQ, Collisioni 
         case KEY_DOWN:
             newX = tetraminoQ->posX;
             newY = tetraminoQ->posY + 2;
-            if (newY<GRID_HIGH-1 && c.checkDown(newY, newX)) {
+            if (newY<GRID_HIGH-1 && c.checkDownQ(newY, newX)) {
 
-                c.setMatrix(tetraminoQ->posX, tetraminoQ->posY, false);
-                c.setMatrix(tetraminoQ->posX+1, tetraminoQ->posY, false);
+                c.setMatrix(tetraminoQ->posY ,tetraminoQ->posX, false);
+                c.setMatrix(tetraminoQ->posY, tetraminoQ->posX+1, false);
 
-                clearTetramino(screen);
+                clearTetraminoQ(screen);
 
-                c.setMatrix(newX, newY, true);
-                c.setMatrix(newX+1, newY, true);
+                c.setMatrix(newY, newX, true);
+                c.setMatrix(newY, newX+1, true);
                 posY++;
             }
             break;
@@ -55,12 +55,12 @@ void TetraminoQuadrato::moveTetramino(TetraminoQuadrato* tetraminoQ, Collisioni 
             newY = tetraminoQ->posY ;
 
 
-            if (newX>0 && c.checkLeft(newY, newX)) {
+            if (newX>0 && c.checkLeftQ(newY, newX)) {
 
                 c.setMatrix(posX+1, posY, false);
                 c.setMatrix(posX+1, posY+1, false);
 
-                clearTetramino(screen);
+                clearTetraminoQ(screen);
 
                 c.setMatrix(posX-1, posY, true);
                 c.setMatrix(posX-1, posY+1, true);
@@ -70,15 +70,15 @@ void TetraminoQuadrato::moveTetramino(TetraminoQuadrato* tetraminoQ, Collisioni 
 
         case KEY_RIGHT:
 
-            newX = tetraminoQ->posX +1;
+            newX = tetraminoQ->posX +2;
             newY = tetraminoQ->posY ;
 
-            if (newX+1<GRID_WIDE-1 && c.checkRight(newY, newX)) {
+            if (newX<GRID_WIDE-1 && c.checkRightQ(newY, newX)) {
 
                 c.setMatrix(posX, posY, false);
                 c.setMatrix(posX, posY+1, false);
 
-                clearTetramino(screen);
+                clearTetraminoQ(screen);
 
                 c.setMatrix(posX+2, posY, true);
                 c.setMatrix(posX+2, posY+1, true);
@@ -88,5 +88,5 @@ void TetraminoQuadrato::moveTetramino(TetraminoQuadrato* tetraminoQ, Collisioni 
         default:
             break;
     }
-    tetraminoQ->drawTetramino(screen, c); // Disegna il tetramino nella nuova posizione
+    tetraminoQ->drawTetraminoQ(screen, c); // Disegna il tetramino nella nuova posizione
 }
