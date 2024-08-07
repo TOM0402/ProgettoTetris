@@ -4,8 +4,11 @@ using namespace std;
 TetraminoQuadrato::TetraminoQuadrato(Screen screen): Tetramino(screen){};
 
 void TetraminoQuadrato::drawTetraminoQ(WINDOW* screen, CollisioniQuadrato c){
+    wattron(screen, COLOR_PAIR(7));
     mvwprintw(screen,getPosY(),getPosX(),"XX");
     mvwprintw(screen,getPosY()+1,getPosX(),"XX");
+    wattroff(screen, COLOR_PAIR(7));
+
     c.setMatrix(posX, posY, true);
     c.setMatrix(posX+1, posY, true);
     c.setMatrix(posX, posY+1, true);
@@ -14,8 +17,11 @@ void TetraminoQuadrato::drawTetraminoQ(WINDOW* screen, CollisioniQuadrato c){
 }
 
 void TetraminoQuadrato::spawnTetraminoQ(Screen screen, CollisioniQuadrato c){
+    wattron(screen.getScreen(), COLOR_PAIR(7));
     mvwprintw(screen.getScreen(),1,(screen.getWide()/2)-2,"XX");
     mvwprintw(screen.getScreen(),2,(screen.getWide()/2)-2,"XX");
+    wattron(screen.getScreen(), COLOR_PAIR(7));
+
     c.setMatrix((screen.getWide()/2)-2, 1, true);
     c.setMatrix((screen.getWide()/2)-1, 1, true);
     c.setMatrix((screen.getWide()/2)-2, 2, true);

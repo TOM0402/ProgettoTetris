@@ -44,6 +44,7 @@ void init() {
     init_pair(5,COLOR_CYAN,COLOR_BLACK);
     init_pair(6,COLOR_MAGENTA,COLOR_BLACK);
 
+    init_pair(7,COLOR_RED, COLOR_RED);
 }
 
 void stampa_gioca(Giocatore g[], int n){
