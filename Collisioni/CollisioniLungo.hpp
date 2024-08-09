@@ -6,9 +6,9 @@
 class CollisioniLungo:public Collisioni{
 public:
     CollisioniLungo();
-    bool checkDown(int, int);
-    bool checkLeft(int, int);
-    bool checkRight(int, int);
+    bool checkDownL(int, int);
+    bool checkLeftL(int, int);
+    bool checkRightL(int, int);
 };
 
 #endif //PROGETTOTETRIS_COLLISIONILUNGO_HPP

@@ -77,33 +77,53 @@ int main() {
         Game playGrill(GRID_HIGH,GRID_WIDE);
 
         int ch;
+        int h=55;
         Random r;
         CollisioniLungo cl=CollisioniLungo();
         CollisioniQuadrato cq=CollisioniQuadrato();
-
         TetraminoQuadrato *TQ= new TetraminoQuadrato(playGrill);
-        TetraminoLungo *TL = new TetraminoLungo(playGrill);
-        TQ->drawTetraminoQ(playGrill.getScreen(), cq);
-        printBoolMatrix(stdscr, cq.occupiedMatrix);
+        TetraminoLungo *TL= new TetraminoLungo(playGrill);
+        mvwprintw(playGrill.getScreen(), 10, 1, " premi un tasto ");
         playGrill.borderscreen();
-
+        //TL->moveTetraminoL(TL, cl, ch, playGrill.getScreen());
         while ((ch = getch()) != 'q') {
-            TQ->moveTetraminoQ(TQ, cq, ch, playGrill.getScreen());
-            cq.setMatrix(7,5,true);
-            printBoolMatrix(stdscr, cq.occupiedMatrix);
-            if(!cq.checkDownQ(TQ->getPosY()+2, TQ->getPosX())){     //QUANDO ARRIVO IN FONDO SPAWN NUOVO TETRAMINO
-                TQ = new TetraminoQuadrato(playGrill);
-                //T1 = new TetraminoLungo(playGrill);
-                TQ->spawnTetraminoQ(playGrill, cq);
-                printBoolMatrix(stdscr, cq.occupiedMatrix);
-            }
-            printBoolMatrix(stdscr, cq.occupiedMatrix);
-            wrefresh(playGrill.getScreen());
-            refresh();
+            mvwprintw(playGrill.getScreen(), 10, 1, "                ");
+                if (r.pezzo()) {
+                    mvwprintw(stdscr, 49, 1, " if vero ");
+                    mvwprintw(stdscr, 50, 1, to_string(TL->getPosY()).c_str());
+                    TL->drawTetraminoL(playGrill.getScreen(), cl);
 
+                    if(cl.checkDownL(TL->getPosY() + 1, TL->getPosX())) {
+                        mvwprintw(stdscr, 55, 1, " sotto è libero");
+                        TL->moveTetraminoL(TL, cl, ch, playGrill.getScreen());
+                    }else {
+                        cl.setMatrix(TL->getPosY(), TL->getPosX(), true);
+                        cl.setMatrix(TL->getPosY(), TL->getPosX() + 1, true);
+                        cl.setMatrix(TL->getPosY(), TL->getPosX() + 2, true);
+                        cl.setMatrix(TL->getPosY(), TL->getPosX() + 3, true);
+                    }
+                    printBoolMatrix(stdscr, cl.occupiedMatrix);
+                    playGrill.borderscreen();
+                } else {
+                    mvwprintw(stdscr, 49, 1, " if falso ");
+                    mvwprintw(stdscr, 50, 1, to_string(TQ->getPosY()).c_str());
+                    TQ->drawTetraminoQ(playGrill.getScreen(), cq);
+                    if(cq.checkDownQ(TQ->getPosY() + 1,TQ->getPosX())){
+                        mvwprintw(stdscr, 55, 1, " sotto è libero");
+                        TQ->moveTetraminoQ(TQ, cq, ch, playGrill.getScreen());
+                    }else{
+                        cq.setMatrix(TQ->getPosY(), TQ->getPosX(), true);
+                        cq.setMatrix(TQ->getPosY(), TQ->getPosX() + 1, true);
+                        cq.setMatrix(TQ->getPosY() + 1, TQ->getPosX(), true);
+                        cq.setMatrix(TQ->getPosY() + 1, TQ->getPosX() + 1, true);
+                    }
+
+                    printBoolMatrix(stdscr, cl.occupiedMatrix);
+                }
+            playGrill.borderscreen();
         }
 
-
+        //printBoolMatrix(stdscr, cq.occupiedMatrix);
     }
     else { // CLASSIFICA
         Leaderboard lead(27,46);

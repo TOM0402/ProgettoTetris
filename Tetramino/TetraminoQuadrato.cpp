@@ -44,13 +44,13 @@ void TetraminoQuadrato::moveTetraminoQ(TetraminoQuadrato* tetraminoQ, Collisioni
             newY = tetraminoQ->posY + 2;
             if (newY<GRID_HIGH-1 && c.checkDownQ(newY, newX)) {
 
-                c.setMatrix(tetraminoQ->posY ,tetraminoQ->posX, false);
-                c.setMatrix(tetraminoQ->posY, tetraminoQ->posX+1, false);
+                /*c.setMatrix(tetraminoQ->posY ,tetraminoQ->posX, false);
+                c.setMatrix(tetraminoQ->posY, tetraminoQ->posX+1, false);*/
 
                 clearTetraminoQ(screen);
 
-                c.setMatrix(newY, newX, true);
-                c.setMatrix(newY, newX+1, true);
+                /*c.setMatrix(newY, newX, true);
+                c.setMatrix(newY, newX+1, true);*/
                 posY++;
             }
             break;
@@ -63,13 +63,13 @@ void TetraminoQuadrato::moveTetraminoQ(TetraminoQuadrato* tetraminoQ, Collisioni
 
             if (newX>0 && c.checkLeftQ(newY, newX)) {
 
-                c.setMatrix(posX+1, posY, false);
-                c.setMatrix(posX+1, posY+1, false);
+                /*c.setMatrix(posX+1, posY, false);
+                c.setMatrix(posX+1, posY+1, false);*/
 
                 clearTetraminoQ(screen);
 
-                c.setMatrix(posX-1, posY, true);
-                c.setMatrix(posX-1, posY+1, true);
+                /*c.setMatrix(posX-1, posY, true);
+                c.setMatrix(posX-1, posY+1, true);*/
                 posX--;
             }
             break;
@@ -81,13 +81,13 @@ void TetraminoQuadrato::moveTetraminoQ(TetraminoQuadrato* tetraminoQ, Collisioni
 
             if (newX<GRID_WIDE-1 && c.checkRightQ(newY, newX)) {
 
-                c.setMatrix(posX, posY, false);
-                c.setMatrix(posX, posY+1, false);
+                /*c.setMatrix(posX, posY, false);
+                c.setMatrix(posX, posY+1, false);*/
 
                 clearTetraminoQ(screen);
 
-                c.setMatrix(posX+2, posY, true);
-                c.setMatrix(posX+2, posY+1, true);
+                /*c.setMatrix(posX+2, posY, true);
+                c.setMatrix(posX+2, posY+1, true);*/
                 posX++;
             }
             break;

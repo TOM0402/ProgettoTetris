@@ -32,16 +32,16 @@ void TetraminoLungo::moveTetraminoL(TetraminoLungo* tetramino, CollisioniLungo c
         case KEY_DOWN:
             newX = tetramino->posX;
             newY = tetramino->posY + 1;
-            if (newY<GRID_HIGH-1 && c.checkDown(newY, newX)) {
-                for (int i = 0; i < 4; i++) {
+            if (newY<GRID_HIGH-1 && c.checkDownL(newY, newX)) {
+                /*for (int i = 0; i < 4; i++) {
                     c.setMatrix(posX+i, posY, false);
-                }
+                }*/
 
                 clearTetraminoL(screen);
 
-                for (int i = 0; i < 4; i++) {
+                /*for (int i = 0; i < 4; i++) {
                     c.setMatrix(posX+i, posY+1, true);
-                }
+                }*/
                 posY++;
             }
             break;
@@ -50,13 +50,13 @@ void TetraminoLungo::moveTetraminoL(TetraminoLungo* tetramino, CollisioniLungo c
             newX = tetramino->posX -1;
             newY = tetramino->posY ;
 
-            if (newX>0 && c.checkLeft(newY, newX)) {
+            if (newX>0 && c.checkLeftL(newY, newX)) {
 
-                c.setMatrix(posX+3, posY, false);
+                //c.setMatrix(posX+3, posY, false);
 
                 clearTetraminoL(screen);
 
-                c.setMatrix(posX-1, posY, true);
+                //c.setMatrix(posX-1, posY, true);
                 posX--;
             }
             break;
@@ -65,13 +65,13 @@ void TetraminoLungo::moveTetraminoL(TetraminoLungo* tetramino, CollisioniLungo c
             newX = tetramino->posX +1;
             newY = tetramino->posY ;
 
-            if (newX+3<GRID_WIDE-1 && c.checkRight(newY, newX)) {
+            if (newX+3<GRID_WIDE-1 && c.checkRightL(newY, newX)) {
 
-                c.setMatrix(posX, posY, false);
+                //c.setMatrix(posX, posY, false);
 
                 clearTetraminoL(screen);
 
-                c.setMatrix(posX+4, posY, true);
+                //c.setMatrix(posX+4, posY, true);
 
                 posX++;
             }
