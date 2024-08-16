@@ -22,10 +22,6 @@ void TetraminoQuadrato::spawnTetraminoQ(Screen screen, CollisioniQuadrato c){
     mvwprintw(screen.getScreen(),2,(screen.getWide()/2)-2,"XX");
     wattron(screen.getScreen(), COLOR_PAIR(7));
 
-    c.setMatrix((screen.getWide()/2)-2, 1, true);
-    c.setMatrix((screen.getWide()/2)-1, 1, true);
-    c.setMatrix((screen.getWide()/2)-2, 2, true);
-    c.setMatrix((screen.getWide()/2)-1, 2, true);
 }
 
 void TetraminoQuadrato::clearTetraminoQ(WINDOW* screen) {

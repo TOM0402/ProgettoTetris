@@ -6,13 +6,13 @@ TetraminoLungo::TetraminoLungo(Screen screen): Tetramino(screen){
 // Disegna i Tetrimini
 void TetraminoLungo::drawTetraminoL(WINDOW* screen, CollisioniLungo c){
 
-    mvwprintw(screen,getPosY(),getPosX(),"XXXX");
+    mvwprintw(screen,getPosY(),getPosX(),"YYYY");
     for(int i=0; i<4;i++){
         c.setMatrix(posX+i, 1, true);
     }
 }
 void TetraminoLungo::spawnTetraminoL(Screen screen, CollisioniLungo c){
-    mvwprintw(screen.getScreen(),1,(screen.getWide()/2)-2,"XXXX");
+    mvwprintw(screen.getScreen(),1,(screen.getWide()/2)-2,"YYYY");
     for(int i=0; i<4;i++){
         c.setMatrix(posX+i, 1, true);
     }
