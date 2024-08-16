@@ -15,7 +15,6 @@
 #include "Random/Random.hpp"
 #include "Screen/SideBar.hpp"
 
-
 using namespace std;
 
 void printBoolMatrix(WINDOW* win, const bool matrix[22][22]) {
@@ -70,7 +69,7 @@ int main() {
         insName.insert();
 
         clear();
-        SideBar sideGrill(GRID_HIGH, GRID_WIDE);
+        SideBar sideGrill(GRID_HIGH, GRID_WIDE, insName.getName());
         sideGrill.printScores();
         sideGrill.borderscreen();
 

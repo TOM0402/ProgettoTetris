@@ -4,8 +4,9 @@
 
 class SideBar:public Screen {
 protected:
+    char* username;
 public:
-    SideBar(int h, int w);
+    SideBar(int h, int w, char* username);
     void printScores();
 };
 
