@@ -72,8 +72,6 @@ int main() {
         SideBar sideGrill(GRID_HIGH, GRID_WIDE, insName.getName());
         sideGrill.printScores();
         sideGrill.borderscreen();
-        //sium
-        int gay=6;
         Game playGrill(GRID_HIGH,GRID_WIDE);
 
         int ch;
@@ -107,7 +105,7 @@ int main() {
                     printBoolMatrix(stdscr, cl.occupiedMatrix);
                     playGrill.borderscreen();
                 } else {
-                    mvwprintw(stdscr, 49, 1, " if falso ");
+                    mvwprintw(stdscr, 70, 1, " if falso ");
                     mvwprintw(stdscr, 50, 1, to_string(TQ->getPosY()).c_str());
                     TQ->spawnTetraminoQ(playGrill, cq);
                     if(cq.checkDownQ(TQ->getPosY() + 1,TQ->getPosX())){
