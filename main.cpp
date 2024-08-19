@@ -72,7 +72,8 @@ int main() {
         SideBar sideGrill(GRID_HIGH, GRID_WIDE, insName.getName());
         sideGrill.printScores();
         sideGrill.borderscreen();
-
+        //sium
+        int gay=6;
         Game playGrill(GRID_HIGH,GRID_WIDE);
 
         int ch;
