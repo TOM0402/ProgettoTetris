@@ -1,6 +1,8 @@
 #include "TetraminoLungo.hpp"
 
 TetraminoLungo::TetraminoLungo(): Tetramino(){
+    posX=22/2-4;
+    posY=1;
 }
 
 // Disegna i Tetrimini

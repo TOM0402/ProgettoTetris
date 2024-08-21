@@ -5,6 +5,8 @@
 using namespace std;
 
 Tetramino::Tetramino() {
+    posX=22/2-2;
+    posY=1;
 }
 
 int Tetramino::getPosX(){

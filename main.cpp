@@ -61,51 +61,7 @@ int main() {
         bool pezzo;
 
         while ((ch = getch()) != 'q') {
-            mvwprintw(playGrill.getScreen(), 10, 1, "                ");
-            //pezzo=r.pezzo();
-            mvwprintw(stdscr, 60, 1, " prima ");
-                if (pezzo) {
-                    mvwprintw(stdscr, 61, 1, " dopo ");
-                    T=new TetraminoLungo(playGrill);
-                    mvwprintw(stdscr, 49, 1, " if vero ");
-                    mvwprintw(stdscr, 50, 1, to_string(T->getPosY()).c_str());
-                    T->spawnTetramino(playGrill, cl);
-                    bool down=cl.checkDownL(T->getPosY() + 1, T->getPosX());
-                    while(down) {
-                        mvwprintw(stdscr, 55, 1, " sotto è libero");
-                        T->moveTetramino(T, cl, ch, playGrill.getScreen());
-                        down=cl.checkDownL(T->getPosY() + 1, T->getPosX());
-
-                    }
-                        cl.setMatrix(T->getPosY(), T->getPosX(), true);
-                        cl.setMatrix(T->getPosY(), T->getPosX() + 1, true);
-                        cl.setMatrix(T->getPosY(), T->getPosX() + 2, true);
-                        cl.setMatrix(T->getPosY(), T->getPosX() + 3, true);
-
-                    printBoolMatrix(stdscr, cl.occupiedMatrix);
-                    playGrill.borderscreen();
-                } else {
-                    T=new TetraminoQuadrato(playGrill);
-                    mvwprintw(stdscr, 49, 1, " if falso ");
-                    mvwprintw(stdscr, 50, 1, to_string(T->getPosY()).c_str());
-                    T->spawnTetramino(playGrill, cq);
-                    bool down=cq.checkDownQ(T->getPosY() + 2,T->getPosX());
-                    while(down){
-                        mvwprintw(stdscr, 55, 1, " sotto è libero");
-                        T->moveTetramino(T, cq, ch, playGrill.getScreen());
-                        down=cq.checkDownQ(T->getPosY() + 2,T->getPosX());
-                    }
-                        cq.setMatrix(T->getPosY(), T->getPosX(), true);
-                        cq.setMatrix(T->getPosY(), T->getPosX() + 1, true);
-                        cq.setMatrix(T->getPosY(), T->getPosX() + 2, true);
-                        cq.setMatrix(T->getPosY(), T->getPosX() + 3, true);
-                        cq.setMatrix(T->getPosY() + 1, T->getPosX(), true);
-                        cq.setMatrix(T->getPosY() + 1, T->getPosX() + 1, true);
-                        cq.setMatrix(T->getPosY() + 1, T->getPosX() + 2, true);
-                        cq.setMatrix(T->getPosY() + 1, T->getPosX() + 3, true);
-                    }
-
-                    printBoolMatrix(stdscr, cl.occupiedMatrix);
+                    play();
                 }
             playGrill.borderscreen();
 

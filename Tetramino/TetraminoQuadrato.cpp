@@ -1,7 +1,10 @@
 #include "TetraminoQuadrato.hpp"
 #include <ncurses.h>
 using namespace std;
-TetraminoQuadrato::TetraminoQuadrato(): Tetramino(){};
+TetraminoQuadrato::TetraminoQuadrato(): Tetramino(){
+    posX=22/2-2;
+    posY=1;
+};
 
 void TetraminoQuadrato::drawTetramino(WINDOW* screen, CollisioniQuadrato c){
     wattron(screen, COLOR_PAIR(7));
