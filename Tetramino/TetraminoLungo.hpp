@@ -7,10 +7,10 @@
 class TetraminoLungo:public Tetramino{
 public:
     TetraminoLungo(Screen);
-    void drawTetraminoL(WINDOW*, CollisioniLungo c);
-    void spawnTetraminoL(Screen, CollisioniLungo c);
-    void clearTetraminoL(WINDOW*);
-    void moveTetraminoL(TetraminoLungo* , CollisioniLungo, int, WINDOW* screen);
+    void drawTetramino(WINDOW*, CollisioniLungo c);
+    void spawnTetramino(Screen, CollisioniLungo c);
+    void clearTetramino(WINDOW*);
+    void moveTetramino(TetraminoLungo* , CollisioniLungo, int, WINDOW* screen);
 };
 
 #endif //PROGETTOTETRIS_TETRAMINOLUNGO_HPP

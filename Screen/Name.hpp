@@ -4,11 +4,9 @@
 
 class Name:public Screen {
 protected:
-    char* name;
 public:
     Name(int h, int w);
     void insert();
-    char* getName();
 };
 
 #endif //NAME_HPP

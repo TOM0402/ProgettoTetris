@@ -4,25 +4,25 @@ TetraminoLungo::TetraminoLungo(Screen screen): Tetramino(screen){
 }
 
 // Disegna i Tetrimini
-void TetraminoLungo::drawTetraminoL(WINDOW* screen, CollisioniLungo c){
+void TetraminoLungo::drawTetramino(WINDOW* screen, CollisioniLungo c){
 
     mvwprintw(screen,getPosY(),getPosX(),"YYYY");
     for(int i=0; i<4;i++){
         c.setMatrix(posX+i, 1, true);
     }
 }
-void TetraminoLungo::spawnTetraminoL(Screen screen, CollisioniLungo c){
+void TetraminoLungo::spawnTetramino(Screen screen, CollisioniLungo c){
     mvwprintw(screen.getScreen(),1,(screen.getWide()/2)-2,"YYYY");
     for(int i=0; i<4;i++){
         c.setMatrix(posX+i, 1, true);
     }
 }
 
-void TetraminoLungo::clearTetraminoL(WINDOW* screen) {
+void TetraminoLungo::clearTetramino(WINDOW* screen) {
     mvwprintw(screen, getPosY(), getPosX(), "    ");
 }
 
-void TetraminoLungo::moveTetraminoL(TetraminoLungo* tetramino, CollisioniLungo c, int ch, WINDOW* screen) {
+void TetraminoLungo::moveTetramino(TetraminoLungo* tetramino, CollisioniLungo c, int ch, WINDOW* screen) {
 
     int newX;
     int newY;
@@ -37,7 +37,7 @@ void TetraminoLungo::moveTetraminoL(TetraminoLungo* tetramino, CollisioniLungo c
                     c.setMatrix(posX+i, posY, false);
                 }*/
 
-                clearTetraminoL(screen);
+                clearTetramino(screen);
 
                 /*for (int i = 0; i < 4; i++) {
                     c.setMatrix(posX+i, posY+1, true);
@@ -54,7 +54,7 @@ void TetraminoLungo::moveTetraminoL(TetraminoLungo* tetramino, CollisioniLungo c
 
                 //c.setMatrix(posX+3, posY, false);
 
-                clearTetraminoL(screen);
+                clearTetramino(screen);
 
                 //c.setMatrix(posX-1, posY, true);
                 posX--;
@@ -69,7 +69,7 @@ void TetraminoLungo::moveTetraminoL(TetraminoLungo* tetramino, CollisioniLungo c
 
                 //c.setMatrix(posX, posY, false);
 
-                clearTetraminoL(screen);
+                clearTetramino(screen);
 
                 //c.setMatrix(posX+4, posY, true);
 
@@ -80,5 +80,5 @@ void TetraminoLungo::moveTetraminoL(TetraminoLungo* tetramino, CollisioniLungo c
         default:
             break;
     }
-    tetramino->drawTetraminoL(screen, c); // Disegna il tetramino nella nuova posizione
+    tetramino->drawTetramino(screen, c); // Disegna il tetramino nella nuova posizione
 }

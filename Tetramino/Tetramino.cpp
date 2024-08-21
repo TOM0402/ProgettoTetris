@@ -16,3 +16,8 @@ int Tetramino::getPosX(){
 int Tetramino::getPosY(){
     return posY;
 }
+
+void Tetramino:: drawTetramino(WINDOW*, Collisioni c){}
+void Tetramino:: spawnTetramino(Screen, Collisioni c){}
+void Tetramino:: clearTetramino(WINDOW*){}
+void Tetramino:: moveTetramino(Tetramino* , Collisioni, int, WINDOW* screen){}

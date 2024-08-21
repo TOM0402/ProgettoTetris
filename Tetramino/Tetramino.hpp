@@ -14,6 +14,10 @@ public:
     Tetramino(Screen);
     int getPosX();
     int getPosY();
+    void drawTetramino(WINDOW*, Collisioni c);
+    void spawnTetramino(Screen, Collisioni c);
+    void clearTetramino(WINDOW*);
+    void moveTetramino(Tetramino* , Collisioni, int, WINDOW* screen);
 };
 
 
