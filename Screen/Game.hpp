@@ -1,6 +1,6 @@
 #ifndef GAME_HPP
 #define GAME_HPP
-#include "ScreenG.hpp"
+#include "Screen.hpp"
 
 class Game:public Screen {
 protected:

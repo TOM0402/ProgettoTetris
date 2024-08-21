@@ -1,6 +1,6 @@
 #ifndef LEADERBOARD_HPP
 #define LEADERBOARD_HPP
-#include "ScreenG.hpp"
+#include "Screen.hpp"
 
 class Leaderboard:public Screen {
 protected:

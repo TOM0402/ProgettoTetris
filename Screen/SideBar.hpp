@@ -1,6 +1,6 @@
 #ifndef SIDEBAR_HPP
 #define SIDEBAR_HPP
-#include "ScreenG.hpp"
+#include "Screen.hpp"
 
 class SideBar:public Screen {
 protected:

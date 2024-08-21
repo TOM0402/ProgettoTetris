@@ -1,6 +1,6 @@
 #ifndef HOME_HPP
 #define HOME_HPP
-#include "ScreenG.hpp"
+#include "Screen.hpp"
 
 class Home:public Screen {
 protected:

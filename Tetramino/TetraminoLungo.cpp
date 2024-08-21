@@ -1,25 +1,25 @@
 #include "TetraminoLungo.hpp"
 
-TetraminoLungo::TetraminoLungo(Screen screen): Tetramino(screen){
+TetraminoLungo::TetraminoLungo(): Tetramino(){
 }
 
 // Disegna i Tetrimini
 void TetraminoLungo::drawTetramino(WINDOW* screen, CollisioniLungo c){
 
-    mvwprintw(screen,getPosY(),getPosX(),"YYYY");
-    for(int i=0; i<4;i++){
+    mvwprintw(screen,getPosY(),getPosX(),"YYYYYYYY");
+    /*for(int i=0; i<8;i++){
         c.setMatrix(posX+i, 1, true);
-    }
+    }*/
 }
 void TetraminoLungo::spawnTetramino(Screen screen, CollisioniLungo c){
-    mvwprintw(screen.getScreen(),1,(screen.getWide()/2)-2,"YYYY");
-    for(int i=0; i<4;i++){
+    mvwprintw(screen.getScreen(),1,(screen.getWide()/2)-2,"YYYYYYYY");
+    /*for(int i=0; i<8;i++){
         c.setMatrix(posX+i, 1, true);
-    }
+    }*/
 }
 
 void TetraminoLungo::clearTetramino(WINDOW* screen) {
-    mvwprintw(screen, getPosY(), getPosX(), "    ");
+    mvwprintw(screen, getPosY(), getPosX(), "        ");
 }
 
 void TetraminoLungo::moveTetramino(TetraminoLungo* tetramino, CollisioniLungo c, int ch, WINDOW* screen) {
@@ -65,7 +65,7 @@ void TetraminoLungo::moveTetramino(TetraminoLungo* tetramino, CollisioniLungo c,
             newX = tetramino->posX +1;
             newY = tetramino->posY ;
 
-            if (newX+3<GRID_WIDE-1 && c.checkRightL(newY, newX)) {
+            if (newX+7<GRID_WIDE-1 && c.checkRightL(newY, newX)) {
 
                 //c.setMatrix(posX, posY, false);
 

@@ -7,7 +7,7 @@
 class TetraminoQuadrato:public Tetramino{
 
 public:
-    TetraminoQuadrato(Screen);
+    TetraminoQuadrato();
     void drawTetramino(WINDOW*, CollisioniQuadrato c);
     void spawnTetramino(Screen, CollisioniQuadrato c);
     void clearTetramino(WINDOW*);

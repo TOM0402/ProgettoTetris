@@ -6,7 +6,7 @@
 
 class TetraminoLungo:public Tetramino{
 public:
-    TetraminoLungo(Screen);
+    TetraminoLungo();
     void drawTetramino(WINDOW*, CollisioniLungo c);
     void spawnTetramino(Screen, CollisioniLungo c);
     void clearTetramino(WINDOW*);

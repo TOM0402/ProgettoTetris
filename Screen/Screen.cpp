@@ -1,4 +1,4 @@
-#include "ScreenG.hpp"
+#include "Screen.hpp"
 #include "../Collisioni/Collisioni.hpp"
 #include <ncurses.h>
 using namespace std;

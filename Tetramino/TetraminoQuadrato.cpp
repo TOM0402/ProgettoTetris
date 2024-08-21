@@ -1,32 +1,28 @@
 #include "TetraminoQuadrato.hpp"
 #include <ncurses.h>
 using namespace std;
-TetraminoQuadrato::TetraminoQuadrato(Screen screen): Tetramino(screen){};
+TetraminoQuadrato::TetraminoQuadrato(): Tetramino(){};
 
 void TetraminoQuadrato::drawTetramino(WINDOW* screen, CollisioniQuadrato c){
     wattron(screen, COLOR_PAIR(7));
-    mvwprintw(screen,getPosY(),getPosX(),"XX");
-    mvwprintw(screen,getPosY()+1,getPosX(),"XX");
+    mvwprintw(screen,getPosY(),getPosX(),"XXXX");
+    mvwprintw(screen,getPosY()+1,getPosX(),"XXXX");
     wattroff(screen, COLOR_PAIR(7));
 
-    c.setMatrix(posX, posY, true);
-    c.setMatrix(posX+1, posY, true);
-    c.setMatrix(posX, posY+1, true);
-    c.setMatrix(posX+1, posY+1, true);
 
 }
 
 void TetraminoQuadrato::spawnTetramino(Screen screen, CollisioniQuadrato c){
     wattron(screen.getScreen(), COLOR_PAIR(7));
-    mvwprintw(screen.getScreen(),1,(screen.getWide()/2)-2,"XX");
-    mvwprintw(screen.getScreen(),2,(screen.getWide()/2)-2,"XX");
+    mvwprintw(screen.getScreen(),1,(screen.getWide()/2)-2,"XXXX");
+    mvwprintw(screen.getScreen(),2,(screen.getWide()/2)-2,"XXXX");
     wattron(screen.getScreen(), COLOR_PAIR(7));
 
 }
 
 void TetraminoQuadrato::clearTetramino(WINDOW* screen) {
-    mvwprintw(screen, getPosY(), getPosX(), "  ");
-    mvwprintw(screen, getPosY()+1, getPosX(), "  ");
+    mvwprintw(screen, getPosY(), getPosX(), "    ");
+    mvwprintw(screen, getPosY()+1, getPosX(), "    ");
 }
 
 void TetraminoQuadrato::moveTetramino(TetraminoQuadrato* tetraminoQ, CollisioniQuadrato c, int ch, WINDOW* screen) {
@@ -72,7 +68,7 @@ void TetraminoQuadrato::moveTetramino(TetraminoQuadrato* tetraminoQ, CollisioniQ
 
         case KEY_RIGHT:
 
-            newX = tetraminoQ->posX +2;
+            newX = tetraminoQ->posX +4;
             newY = tetraminoQ->posY ;
 
             if (newX<GRID_WIDE-1 && c.checkRightQ(newY, newX)) {

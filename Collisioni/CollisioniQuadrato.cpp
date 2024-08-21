@@ -8,7 +8,7 @@
 CollisioniQuadrato::CollisioniQuadrato():Collisioni(){}
 
 bool CollisioniQuadrato::checkDownQ(int newY, int newX){
-    if(isEmpty(getMatrix(newY, newX)) && isEmpty(getMatrix(newY, newX+1))){
+    if(isEmpty(getMatrix(newY, newX)) && isEmpty(getMatrix(newY, newX+1)) && isEmpty(getMatrix(newY, newX+2)) && isEmpty(getMatrix(newY, newX+3))){
         return true;
     }
     return false;

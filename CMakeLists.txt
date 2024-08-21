@@ -13,8 +13,8 @@ add_executable(ProgettoTetris
         prova.txt
         Classifica/classifica.cpp
         Classifica/classifica.hpp
-        Screen/ScreenG.cpp
-        Screen/ScreenG.hpp
+        Screen/Screen.cpp
+        Screen/Screen.hpp
         Tetramino/Tetramino.cpp
         Tetramino/Tetramino.hpp
         Screen/Leaderboard.cpp
@@ -35,9 +35,11 @@ add_executable(ProgettoTetris
         Collisioni/CollisioniLungo.hpp
         Tetramino/TetraminoLungo.cpp
         Tetramino/TetraminoLungo.hpp
-        Random/Random.cpp
-        Random/Random.hpp
         Screen/SideBar.cpp
         Screen/SideBar.hpp
+        Engine/Engine.cpp
+        Engine/Engine.hpp
+        Tetramino/GestionePezzi.cpp
+        Tetramino/GestionePezzi.hpp
 )
 target_link_libraries( ProgettoTetris ${CURSES_LIBRARIES} )
