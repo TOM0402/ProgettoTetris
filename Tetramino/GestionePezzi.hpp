@@ -1,6 +1,7 @@
 #ifndef PROGETTOTETRIS_GESTIONEPEZZI_HPP
 #define PROGETTOTETRIS_GESTIONEPEZZI_HPP
 #include "../Tetramino/Tetramino.hpp"
+#include "../Screen/Game.hpp"
 
 struct list{
     Tetramino t();
@@ -8,11 +9,12 @@ struct list{
 };
 typedef list *p_list;
 
-
 class GestionePezzi{
 protected:
     p_list pezzi;
-    void generateRandom();
+    int generateRandom();
+    void game(Game playgrill);
+    int moving(Game playgrill);
     p_list append(Tetramino t);
     p_list remove();
 };

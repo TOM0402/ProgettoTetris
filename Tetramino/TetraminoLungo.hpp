@@ -5,11 +5,15 @@
 #include "../Collisioni/CollisioniLungo.hpp"
 
 class TetraminoLungo:public Tetramino{
+protected:
+    int orientamento;
 public:
     TetraminoLungo();
-    void drawTetramino(WINDOW*, CollisioniLungo c);
-    void spawnTetramino(Screen, CollisioniLungo c);
-    void clearTetramino(WINDOW*);
+    int getOrientamento();
+    void setOrientamento();
+    void drawTetramino(WINDOW*);
+    void spawnTetramino(Screen);
+    void clearTetramino(WINDOW*, int );
     void moveTetramino(TetraminoLungo* , CollisioniLungo, int, WINDOW* screen);
 };
 

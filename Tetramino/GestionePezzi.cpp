@@ -2,17 +2,63 @@
 #include "Tetramino.hpp"
 #include "TetraminoLungo.hpp"
 #include "TetraminoQuadrato.hpp"
+#include "../Screen/Game.hpp"
 
-void GestionePezzi::generateRandom() {
+TetraminoQuadrato *tq;
+TetraminoLungo *tl;
+CollisioniLungo cl = CollisioniLungo();
+CollisioniQuadrato cq = CollisioniQuadrato();
+int ch;
 
-    if (pezzi.bool){
-        TetraminoQuadrato *tq = new TetraminoQuadrato();
+int GestionePezzi::generateRandom() {
+    srand(time(0));
+    return rand() % 2;
+}
+
+
+
+
+
+void GestionePezzi::game(Game playGrill) {
+    while ((ch = getch()) != 'q') {
+        moving(playGrill);
     }
-    else{
-        TetraminoLungo *tl = new TetraminoLungo();
+}
+int GestionePezzi::moving(Game playGrill) {
+    if(generateRandom()==1) {
+        bool stop=false;
+        while (!stop) {
+            ch = getch();
+            tl = new TetraminoLungo();
+            tl->spawnTetramino(playGrill, cl);
+            tl->moveTetramino(tl, cl, ch, playGrill.getScreen());
+            if (!cl.checkDownL(tl->getPosY() + 1, tl->getPosX())) {     //QUANDO ARRIVO IN FONDO SPAWN NUOVO TETRAMINO
+                stop = true;
+                //printBoolMatrix(stdscr, cl.occupiedMatrix);
+            }
+            //printBoolMatrix(stdscr, cl.occupiedMatrix);
+            wrefresh(playGrill.getScreen());
+        }
+
+            return tl->getPosX();
+    }else{
+        bool stop=false;
+        while (!stop) {
+            ch=getch();
+            tq = new TetraminoQuadrato();
+            tq->spawnTetramino(playGrill, cq);
+            tq->moveTetramino(tq, cq, ch, playGrill.getScreen());
+            if (cq.checkDownQ(tq->getPosY() + 1, tq->getPosX())) {     //QUANDO ARRIVO IN FONDO SPAWN NUOVO TETRAMINO
+                //printBoolMatrix(stdscr, cl.occupiedMatrix);
+                stop=true;
+            }
+            //printBoolMatrix(stdscr, cl.occupiedMatrix);
+            wrefresh(playGrill.getScreen());
+        }
+        return tq->getPosY();
     }
 
-
+}
 
     srand(time(0));
     for (int i = 0; i < 5; i++) {
