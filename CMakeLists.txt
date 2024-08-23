@@ -39,7 +39,5 @@ add_executable(ProgettoTetris
         Screen/SideBar.hpp
         Engine/Engine.cpp
         Engine/Engine.hpp
-        Tetramino/GestionePezzi.cpp
-        Tetramino/GestionePezzi.hpp
 )
 target_link_libraries( ProgettoTetris ${CURSES_LIBRARIES} )

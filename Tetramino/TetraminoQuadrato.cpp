@@ -1,12 +1,11 @@
 #include "TetraminoQuadrato.hpp"
-#include <ncurses.h>
 using namespace std;
 TetraminoQuadrato::TetraminoQuadrato(): Tetramino(){
     posX=22/2-2;
     posY=1;
 };
 
-void TetraminoQuadrato::drawTetramino(WINDOW* screen, CollisioniQuadrato c){
+void TetraminoQuadrato::drawTetramino(WINDOW* screen){
     wattron(screen, COLOR_PAIR(7));
     mvwprintw(screen,getPosY(),getPosX(),"XXXX");
     mvwprintw(screen,getPosY()+1,getPosX(),"XXXX");
@@ -15,7 +14,7 @@ void TetraminoQuadrato::drawTetramino(WINDOW* screen, CollisioniQuadrato c){
 
 }
 
-void TetraminoQuadrato::spawnTetramino(Screen screen, CollisioniQuadrato c){
+void TetraminoQuadrato::spawnTetramino(Screen screen){
     wattron(screen.getScreen(), COLOR_PAIR(7));
     mvwprintw(screen.getScreen(),1,(screen.getWide()/2)-2,"XXXX");
     mvwprintw(screen.getScreen(),2,(screen.getWide()/2)-2,"XXXX");
@@ -89,5 +88,5 @@ void TetraminoQuadrato::moveTetramino(TetraminoQuadrato* tetraminoQ, CollisioniQ
         default:
             break;
     }
-    tetraminoQ->drawTetramino(screen, c); // Disegna il tetramino nella nuova posizione
+    tetraminoQ->drawTetramino(screen); // Disegna il tetramino nella nuova posizione
 }

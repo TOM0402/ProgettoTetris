@@ -1,7 +1,5 @@
 #include "Tetramino.hpp"
-#include "../Screen/Screen.hpp"
-#include "../Collisioni/Collisioni.hpp"
-#include <ncurses.h>
+
 using namespace std;
 
 Tetramino::Tetramino() {

@@ -1,5 +1,4 @@
 #include "CollisioniLungo.hpp"
-#include "Collisioni.hpp"
 
 CollisioniLungo::CollisioniLungo():Collisioni(){}
 

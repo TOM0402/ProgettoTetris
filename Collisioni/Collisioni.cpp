@@ -1,6 +1,4 @@
-#include "../Screen/Screen.hpp"
 #include "Collisioni.hpp"
-#include <ncurses.h>
 using namespace std;
 
 Collisioni::Collisioni(){

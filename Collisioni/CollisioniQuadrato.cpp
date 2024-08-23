@@ -1,7 +1,3 @@
-//
-// Created by kali on 8/7/24.
-//
-
 #include "CollisioniQuadrato.hpp"
 #include "Collisioni.hpp"
 
