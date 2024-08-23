@@ -88,6 +88,6 @@ int Home::menu() {
     }
     wattroff(screen,COLOR_PAIR(2));
 
-    printw("La tua scelta: %s", scelte[highlight]);
+    //printw("La tua scelta: %s", scelte[highlight]);
     return highlight;
 }

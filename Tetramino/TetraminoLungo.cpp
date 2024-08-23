@@ -17,6 +17,7 @@ void TetraminoLungo::setOrientamento() {
 // Disegna i Tetrimini
 
 void TetraminoLungo::drawTetramino(WINDOW* screen) {
+    //wattron(screen, COLOR_PAIR(8));
     if(getOrientamento()==0) {
         mvwprintw(screen, getPosY(), getPosX(), "YYYYYYYY");
     }else {
@@ -25,9 +26,12 @@ void TetraminoLungo::drawTetramino(WINDOW* screen) {
         mvwprintw(screen, getPosY()+2, getPosX(), "YY");
         mvwprintw(screen, getPosY()+3, getPosX(), "YY");
     }
+    //wattroff(screen, COLOR_PAIR(8));
 }
 void TetraminoLungo::spawnTetramino(Screen screen){
+    //wattron(screen.getScreen(), COLOR_PAIR(8));
     mvwprintw(screen.getScreen(),1,(screen.getWide()/2)-2,"YYYYYYYY");
+    //wattroff(screen.getScreen(), COLOR_PAIR(8));
 }
 
 void TetraminoLungo::clearTetramino(WINDOW* screen, int ori) {
@@ -153,7 +157,9 @@ void TetraminoLungo::moveTetramino(TetraminoLungo* tetramino, CollisioniLungo c,
                 }
                 break;
             case KEY_UP:
-
+                clearTetramino(screen, getOrientamento());
+                setOrientamento();
+                drawTetramino(screen);
                 break;
             default:
                 break;

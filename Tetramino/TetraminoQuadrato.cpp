@@ -6,19 +6,19 @@ TetraminoQuadrato::TetraminoQuadrato(): Tetramino(){
 };
 
 void TetraminoQuadrato::drawTetramino(WINDOW* screen){
-    wattron(screen, COLOR_PAIR(7));
+    //wattron(screen, COLOR_PAIR(7));
     mvwprintw(screen,getPosY(),getPosX(),"XXXX");
     mvwprintw(screen,getPosY()+1,getPosX(),"XXXX");
-    wattroff(screen, COLOR_PAIR(7));
+    //wattroff(screen, COLOR_PAIR(7));
 
 
 }
 
 void TetraminoQuadrato::spawnTetramino(Screen screen){
-    wattron(screen.getScreen(), COLOR_PAIR(7));
+    //wattron(screen.getScreen(), COLOR_PAIR(7));
     mvwprintw(screen.getScreen(),1,(screen.getWide()/2)-2,"XXXX");
     mvwprintw(screen.getScreen(),2,(screen.getWide()/2)-2,"XXXX");
-    wattron(screen.getScreen(), COLOR_PAIR(7));
+    //wattron(screen.getScreen(), COLOR_PAIR(7));
 
 }
 

@@ -13,22 +13,18 @@
 
 using namespace std;
 
-void printBoolMatrix(WINDOW* win, const bool matrix[22][22]) {
-    for (int i = 0; i < 22; ++i) {
-        for (int j = 0; j < 22; ++j) {
-            mvwaddch(win, i, j * 2, (matrix[i][j] ? '1' : '0'));
-        }
-    }
-    wrefresh(win); // Aggiorna la finestra per visualizzare il contenuto
-}
-
-
 int main() {
 
     Engine engine;
+    //engine.init();
 
+    //int s= engine.setup();
 
-    int s= engine.setup();
+    Home home(32,62);
+    home.printLogo();
+    home.borderscreen();
+    int s =home.menu();
+
     clear();
     if (s==0) {
         Name insName(5,34);
@@ -36,7 +32,7 @@ int main() {
         insName.insert();
 
         clear();
-        SideBar sideGrill(GRID_HIGH, GRID_WIDE);
+        SideBar sideGrill(GRID_HIGH, GRID_WIDE,insName.getName());
         sideGrill.printScores();
         sideGrill.borderscreen();
 
