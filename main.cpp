@@ -30,11 +30,18 @@ int main() {
         Name insName(5,34);
         insName.borderscreen();
         insName.insert();
+        char* name=insName.getName();
 
         clear();
-        SideBar sideGrill(GRID_HIGH, GRID_WIDE,insName.getName());
-        sideGrill.printScores();
-        sideGrill.borderscreen();
+        printw(name);
+        refresh();
+        getch();
+
+        clear();
+
+        // SideBar sideGrill(GRID_HIGH, GRID_WIDE, name);
+        // sideGrill.printScores();
+        // sideGrill.borderscreen();
 
         Game playGrill(GRID_HIGH,GRID_WIDE);
         playGrill.borderscreen();
