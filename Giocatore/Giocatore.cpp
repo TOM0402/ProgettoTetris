@@ -47,7 +47,7 @@ void Giocatore::setDataPunteggio(char data[]) {
 bool Giocatore::updatePunteggio(int p){
   if(p>this->punti){
     if (p>0){
-      this->setPunteggio(p);
+      this->setPunteggio(this->getPunteggio()+p);
       return true;
     }
   }
