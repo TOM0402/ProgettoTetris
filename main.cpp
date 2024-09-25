@@ -32,16 +32,16 @@ int main() {
         insName.insert();
         char* name=insName.getName();
 
-        clear();
-        printw(name);
-        refresh();
-        getch();
+        // clear();
+        // printw(name);
+        // refresh();
+        // getch();
 
         clear();
 
-        // SideBar sideGrill(GRID_HIGH, GRID_WIDE, name);
-        // sideGrill.printScores();
-        // sideGrill.borderscreen();
+        SideBar sideGrill(GRID_HIGH, GRID_WIDE, name);
+        sideGrill.printScores();
+        sideGrill.borderscreen();
 
         Game playGrill(GRID_HIGH,GRID_WIDE);
         playGrill.borderscreen();

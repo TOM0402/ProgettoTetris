@@ -4,7 +4,7 @@
 
 class Name:public Screen {
 protected:
-    char* name;
+    char name[];
 public:
     Name(int h, int w);
     void insert();

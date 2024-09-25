@@ -25,5 +25,7 @@ void Name::insert() {
 }
 
 char* Name::getName() {
-    return name;
+    char* nameast;
+    strcpy(nameast,name);
+    return nameast;
 }
