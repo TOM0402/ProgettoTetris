@@ -39,5 +39,9 @@ add_executable(ProgettoTetris
         Screen/SideBar.hpp
         Engine/Engine.cpp
         Engine/Engine.hpp
+        Tetramino/TetraminoNuovo.cpp
+        Tetramino/TetraminoNuovo.hpp
+        Collisioni/CollisioniNuovo.cpp
+        Collisioni/CollisioniNuovo.hpp
 )
 target_link_libraries( ProgettoTetris ${CURSES_LIBRARIES} )

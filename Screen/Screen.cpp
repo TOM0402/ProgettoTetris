@@ -43,3 +43,4 @@ int Screen::getHigh() {
 int Screen::getWide() {
     return wide;
 }
+

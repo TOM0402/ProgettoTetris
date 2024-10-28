@@ -1,4 +1,5 @@
 #include "Engine.hpp"
+#include "../Collisioni/CollisioniNuovo.hpp"
 #include <vector>
 Engine::Engine() {
     init();
@@ -61,6 +62,8 @@ void Engine::play(Game playGrill) {
         playGrill.borderscreen();
     }
 }
+
+
 int Engine::moving(Game playGrill, int ch) {
     if(generateRandom()==1) {
         bool stop=false;
@@ -97,3 +100,32 @@ int Engine::moving(Game playGrill, int ch) {
     }
 
 }
+//----------------------------------------------------------------------------------------------
+/*
+TetraminoNuovo createTetromino() {
+    TetraminoNuovo t;
+    int index = rand() % 7;
+    for (int y = 0; y < 4; ++y) {
+        for (int x = 0; x < 5; ++x) {
+            t.setShape(y,x,t.getTetramini(index, y, x));
+        }
+    }
+    t.setX(GRID_WIDTH / 2 - 2); // Center the tetromino
+    t.setY(0); // Start at the top
+    t.setColor(index + 1); // Assign color based on tetromino index (1-7)
+    return t;
+}*/
+
+/*void drawNextTetromino(WINDOW *win, Tetromino &t) {
+    werase(win);
+    attron(COLOR_PAIR(t.color));  // Use the color assigned to the tetromino
+    for (int y = 0; y < 4; ++y) {
+        for (int x = 0; x < 4; ++x) {
+            if (t.shape[y][x] == 'X') {
+                mvwprintw(win, y, 2 * x, "XX");
+            }
+        }
+    }
+    attroff(COLOR_PAIR(t.color));  // Turn off the color attribute
+    wrefresh(win);
+}*/
