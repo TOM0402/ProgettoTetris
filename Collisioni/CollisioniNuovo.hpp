@@ -10,7 +10,7 @@
 
 class CollisioniNuovo{
 public:
-    bool checkCollisioni(char board[GRID_HEIGHT][GRID_WIDTH], TetraminoNuovo &t);
+    bool checkCollisioni(char board[GRID_HEIGHT][GRID_WIDTH], TetraminoNuovo* t);
 };
 
 #endif //PROGETTOTETRIS_COLLISIONINUOVO_HPP

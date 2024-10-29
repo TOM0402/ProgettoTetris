@@ -102,7 +102,7 @@ int Engine::moving(Game playGrill, int ch) {
 }
 //----------------------------------------------------------------------------------------------
 /*
-TetraminoNuovo createTetromino() {
+TetraminoNuovo createTetramino() {
     TetraminoNuovo t;
     int index = rand() % 7;
     for (int y = 0; y < 4; ++y) {
@@ -114,18 +114,118 @@ TetraminoNuovo createTetromino() {
     t.setY(0); // Start at the top
     t.setColor(index + 1); // Assign color based on tetromino index (1-7)
     return t;
-}*/
+}
 
-/*void drawNextTetromino(WINDOW *win, Tetromino &t) {
+void drawNextTetramino(WINDOW *win, TetraminoNuovo* t) {
     werase(win);
-    attron(COLOR_PAIR(t.color));  // Use the color assigned to the tetromino
+    attron(COLOR_PAIR(t->getColor()));  // Use the color assigned to the tetromino
     for (int y = 0; y < 4; ++y) {
         for (int x = 0; x < 4; ++x) {
-            if (t.shape[y][x] == 'X') {
+            if (t->getShape(x,y) == 'X') {
                 mvwprintw(win, y, 2 * x, "XX");
             }
         }
     }
-    attroff(COLOR_PAIR(t.color));  // Turn off the color attribute
+    attroff(COLOR_PAIR(t->getColor()));  // Turn off the color attribute
     wrefresh(win);
+}
+
+void rotateTetramino(TetraminoNuovo* t) {
+    char temp[4][5]; //matrice temporanea per salvare il tetramino ruotato
+    for (int y = 0; y < 4; ++y) {
+        for (int x = 0; x < 4; ++x) {
+            temp[x][3 - y] = t->getShape(y,x); // Rotate the tetromino
+        }
+    }
+    for (int y = 0; y < 4; ++y) {
+        for (int x = 0; x < 5; ++x) {
+            t->setShape(y,x, temp[y][x]);
+        }
+    }
+}
+
+void placeTetramino(char board[GRID_HEIGHT][GRID_WIDTH], TetraminoNuovo* t) {
+    for (int y = 0; y < 4; ++y) {
+        for (int x = 0; x < 4; ++x) {
+            if (t->getShape(y,x) == 'X') {
+                board[t->getY() + y][t->getX()+ x] = 'X';
+            }
+        }
+    }
+}
+
+//AUMENTA IL PUNTEGGIO
+int clearLines(char board[GRID_HEIGHT][GRID_WIDTH]) {
+    int punteggio = 0;
+    for (int y = GRID_HEIGHT - 1; y >= 0; --y) {
+        bool lineaPiena = true;
+        for (int x = 0; x < GRID_WIDTH; ++x) {
+            if (board[y][x] == '.') {
+                lineaPiena = false;
+                break;
+            }
+        }
+        if (lineaPiena) {
+            punteggio++; // Incrementa il punteggio
+            // CANCELLA LA LINEA
+            for (int i = y; i > 0; --i) {
+                for (int x = 0; x < GRID_WIDTH; ++x) {
+                    board[i][x] = board[i - 1][x];
+                }
+            }
+            for (int x = 0; x < GRID_WIDTH; ++x) {
+                board[0][x] = '.';
+            }
+            ++y; // Check the same line again after shifting down
+        }
+    }
+    return punteggio; // Return the total score for cleared lines
+}
+
+
+void moving(int ch, WINDOW* gameWin, WINDOW* nextWin, TetraminoNuovo* currentTetramino, TetraminoNuovo* nextTetramino, char board[GRID_HEIGHT][GRID_WIDTH], CollisioniNuovo* C, int punteggio){
+    switch (ch) {
+        case 'q':
+            delwin(gameWin);
+            delwin(nextWin);
+            endwin();
+            return 0; // Exit on 'q' key
+        case 'a': // Move left
+        case KEY_LEFT:
+            currentTetramino->setX(currentTetramino->getX()-1);
+            if (C->checkCollisioni(board, currentTetramino)) currentTetramino->setX(currentTetramino->getX()+1);
+            break;
+        case 'd': // Move right
+        case KEY_RIGHT:
+            currentTetramino->setX(currentTetramino->getX()+1);
+            if (C->checkCollisioni(board, currentTetramino)) currentTetramino->setX(currentTetramino->getX()-1);
+            break;
+        case 's': // Move down
+        case KEY_DOWN:
+            currentTetramino->setY(currentTetramino->getY()+1);
+            if (C->checkCollisioni(board, currentTetramino)) {
+                currentTetramino->setY(currentTetramino->getY()-1);
+                placeTetramino(board, currentTetramino);
+                punteggio += clearLines(board); // Aumenta il punteggio ed elimina le righe
+                currentTetramino = nextTetramino; // Il prossimo tetramino, diventa il corrente
+                nextTetramino = createTetramino(); // Genero il prossimo tetramino
+                if (C->checkCollisioni(board, currentTetramino)) {
+                    // Game over
+                    delwin(gameWin);
+                    delwin(nextWin);
+                    endwin();
+                    return 0;
+                }
+            }
+            break;
+        case 'w': // Rotate
+        case KEY_UP:
+            rotateTetromino(currentTetramino);
+            if (C->checkCollisioni(board, currentTetramino)) {
+                // If collision occurs, revert the rotation
+                rotateTetramino(currentTetramino); // Rotate back
+                rotateTetramino(currentTetramino); // Rotate back again (180 degrees)
+            }
+            break;
+    }
 }*/
