@@ -10,6 +10,7 @@
 #include "Screen/Name.hpp"
 #include "Screen/SideBar.hpp"
 #include "Engine/Engine.hpp"
+#include "Screen/GameOver.hpp"
 
 using namespace std;
 
@@ -47,6 +48,11 @@ int main() {
         playGrill.borderscreen();
 
         engine.play(playGrill);
+
+        GameOver gameover(20,40);
+        gameover.printLogo();
+        gameover.borderscreen();
+        int s2 =gameover.menu();
 
     }
     else { // CLASSIFICA
