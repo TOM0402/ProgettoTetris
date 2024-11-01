@@ -11,13 +11,21 @@ void GameOver::printLogo(){
     int x=(wide-wl)/2;
     wattron(screen, COLOR_PAIR(1) | A_BOLD);
     mvwprintw(screen,y,x,  " _____\n");
+    napms(500); wrefresh(screen);
     mvwprintw(screen,y+1,x,"|   __|___ _____ ___\n");
+    napms(500); wrefresh(screen);
     mvwprintw(screen,y+2,x,"|  |  | .'|     | -_|\n");
+    napms(500); wrefresh(screen);
     mvwprintw(screen,y+3,x,"|_____|__,|_|_|_|___|\n");
+    napms(500); wrefresh(screen);
     mvwprintw(screen,y+4,x," _____\n");
+    napms(500); wrefresh(screen);
     mvwprintw(screen,y+5,x,"|     |_ _ ___ ___\n");
+    napms(500); wrefresh(screen);
     mvwprintw(screen,y+6,x,"|  |  | | | -_|  _|\n");
+    napms(500); wrefresh(screen);
     mvwprintw(screen,y+7,x,"|_____|\\_/|___|_|\n");
+    napms(500); wrefresh(screen);
     wattroff(screen, COLOR_PAIR(1) | A_BOLD);
 
     refresh();
