@@ -1,17 +1,8 @@
 #include "Engine.hpp"
 #include "../Collisioni/CollisioniNuovo.hpp"
-#include <vector>
+#include "../Tetramino/TetraminoNuovo.hpp"
 Engine::Engine() {
     init();
-}
-
-void printBoolMatrix(WINDOW* win, const bool matrix[22][22]) {
-    for (int i = 0; i < 22; ++i) {
-        for (int j = 0; j < 22; ++j) {
-            mvwaddch(win, i, j * 2, (matrix[i][j] ? '1' : '0'));
-        }
-    }
-    wrefresh(win); // Aggiorna la finestra per visualizzare il contenuto
 }
 
 void Engine::init() {
@@ -44,25 +35,16 @@ bool Engine::setup() {
     return a;
 }
 
-int Engine::generateRandom() {
-    srand(time(0));
-    return rand() % 2;
-}
-
-void Engine::play(Game playGrill) {
-    int ch;
-    mvwprintw(playGrill.getScreen(), playGrill.getWide()/2,3 ,"premi un tasto");
-    wrefresh(playGrill.getScreen());
-    wgetch(playGrill.getScreen());
-    mvwprintw(playGrill.getScreen(), playGrill.getWide()/2,3 ,"              ");
-    wrefresh(playGrill.getScreen());
-
-    while ((ch = getch()) != 'q') {
-        moving(playGrill, ch);
-        playGrill.borderscreen();
+void Engine::initBoard(char board [GRID_HEIGHT][GRID_WIDTH]) {
+    for (int y = 0; y < GRID_HEIGHT; ++y) {
+        for (int x = 0; x < GRID_WIDTH; ++x) {
+            board[y][x] = '.';
+        }
     }
 }
 
+
+/*
 
 int Engine::moving(Game playGrill, int ch) {
     if(generateRandom()==1) {
@@ -99,20 +81,20 @@ int Engine::moving(Game playGrill, int ch) {
         return tq->getPosY();
     }
 
-}
+}*/
 //----------------------------------------------------------------------------------------------
-/*
-TetraminoNuovo createTetramino() {
-    TetraminoNuovo t;
+
+TetraminoNuovo* createTetramino() {
+    TetraminoNuovo* t;
     int index = rand() % 7;
     for (int y = 0; y < 4; ++y) {
         for (int x = 0; x < 5; ++x) {
-            t.setShape(y,x,t.getTetramini(index, y, x));
+            t->setShape(y,x,t->getTetramini(index, y, x));
         }
     }
-    t.setX(GRID_WIDTH / 2 - 2); // Center the tetromino
-    t.setY(0); // Start at the top
-    t.setColor(index + 1); // Assign color based on tetromino index (1-7)
+    t->setX(GRID_WIDTH / 2 - 2); // Center the tetromino
+    t->setY(0); // Start at the top
+    t->setColor(index + 1); // Assign color based on tetromino index (1-7)
     return t;
 }
 
@@ -183,13 +165,13 @@ int clearLines(char board[GRID_HEIGHT][GRID_WIDTH]) {
 }
 
 
-void moving(int ch, WINDOW* gameWin, WINDOW* nextWin, TetraminoNuovo* currentTetramino, TetraminoNuovo* nextTetramino, char board[GRID_HEIGHT][GRID_WIDTH], CollisioniNuovo* C, int punteggio){
+bool moving(int ch, WINDOW* gameWin, WINDOW* nextWin, TetraminoNuovo* currentTetramino, TetraminoNuovo* nextTetramino, char board[GRID_HEIGHT][GRID_WIDTH], CollisioniNuovo* C, int &punteggio){
+    bool gameOver = false; // Variabile flag per indicare la fine del gioco
+
     switch (ch) {
         case 'q':
-            delwin(gameWin);
-            delwin(nextWin);
-            endwin();
-            return 0; // Exit on 'q' key
+            gameOver = true; // Imposta il flag a true per indicare che il gioco è finito
+            break;
         case 'a': // Move left
         case KEY_LEFT:
             currentTetramino->setX(currentTetramino->getX()-1);
@@ -206,26 +188,66 @@ void moving(int ch, WINDOW* gameWin, WINDOW* nextWin, TetraminoNuovo* currentTet
             if (C->checkCollisioni(board, currentTetramino)) {
                 currentTetramino->setY(currentTetramino->getY()-1);
                 placeTetramino(board, currentTetramino);
-                punteggio += clearLines(board); // Aumenta il punteggio ed elimina le righe
-                currentTetramino = nextTetramino; // Il prossimo tetramino, diventa il corrente
-                nextTetramino = createTetramino(); // Genero il prossimo tetramino
+                punteggio += clearLines(board);
+                currentTetramino = nextTetramino;
+                nextTetramino = createTetramino();
                 if (C->checkCollisioni(board, currentTetramino)) {
-                    // Game over
-                    delwin(gameWin);
-                    delwin(nextWin);
-                    endwin();
-                    return 0;
+                    gameOver = true; // Game over
                 }
             }
             break;
         case 'w': // Rotate
         case KEY_UP:
-            rotateTetromino(currentTetramino);
+            rotateTetramino(currentTetramino);
             if (C->checkCollisioni(board, currentTetramino)) {
-                // If collision occurs, revert the rotation
-                rotateTetramino(currentTetramino); // Rotate back
-                rotateTetramino(currentTetramino); // Rotate back again (180 degrees)
+                rotateTetramino(currentTetramino);
+                rotateTetramino(currentTetramino);
             }
             break;
     }
-}*/
+
+    if (gameOver) {
+        delwin(gameWin);
+        delwin(nextWin);
+        endwin();
+    }
+    return gameOver; // Restituisce true se il gioco è finito, false altrimenti
+}
+
+void Engine::play(Game playGrill) {
+    int ch;
+    mvwprintw(playGrill.getScreen(), playGrill.getWide()/2,3 ,"premi un tasto");
+    wrefresh(playGrill.getScreen());
+    wgetch(playGrill.getScreen());
+    mvwprintw(playGrill.getScreen(), playGrill.getWide()/2,3 ,"              ");
+    wrefresh(playGrill.getScreen());
+
+    //Finestra per il gioco
+    WINDOW *gameWin = newwin(GRID_HEIGHT, GRID_WIDTH * 2 + 10, 0, 0);
+    WINDOW *nextWin = newwin(4, 8, 0, GRID_WIDTH * 2 + 2); // Finestra per il prossimo tetramino
+
+    char board[GRID_HEIGHT][GRID_WIDTH];
+    initBoard(board);
+
+    TetraminoNuovo* currentTetramino = createTetramino();
+    TetraminoNuovo* nextTetramino = createTetramino(); // PROSSIMO TETRAMINO
+    CollisioniNuovo* C;
+    int punteggio = 0;
+
+    bool gameRunning = true;
+    while (gameRunning) {
+        playGrill.borderscreen(gameWin, board, punteggio); // Pass score to drawBoard
+        drawNextTetramino(nextWin, nextTetramino); // Draw the next tetromino
+        ch = getch();
+        gameRunning = !moving(ch, gameWin, nextWin, currentTetramino, nextTetramino, board, C, punteggio);
+    }
+}
+
+/*Usare con:
+ *
+    bool gameRunning = true;
+    while (gameRunning) {
+        int ch = getch();
+        gameRunning = !moving(ch, gameWin, nextWin, currentTetramino, nextTetramino, board, C, punteggio);
+    }
+*/

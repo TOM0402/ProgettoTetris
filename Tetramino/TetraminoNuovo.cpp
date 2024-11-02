@@ -40,3 +40,27 @@ int TetraminoNuovo::getColor() {
 void TetraminoNuovo::setColor(int a) {
     color=a;
 }
+
+void TetraminoNuovo::rotateTetramino(TetraminoNuovo* t) {
+    char temp[4][5]; //matrice temporanea per salvare il tetramino ruotato
+    for (int y = 0; y < 4; ++y) {
+        for (int x = 0; x < 4; ++x) {
+            temp[x][3 - y] = t->shape[y][x]; // Rotate the tetromino
+        }
+    }
+    for (int y = 0; y < 4; ++y) {
+        for (int x = 0; x < 5; ++x) {
+            t->shape[y][x] = temp[y][x];
+        }
+    }
+}
+
+void TetraminoNuovo::placeTetramino(char board[GRID_HEIGHT][GRID_WIDTH], TetraminoNuovo* t) {
+    for (int y = 0; y < 4; ++y) {
+        for (int x = 0; x < 4; ++x) {
+            if (t->shape[y][x] == 'X') {
+                board[t->y + y][t->x + x] = 'X';
+            }
+        }
+    }
+}

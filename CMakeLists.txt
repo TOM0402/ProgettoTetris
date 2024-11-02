@@ -15,8 +15,6 @@ add_executable(ProgettoTetris
         Classifica/classifica.hpp
         Screen/Screen.cpp
         Screen/Screen.hpp
-        Tetramino/Tetramino.cpp
-        Tetramino/Tetramino.hpp
         Screen/Leaderboard.cpp
         Screen/Leaderboard.hpp
         Screen/Home.cpp
@@ -25,16 +23,6 @@ add_executable(ProgettoTetris
         Screen/Name.hpp
         Screen/Game.cpp
         Screen/Game.hpp
-        Collisioni/Collisioni.cpp
-        Collisioni/Collisioni.hpp
-        Tetramino/TetraminoQuadrato.cpp
-        Tetramino/TetraminoQuadrato.hpp
-        Collisioni/CollisioniQuadrato.cpp
-        Collisioni/CollisioniQuadrato.hpp
-        Collisioni/CollisioniLungo.cpp
-        Collisioni/CollisioniLungo.hpp
-        Tetramino/TetraminoLungo.cpp
-        Tetramino/TetraminoLungo.hpp
         Screen/SideBar.cpp
         Screen/SideBar.hpp
         Engine/Engine.cpp

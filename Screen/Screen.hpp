@@ -2,6 +2,7 @@
 #define SCREENG_HPP
 #include <ncurses.h>
 #include "../Classifica/classifica.hpp"
+#include "../Collisioni/CollisioniNuovo.hpp"
 
 const int N=11;
 
@@ -14,6 +15,7 @@ protected:
 public:
     Screen(int h, int w);
     void borderscreen();
+    void borderscreen(WINDOW* screen, char board[GRID_HEIGHT][GRID_WIDTH], int score);
     WINDOW* getScreen();
     int getHigh();
     int getWide();
