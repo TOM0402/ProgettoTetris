@@ -11,6 +11,7 @@
 #include "Screen/SideBar.hpp"
 #include "Engine/Engine.hpp"
 #include "Screen/GameOver.hpp"
+#include "Screen/NextT.hpp"
 
 using namespace std;
 
@@ -43,6 +44,9 @@ int main() {
         SideBar sideGrill(GRID_HIGH, GRID_WIDE, name);
         sideGrill.printScores();
         sideGrill.borderscreen();
+
+        NextT next(GRID_WIDE/2,GRID_WIDE);
+        next.borderscreen();
 
         Game playGrill(GRID_HIGH,GRID_WIDE);
         playGrill.borderscreen();
