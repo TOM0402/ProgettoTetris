@@ -6,6 +6,7 @@
 #include "../Screen/Home.hpp"
 #include "../Screen/Game.hpp"
 #include "../Screen/Screen.hpp"
+#include "../Screen/NextT.hpp"
 
 
 
@@ -21,13 +22,12 @@ public:
     Engine();
     void init();
     bool setup();
-    void play(Game playgrill);
+    void play(Game playgrill, NextT);
     bool moving(int ch ,  int &punteggio);
     void initBoard();
     void drawNextTetramino(TetraminoNuovo*);
     TetraminoNuovo* createTetramino();
     void rotateTetramino();
-    void placeTetramino();
     int clearLines();
 };
 

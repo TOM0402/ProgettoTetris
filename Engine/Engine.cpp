@@ -1,6 +1,4 @@
 #include "Engine.hpp"
-#include "../Collisioni/CollisioniNuovo.hpp"
-#include "../Tetramino/TetraminoNuovo.hpp"
 Engine::Engine() {
     init();
 }
@@ -82,10 +80,10 @@ int Engine::moving(Game playGrill, int ch) {
     }
 
 }*/
-//----------------------------------------------------------------------------------------------
+
 
 TetraminoNuovo* Engine::createTetramino() {
-    TetraminoNuovo* t;
+    TetraminoNuovo* t=new TetraminoNuovo();
     int index = rand() % 7;
     for (int y = 0; y < 4; ++y) {
         for (int x = 0; x < 5; ++x) {
@@ -98,12 +96,12 @@ TetraminoNuovo* Engine::createTetramino() {
     return t;
 }
 
-void Engine::drawNextTetramino( TetraminoNuovo* t) {
+void Engine::drawNextTetramino(TetraminoNuovo* t) {
     werase(nextWin);
     attron(COLOR_PAIR(t->getColor()));  // Use the color assigned to the tetromino
     for (int y = 0; y < 4; ++y) {
         for (int x = 0; x < 4; ++x) {
-            if (t->getShape(x,y) == 'X') {
+            if (t->getShape(y,x) == 'X') {
                 mvwprintw(nextWin, y, 2 * x, "XX");
             }
         }
@@ -126,15 +124,6 @@ void Engine::rotateTetramino() {
     }
 }
 
-void Engine::placeTetramino() {
-    for (int y = 0; y < 4; ++y) {
-        for (int x = 0; x < 4; ++x) {
-            if (currentTetramino->getShape(y,x) == 'X') {
-                board[currentTetramino->getY() + y][currentTetramino->getX()+ x] = 'X';
-            }
-        }
-    }
-}
 
 //AUMENTA IL PUNTEGGIO
 int Engine::clearLines() {
@@ -187,7 +176,7 @@ bool Engine::moving(int ch, int &punteggio){
             currentTetramino->setY(currentTetramino->getY()+1);
             if (C->checkCollisioni(board, currentTetramino)) {
                 currentTetramino->setY(currentTetramino->getY()-1);
-                placeTetramino();
+                currentTetramino->placeTetramino(board, currentTetramino);
                 punteggio += clearLines();
                 currentTetramino = nextTetramino;
                 nextTetramino = createTetramino();
@@ -214,34 +203,60 @@ bool Engine::moving(int ch, int &punteggio){
     return gameOver; // Restituisce true se il gioco è finito, false altrimenti
 }
 
-void Engine::play(Game playGrill) {
+void Engine::play(Game playGrill, NextT next) {
     int ch;
     mvwprintw(playGrill.getScreen(), playGrill.getWide()/2,3 ,"premi un tasto");
     wrefresh(playGrill.getScreen());
     wgetch(playGrill.getScreen());
-    mvwprintw(playGrill.getScreen(), playGrill.getWide()/2,3 ,"              ");
+    mvwprintw(playGrill.getScreen(), playGrill.getWide()/2,3 ,"                 ");
     wrefresh(playGrill.getScreen());
 
     //Finestra per il gioco
-    WINDOW *gameWin = newwin(GRID_HEIGHT, GRID_WIDTH * 2 + 10, 0, 0);
-    WINDOW *nextWin = newwin(4, 8, 0, GRID_WIDTH * 2 + 2); // Finestra per il prossimo tetramino
+    WINDOW *gameWin = playGrill.getScreen();
+    WINDOW *nextWin = next.getScreen();
 
     char board[GRID_HEIGHT][GRID_WIDTH];
     initBoard();
 
-    TetraminoNuovo* currentTetramino = createTetramino();
-    TetraminoNuovo* nextTetramino = createTetramino(); // PROSSIMO TETRAMINO
-    CollisioniNuovo* C;
+    currentTetramino = createTetramino();
+    //nextTetramino = createTetramino(); // PROSSIMO TETRAMINO
+    C= new CollisioniNuovo;
+
     int punteggio = 0;
 
     bool gameRunning = true;
     while (gameRunning) {
-        playGrill.borderscreen(gameWin, board, punteggio); // Pass score to drawBoard
-        drawNextTetramino(nextTetramino); // Draw the next tetromino
+        playGrill.borderscreen(playGrill.getScreen(), board, punteggio); // Pass score to drawBoard
+        //drawNextTetramino(nextTetramino); // Draw the next tetromino
+
+        wattron(gameWin, COLOR_PAIR(currentTetramino->getColor()));  // Apply the color for the current tetromino
+        for (int y = 0; y < 4; ++y) {
+            for (int x = 0; x < 4; ++x) {
+                if (currentTetramino->getShape(y,x) == 'X') {
+                    mvwprintw(gameWin, currentTetramino->getY()+1 + y, 2 * (currentTetramino->getX() + x), "XX");
+                }
+            }
+        }
+        wattroff(gameWin, COLOR_PAIR(currentTetramino->getColor()));  // Turn off the color
+        wrefresh(gameWin);
+
         ch = getch();
         gameRunning = !moving(ch, punteggio);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*Usare con:
  *

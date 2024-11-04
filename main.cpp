@@ -1,10 +1,7 @@
 #include "fileManagement/file.hpp"
 #include <ncurses.h>
 //#include <stdlib.h>
-#include <vector>
 #include "Collisioni/Collisioni.hpp"
-#include "Collisioni/CollisioniLungo.hpp"
-#include "Collisioni/CollisioniQuadrato.hpp"
 #include "Screen/Game.hpp"
 #include "Screen/Leaderboard.hpp"
 #include "Screen/Name.hpp"
@@ -51,7 +48,7 @@ int main() {
         Game playGrill(GRID_HIGH,GRID_WIDE);
         playGrill.borderscreen();
 
-        //engine.play(playGrill);
+        engine.play(playGrill, next);
 /*
         GameOver gameover(20,40);
         gameover.printLogo();

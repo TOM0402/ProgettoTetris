@@ -10,6 +10,7 @@
 
 class CollisioniNuovo{
 public:
+    CollisioniNuovo();
     bool checkCollisioni(char board[GRID_HEIGHT][GRID_WIDTH], TetraminoNuovo* t);
 };
 
