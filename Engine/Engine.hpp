@@ -11,15 +11,24 @@
 
 class Engine{
 private:
-
+    WINDOW* gameWin;
+    WINDOW* nextWin;
+    char board[GRID_HEIGHT][GRID_WIDTH];
+    CollisioniNuovo* C;
+    TetraminoNuovo* currentTetramino;
+    TetraminoNuovo* nextTetramino;
 public:
     Engine();
     void init();
     bool setup();
     void play(Game playgrill);
-    int moving(int ch, WINDOW* gameWin, WINDOW* nextWin, TetraminoNuovo* currentTetramino, TetraminoNuovo* nextTetramino, char board[GRID_HEIGHT][GRID_WIDTH], CollisioniNuovo* C, int &punteggio);
-    void initBoard(char board[GRID_HEIGHT][GRID_WIDTH]);
-
+    bool moving(int ch ,  int &punteggio);
+    void initBoard();
+    void drawNextTetramino(TetraminoNuovo*);
+    TetraminoNuovo* createTetramino();
+    void rotateTetramino();
+    void placeTetramino();
+    int clearLines();
 };
 
 #endif

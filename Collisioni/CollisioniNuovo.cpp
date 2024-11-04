@@ -5,7 +5,7 @@
 #include "CollisioniNuovo.hpp"
 
 
-bool checkCollisioni(char board[GRID_HEIGHT][GRID_WIDTH], TetraminoNuovo* t) {
+bool CollisioniNuovo::checkCollisioni(char (*board)[10], TetraminoNuovo *t) {
     for (int y = 0; y < 4; ++y) {
         for (int x = 0; x < 4; ++x) {
             if (t->getShape(x,y) == 'X') {

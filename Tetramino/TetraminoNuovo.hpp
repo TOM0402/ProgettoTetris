@@ -5,9 +5,8 @@
 #ifndef PROGETTOTETRIS_TETRAMINONUOVO_HPP
 #define PROGETTOTETRIS_TETRAMINONUOVO_HPP
 
-#include "../Collisioni/CollisioniNuovo.hpp"
-#include "../Collisioni/Collisioni.hpp"
-
+#define GRID_WIDTH 10
+#define GRID_HEIGHT 20
 class TetraminoNuovo {
 protected:
     char shape[4][5];
@@ -35,7 +34,7 @@ public:
     void setX(int);
     void setY(int);
     void rotateTetramino(TetraminoNuovo* t);
-    void placeTetramino(char board[GRID_HIGH][GRID_WIDE], TetraminoNuovo* t);
+    void placeTetramino(char board[GRID_HEIGHT][GRID_WIDTH], TetraminoNuovo* t);
 };
 
 
