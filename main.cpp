@@ -51,13 +51,14 @@ int main() {
         Game playGrill(GRID_HIGH,GRID_WIDE);
         playGrill.borderscreen();
 
-        engine.play(playGrill);
-
+        //engine.play(playGrill);
+/*
         GameOver gameover(20,40);
         gameover.printLogo();
         gameover.borderscreen();
         int s2 =gameover.menu();
-
+        */
+        getch();
     }
     else { // CLASSIFICA
         Leaderboard lead(27,46);

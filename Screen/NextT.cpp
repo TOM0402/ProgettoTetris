@@ -5,7 +5,7 @@ NextT::NextT(int h, int w):Screen(h,w) {
     high=h;
     wide=w;
     getmaxyx(stdscr,yMax,xMax);
-    int startY=(yMax/2)-high/2;
+    int startY=(yMax/2)-high ;
     int startX=(xMax/2)-wide/2 - wide - 2;
     screen=newwin(high,wide, startY,startX);
 }
