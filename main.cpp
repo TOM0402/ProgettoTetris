@@ -19,7 +19,7 @@ int main() {
 
     //int s= engine.setup();
 
-    Home home(32,62);
+    Home home(28,62);
     home.printLogo();
     home.borderscreen();
     int s =home.menu();
@@ -49,13 +49,13 @@ int main() {
         playGrill.borderscreen();
 
         engine.play(playGrill, next);
-/*
+
         GameOver gameover(20,40);
         gameover.printLogo();
         gameover.borderscreen();
         int s2 =gameover.menu();
-        */
-        getch();
+
+        //getch();
     }
     else { // CLASSIFICA
         Leaderboard lead(27,46);

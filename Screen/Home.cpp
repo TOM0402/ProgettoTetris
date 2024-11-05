@@ -64,7 +64,7 @@ int Home::menu() {
         for (int i = 0; i < nc; i++) {
             if(i==highlight)
                 wattron(screen, A_BOLD | A_UNDERLINE);
-            mvwprintw(screen, high/2+i*4, (wide/2)-((i+1)*2)-i, scelte[i]);
+            mvwprintw(screen, high/2+i*4+3, (wide/2)-((i+1)*2)-i, scelte[i]);
             wattroff(screen, A_BOLD | A_UNDERLINE);
         }
         scelta=wgetch(screen);

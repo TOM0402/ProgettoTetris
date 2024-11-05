@@ -12,10 +12,14 @@ void Leaderboard::printLead() {
     Giocatore player[lclass];
     lead.getClassifica(player);
 
-    wattron(screen, COLOR_PAIR(5));
-    wattron(screen,A_BOLD | A_UNDERLINE);
+    wattron(screen, COLOR_PAIR(2));
+    mvwprintw(screen,0,2,"Back(Enter)");
+    wattron(screen, A_BOLD | A_UNDERLINE);
     mvwprintw(screen,2,(wide-11)/2,"LEADERBOARD");
     wattroff(screen,A_BOLD | A_UNDERLINE);
+    wattroff(screen, COLOR_PAIR(2));
+
+    wattron(screen, COLOR_PAIR(5));
     mvwprintw(screen,4,3,"#  NAME\t\tPOINTS\tDATE");
     for (int i = 0; i < lclass; i++) {
         mvwprintw(screen,i*2+6,3,"%d",i+1);

@@ -6,26 +6,26 @@ GameOver::GameOver(int h, int w):Screen(h,w) {
 }
 
 void GameOver::printLogo(){
-    int wl=21, hl=6;
+    int wl=21, delay=400;
     int y=3;
     int x=(wide-wl)/2;
     wattron(screen, COLOR_PAIR(1) | A_BOLD);
     mvwprintw(screen,y,x,  " _____\n");
-    napms(500); wrefresh(screen);
+    napms(delay); wrefresh(screen);
     mvwprintw(screen,y+1,x,"|   __|___ _____ ___\n");
-    napms(500); wrefresh(screen);
+    napms(delay); wrefresh(screen);
     mvwprintw(screen,y+2,x,"|  |  | .'|     | -_|\n");
-    napms(500); wrefresh(screen);
+    napms(delay); wrefresh(screen);
     mvwprintw(screen,y+3,x,"|_____|__,|_|_|_|___|\n");
-    napms(500); wrefresh(screen);
+    napms(delay); wrefresh(screen);
     mvwprintw(screen,y+4,x," _____\n");
-    napms(500); wrefresh(screen);
+    napms(delay); wrefresh(screen);
     mvwprintw(screen,y+5,x,"|     |_ _ ___ ___\n");
-    napms(500); wrefresh(screen);
+    napms(delay); wrefresh(screen);
     mvwprintw(screen,y+6,x,"|  |  | | | -_|  _|\n");
-    napms(500); wrefresh(screen);
+    napms(delay); wrefresh(screen);
     mvwprintw(screen,y+7,x,"|_____|\\_/|___|_|\n");
-    napms(500); wrefresh(screen);
+    napms(delay); wrefresh(screen);
     wattroff(screen, COLOR_PAIR(1) | A_BOLD);
 
     refresh();
