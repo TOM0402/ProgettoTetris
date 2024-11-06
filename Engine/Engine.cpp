@@ -23,6 +23,11 @@ void Engine::init() {
 
     init_pair(7,COLOR_RED, COLOR_RED);
     init_pair(8,COLOR_GREEN, COLOR_GREEN);
+    init_pair(9,COLOR_BLUE, COLOR_BLUE);
+    init_pair(10,COLOR_YELLOW, COLOR_YELLOW);
+    init_pair(11,COLOR_CYAN, COLOR_CYAN);
+    init_pair(12,COLOR_MAGENTA, COLOR_MAGENTA);
+    init_pair(13,COLOR_WHITE, COLOR_WHITE);
 }
 /*
 bool Engine::setup() {
@@ -51,7 +56,7 @@ TetraminoNuovo* Engine::createTetramino() {
     }
     t->setX(GRID_WIDTH / 2 - 2); // Center the tetromino
     t->setY(1); // Start at the top
-    t->setColor(index + 1); // Assign color based on tetromino index (1-7)
+    t->setColor(index + 6); // Assign color based on tetromino index (1-7)
     return t;
 }
 
