@@ -127,7 +127,9 @@ bool Engine::moving(int ch, int &punteggio){
             currentTetramino->setY(currentTetramino->getY()+1);
             if (C->checkCollisioni(board, currentTetramino)) {
                 currentTetramino->setY(currentTetramino->getY()-1);
-                currentTetramino->placeTetramino(board, currentTetramino);
+
+                currentTetramino->placeTetramino(board, currentTetramino); //placeTetramino va implementato anche visualmente (credo)
+
                 punteggio += clearLines();
                 currentTetramino = nextTetramino;
                 nextTetramino = createTetramino();
