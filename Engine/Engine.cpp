@@ -1,4 +1,7 @@
 #include "Engine.hpp"
+#include "iostream"
+
+using namespace std;
 Engine::Engine() {
     init();
 }
@@ -9,10 +12,7 @@ void Engine::init() {
     curs_set(0); // Nasconde il cursore
     keypad(stdscr, TRUE); // Abilita la lettura delle tasti speciali
     //timeout(100); // Imposta un timeout per la lettura delle tasti
-    if(!has_colors())
-        printw("NO COLORS");
-    else
-        start_color();
+    start_color();
 
     init_pair(1,COLOR_RED,COLOR_BLACK);
     init_pair(2,COLOR_BLUE,COLOR_BLACK);
@@ -24,14 +24,14 @@ void Engine::init() {
     init_pair(7,COLOR_RED, COLOR_RED);
     init_pair(8,COLOR_GREEN, COLOR_GREEN);
 }
-
+/*
 bool Engine::setup() {
     Home home(32,62);
     home.printLogo();
     home.borderscreen();
     int a =home.menu();
     return a;
-}
+}*/
 
 void Engine::initBoard() {
     for (int y = 0; y < GRID_HEIGHT; ++y) {
@@ -41,62 +41,21 @@ void Engine::initBoard() {
     }
 }
 
-
-/*
-
-int Engine::moving(Game playGrill, int ch) {
-    if(generateRandom()==1) {
-        bool stop=false;
-        tl = new TetraminoLungo();
-        tl->spawnTetramino(playGrill);
-        wrefresh(playGrill.getScreen());
-        while (!stop ) {
-            ch = getch();
-            tl->moveTetramino(tl, cl, ch, playGrill.getScreen());
-            if (cl.checkDownL(tl->getPosY() + 1, tl->getPosX(), tl->getOrientamento())) {     //QUANDO ARRIVO IN FONDO SPAWN NUOVO TETRAMINO
-                stop = true;
-                //printBoolMatrix(stdscr, cl.occupiedMatrix);
-            }
-            //printBoolMatrix(stdscr, cl.occupiedMatrix);
-            wrefresh(playGrill.getScreen());
-        }
-
-        return tl->getPosX();
-    }else{
-        bool stop=false;
-        tq = new TetraminoQuadrato();
-        tq->spawnTetramino(playGrill);
-        while (!stop) {
-            ch=getch();
-            tq->moveTetramino(tq, cq, ch, playGrill.getScreen());
-            if (cq.checkDownQ(tq->getPosY() + 1, tq->getPosX())) {     //QUANDO ARRIVO IN FONDO SPAWN NUOVO TETRAMINO
-                printBoolMatrix(stdscr, cl.occupiedMatrix);
-                stop=true;
-            }
-            printBoolMatrix(stdscr, cl.occupiedMatrix);
-            wrefresh(playGrill.getScreen());
-        }
-        return tq->getPosY();
-    }
-
-}*/
-
-
 TetraminoNuovo* Engine::createTetramino() {
     TetraminoNuovo* t=new TetraminoNuovo();
     int index = rand() % 7;
     for (int y = 0; y < 4; ++y) {
-        for (int x = 0; x < 5; ++x) {
+        for (int x = 0; x < 4; ++x) {
             t->setShape(y,x,t->getTetramini(index, y, x));
         }
     }
     t->setX(GRID_WIDTH / 2 - 2); // Center the tetromino
-    t->setY(0); // Start at the top
+    t->setY(1); // Start at the top
     t->setColor(index + 1); // Assign color based on tetromino index (1-7)
     return t;
 }
 
-void Engine::drawNextTetramino(TetraminoNuovo* t) {
+/*void Engine::drawNextTetramino(TetraminoNuovo* t) {
     werase(nextWin);
     attron(COLOR_PAIR(t->getColor()));  // Use the color assigned to the tetromino
     for (int y = 0; y < 4; ++y) {
@@ -108,21 +67,8 @@ void Engine::drawNextTetramino(TetraminoNuovo* t) {
     }
     attroff(COLOR_PAIR(t->getColor()));  // Turn off the color attribute
     wrefresh(nextWin);
-}
+}*/
 
-void Engine::rotateTetramino() {
-    char temp[4][5]; //matrice temporanea per salvare il tetramino ruotato
-    for (int y = 0; y < 4; ++y) {
-        for (int x = 0; x < 4; ++x) {
-            temp[x][3 - y] = currentTetramino->getShape(y,x); // Rotate the tetromino
-        }
-    }
-    for (int y = 0; y < 4; ++y) {
-        for (int x = 0; x < 5; ++x) {
-            currentTetramino->setShape(y,x, temp[y][x]);
-        }
-    }
-}
 
 
 //AUMENTA IL PUNTEGGIO
@@ -187,10 +133,10 @@ bool Engine::moving(int ch, int &punteggio){
             break;
         case 'w': // Rotate
         case KEY_UP:
-            rotateTetramino();
+            currentTetramino->rotateTetramino(currentTetramino);
             if (C->checkCollisioni(board, currentTetramino)) {
-                rotateTetramino();
-                rotateTetramino();
+                currentTetramino->rotateTetramino(currentTetramino);
+                currentTetramino->rotateTetramino(currentTetramino);
             }
             break;
     }
@@ -219,7 +165,7 @@ void Engine::play(Game playGrill, NextT next) {
     initBoard();
 
     currentTetramino = createTetramino();
-    //nextTetramino = createTetramino(); // PROSSIMO TETRAMINO
+    nextTetramino = createTetramino(); // PROSSIMO TETRAMINO
     C= new CollisioniNuovo;
 
     int punteggio = 0;
@@ -233,7 +179,7 @@ void Engine::play(Game playGrill, NextT next) {
         for (int y = 0; y < 4; ++y) {
             for (int x = 0; x < 4; ++x) {
                 if (currentTetramino->getShape(y,x) == 'X') {
-                    mvwprintw(gameWin, currentTetramino->getY()+1 + y, 2 * (currentTetramino->getX() + x), "XX");
+                    mvwprintw(gameWin, currentTetramino->getY() + y, 2 * (currentTetramino->getX() + x), "XX");
                 }
             }
         }

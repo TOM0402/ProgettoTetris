@@ -27,7 +27,6 @@ public:
     void initBoard();
     void drawNextTetramino(TetraminoNuovo*);
     TetraminoNuovo* createTetramino();
-    void rotateTetramino();
     int clearLines();
 };
 

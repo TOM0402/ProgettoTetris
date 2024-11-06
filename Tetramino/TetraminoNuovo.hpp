@@ -10,7 +10,7 @@
 #include <ncurses.h>
 class TetraminoNuovo {
 protected:
-    char shape[4][5];
+    char shape[4][4];
     int x, y;
     int color;
     char tetramini[7][4][5] = {
