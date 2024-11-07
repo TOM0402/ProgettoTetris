@@ -13,11 +13,27 @@ sudo apt-get install libjsoncpp-dev
 -------------COMANDI-------------
 -per eseguire con ncurses
 
-g++ -o g graphics.cpp -lncurses
+g++ -o ProgettoTetris main.cpp -lncurses
 
--per scrivere su file
 
-g++ -o main fileManagement/file.cpp main.cpp
 
--json file
-g++ main.cpp -o main -ljsoncpp
+------------WINDOWS--------------
+installare da Microsoft Store Ubuntu
+// se non va il terminale eseguire questo in powershell
+wsl --set-default-version 2
+
+copiare tutta la cartella del progetto nella cartella di Ubuntu (io nella home di ubuntu)
+
+//solo la prima volta 
+cd /home
+mkdir cmake-build
+cd cmake-build
+cmake ..
+make
+./ProgettoTetris
+
+se si fanno delle modifiche basta rifare gli ultimi due
+make
+./ProgettoTetris
+
+
