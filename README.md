@@ -23,6 +23,11 @@ installare da Microsoft Store Ubuntu
 wsl --set-default-version 2
 
 copiare tutta la cartella del progetto nella cartella di Ubuntu (io nella home di ubuntu)
+eseguire: 
+apt-get update
+apt install g++
+sudo apt-get install libncurses5-dev libncursesw5-dev
+apt install cmake
 
 //solo la prima volta 
 cd /home
