@@ -63,8 +63,8 @@ void TetraminoNuovo::placeTetramino(char board[GRID_HEIGHT][GRID_WIDTH], Tetrami
                 int boardY = t->y + y;
                 if (boardX >= 0 && boardX <= GRID_WIDTH && boardY >= 0 && boardY <= GRID_HEIGHT+2) {
                     board[boardY][boardX] = 'X';
-                } else {
-                    // Gestisci condizione fuori dai limiti (es. game over)  //Qui non devi fare niente?
+                } else if(boardY < 0){
+                    //gameover
                 }
             }
         }

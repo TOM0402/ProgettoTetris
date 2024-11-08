@@ -1,6 +1,5 @@
 #include "Engine.hpp"
 #include "iostream"
-
 using namespace std;
 Engine::Engine() {
     init();
@@ -56,7 +55,7 @@ TetraminoNuovo* Engine::createTetramino() {
     }
     t->setX(GRID_WIDTH / 2 - 2); // Center the tetromino
     t->setY(1); // Start at the top
-    t->setColor(index + 6); // Assign color based on tetromino index (1-7)
+    t->setColor(index + 7); // Assign color based on tetromino index (1-7)
     return t;
 }
 
@@ -195,19 +194,13 @@ void Engine::play(Game playGrill, NextT next) {
 
         ch = getch();
         gameRunning = !moving(ch, punteggio);
+
     }
+    GameOver gameover(20,40);
+    gameover.printLogo();
+    gameover.borderscreen();
+    int s2 =gameover.menu();
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 

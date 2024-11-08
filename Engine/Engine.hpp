@@ -7,6 +7,7 @@
 #include "../Screen/Game.hpp"
 #include "../Screen/Screen.hpp"
 #include "../Screen/NextT.hpp"
+#include "../Screen/GameOver.hpp"
 
 
 

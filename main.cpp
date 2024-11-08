@@ -49,12 +49,12 @@ int main() {
         playGrill.borderscreen();
 
         engine.play(playGrill, next);
-
+        /*
         GameOver gameover(20,40);
         gameover.printLogo();
         gameover.borderscreen();
         int s2 =gameover.menu();
-
+        */
         //getch();
     }
     else { // CLASSIFICA
