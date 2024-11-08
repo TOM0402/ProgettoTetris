@@ -185,7 +185,7 @@ void Engine::play(Game playGrill, NextT next) {
         for (int y = 0; y < 4; ++y) {
             for (int x = 0; x < 4; ++x) {
                 if (currentTetramino->getShape(y,x) == 'X') {
-                    mvwprintw(gameWin, currentTetramino->getY() + y, 2 * (currentTetramino->getX() + x), "XX");
+                    mvwprintw(gameWin, currentTetramino->getY() + y, 2 * (currentTetramino->getX() + x)-1, "XX");
                 }
             }
         }
