@@ -53,7 +53,7 @@ TetraminoNuovo* Engine::createTetramino() {
             t->setShape(y,x,t->getTetramini(index, y, x));
         }
     }
-    t->setX(GRID_WIDTH / 2 - 2); // Center the tetromino
+    t->setX(GRID_WIDTH / 2 -2); // Center the tetromino
     t->setY(1); // Start at the top
     t->setColor(index + 7); // Assign color based on tetromino index (1-7)
     return t;
@@ -156,7 +156,7 @@ void Engine::play(Game playGrill, NextT next) {
     currentTetramino = createTetramino();
     nextTetramino = createTetramino(); // PROSSIMO TETRAMINO
     C= new CollisioniNuovo;
-
+    GameOver gameover(20,40);
     int punteggio = 0;
 
     bool gameRunning = true;
@@ -179,7 +179,7 @@ void Engine::play(Game playGrill, NextT next) {
         gameRunning = !moving(ch, punteggio);
 
     }
-    GameOver gameover(20,40);
+
     gameover.printLogo();
     gameover.borderscreen();
     int s2 =gameover.menu();
