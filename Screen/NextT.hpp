@@ -7,7 +7,7 @@ class NextT:public Screen {
 protected:
 public:
     NextT(int h, int w);
-    void drawNextTetramino(TetraminoNuovo *t);
+    //void drawNextTetromino(TetraminoNuovo &t);
 };
 
 #endif //NEXTT_HPP

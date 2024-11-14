@@ -5,7 +5,7 @@
 #ifndef PROGETTOTETRIS_COLLISIONINUOVO_HPP
 #define PROGETTOTETRIS_COLLISIONINUOVO_HPP
 #include "../Tetramino/TetraminoNuovo.hpp"
-#include "../Engine/Engine.hpp"
+
 
 
 class CollisioniNuovo{

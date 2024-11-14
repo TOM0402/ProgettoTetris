@@ -9,17 +9,18 @@ NextT::NextT(int h, int w):Screen(h,w) {
     int startX=(xMax/2)-wide/2 - wide - 2;
     screen=newwin(high,wide, startY,startX);
 }
-
-void NextT::drawNextTetramino(TetraminoNuovo *t) {
+/*
+void NextT::drawNextTetromino(TetraminoNuovo &t) {
     werase(screen);
-    attron(COLOR_PAIR(t->getColor()));
+    attron(COLOR_PAIR(t.color));
     for (int y = 0; y < 4; ++y) {
         for (int x = 0; x < 4; ++x) {
-            if (t->getShape(y,x) == 'X') {
+            if (t.shape[y][x] == 'X') {
                 mvwprintw(screen, y, 2 * x, "XX");
             }
         }
     }
-    attroff(COLOR_PAIR(t->getColor()));
+    attroff(COLOR_PAIR(t.color));
     wrefresh(screen);
 }
+*/

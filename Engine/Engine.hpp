@@ -9,8 +9,6 @@
 #include "../Screen/NextT.hpp"
 #include "../Screen/GameOver.hpp"
 
-#define GRID_WIDTH 12
-#define GRID_HEIGHT 20
 
 
 class Engine{
