@@ -59,22 +59,6 @@ TetraminoNuovo* Engine::createTetramino() {
     return t;
 }
 
-/*void Engine::drawNextTetramino(TetraminoNuovo* t) {
-    werase(nextWin);
-    attron(COLOR_PAIR(t->getColor()));  // Use the color assigned to the tetromino
-    for (int y = 0; y < 4; ++y) {
-        for (int x = 0; x < 4; ++x) {
-            if (t->getShape(y,x) == 'X') {
-                mvwprintw(nextWin, y, 2 * x, "XX");
-            }
-        }
-    }
-    attroff(COLOR_PAIR(t->getColor()));  // Turn off the color attribute
-    wrefresh(nextWin);
-}*/
-
-
-
 //AUMENTA IL PUNTEGGIO
 int Engine::clearLines() {
     int punteggio = 0;
@@ -165,7 +149,6 @@ void Engine::play(Game playGrill, NextT next) {
 
     //Finestra per il gioco
     WINDOW *gameWin = playGrill.getScreen();
-    WINDOW *nextWin = next.getScreen();
 
     char board[GRID_HEIGHT][GRID_WIDTH];
     initBoard();
@@ -179,7 +162,7 @@ void Engine::play(Game playGrill, NextT next) {
     bool gameRunning = true;
     while (gameRunning) {
         playGrill.borderscreen(playGrill.getScreen(), board, punteggio); // Pass score to drawBoard
-        //drawNextTetramino(nextTetramino); // Draw the next tetromino
+        next.drawNextTetramino(nextTetramino); // Draw the next tetromino
 
         wattron(gameWin, COLOR_PAIR(currentTetramino->getColor()));  // Apply the color for the current tetromino
         for (int y = 0; y < 4; ++y) {
