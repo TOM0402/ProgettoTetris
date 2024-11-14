@@ -168,6 +168,7 @@ void Engine::play(Game playGrill, NextT next) {
     while (gameRunning) {
         playGrill.borderscreen(playGrill.getScreen(), board, punteggio); // Pass score to drawBoard
         next.drawNextTetramino(nextTetramino); // Draw the next tetromino
+        next.borderscreen();
 
         wattron(gameWin, COLOR_PAIR(currentTetramino->getColor()));  // Apply the color for the current tetromino
         for (int y = 0; y < 4; ++y) {

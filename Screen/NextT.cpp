@@ -12,14 +12,14 @@ NextT::NextT(int h, int w):Screen(h,w) {
 
 void NextT::drawNextTetramino(TetraminoNuovo *t) {
     werase(screen);
-    attron(COLOR_PAIR(t->getColor()));
+    wattron(screen, COLOR_PAIR(t->getColor()));
     for (int y = 0; y < 4; ++y) {
         for (int x = 0; x < 4; ++x) {
             if (t->getShape(y,x) == 'X') {
-                mvwprintw(screen, y, 2 * x, "XX");
+                mvwprintw(screen, y+4, (2*x)+7, "XX");
             }
         }
     }
-    attroff(COLOR_PAIR(t->getColor()));
+    wattroff(screen, COLOR_PAIR(t->getColor()));
     wrefresh(screen);
 }

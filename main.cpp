@@ -43,12 +43,12 @@ int main() {
         sideGrill.borderscreen();
 
         NextT next(GRID_WIDE/2,GRID_WIDE);
-        next.borderscreen();
 
         Game playGrill(GRID_HIGH,GRID_WIDE);
         playGrill.borderscreen();
 
         engine.play(playGrill, next);
+
         /*
         GameOver gameover(20,40);
         gameover.printLogo();
