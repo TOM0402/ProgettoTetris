@@ -1,5 +1,6 @@
 #include "Engine.hpp"
 #include "iostream"
+#include "ctime"
 using namespace std;
 Engine::Engine() {
     init();
@@ -94,7 +95,6 @@ int Engine::clearLines() {
 
 bool Engine::moving(int ch, int &punteggio){
     bool gameOver = false; // Variabile flag per indicare la fine del gioco
-
     switch (ch) {
         case 'q':
             gameOver = true; // Imposta il flag a true per indicare che il gioco è finito
@@ -106,20 +106,29 @@ bool Engine::moving(int ch, int &punteggio){
             break;
         case 'd': // Move right
         case KEY_RIGHT:
+
+            //mvwprintw(stdscr,19,3, "prima di spostare a destra: %d",currentTetramino->getX());
             currentTetramino->setX(currentTetramino->getX()+1);
+            //mvwprintw(stdscr,20,3, "dopo di spostare a destra: %d",currentTetramino->getX());
             if (C->checkCollisioni(board, currentTetramino)) currentTetramino->setX(currentTetramino->getX()-1);
             break;
         case 's': // Move down
         case KEY_DOWN:
+            //mvwprintw(stdscr,12,3, "altezza current: %d  ",currentTetramino->getY());
+            //mvwprintw(stdscr,2,3, "Prima di spostare in basso: %d",currentTetramino->getY());
             currentTetramino->setY(currentTetramino->getY()+1);
+            //mvwprintw(stdscr,3,3, "dopo di spostare in basso: %d",currentTetramino->getY());
             if (C->checkCollisioni(board, currentTetramino)) {
                 currentTetramino->setY(currentTetramino->getY()-1);
 
                 currentTetramino->placeTetramino(board, currentTetramino); //placeTetramino va implementato anche visualmente (credo)
 
                 punteggio += clearLines();
+                /*mvwprintw(stdscr,8,3, "altezza next: %d  ",nextTetramino->getY());
+                mvwprintw(stdscr,9,3, "xx next: %d  ",nextTetramino->getX());*/
                 currentTetramino = nextTetramino;
                 nextTetramino = createTetramino();
+
                 if (C->checkCollisioni(board, currentTetramino)) {
                     gameOver = true; // Game over
                 }
@@ -162,27 +171,54 @@ void Engine::play(Game playGrill, NextT next) {
     nextTetramino = createTetramino(); // PROSSIMO TETRAMINO
     C= new CollisioniNuovo;
 
+
+    time_t tempo_ultima = time(0);
+    int velocità_caduta = 100;
     int punteggio = 0;
-
+    nodelay(stdscr, TRUE);
     bool gameRunning = true;
+    int last_pos_x, last_pos_y;
     while (gameRunning) {
-        playGrill.borderscreen(playGrill.getScreen(), board, punteggio); // Pass score to drawBoard
-        next.drawNextTetramino(nextTetramino); // Draw the next tetromino
-        next.borderscreen();
-
-        wattron(gameWin, COLOR_PAIR(currentTetramino->getColor()));  // Apply the color for the current tetromino
-        for (int y = 0; y < 4; ++y) {
-            for (int x = 0; x < 4; ++x) {
-                if (currentTetramino->getShape(y,x) == 'X') {
-                    mvwprintw(gameWin, currentTetramino->getY() + y, 2 * (currentTetramino->getX() + x)-1, "XX");
+        last_pos_x=currentTetramino->getX();
+        last_pos_y=currentTetramino->getY();
+        ch = getch();
+        if (ch != ERR) {
+            gameRunning = !moving(ch, punteggio);
+        }
+        time_t tempo_corrente = time(0);
+        if (difftime(tempo_corrente, tempo_ultima) >= (double)velocità_caduta / 100.0) {
+            gameRunning = !moving(KEY_DOWN, punteggio); // KEY_DOWN è una costante di ncurses
+            tempo_ultima = tempo_corrente; // Aggiorna l'ultimo tempo di caduta
+        }
+        if(last_pos_x!=currentTetramino->getX()||last_pos_y!=currentTetramino->getY()) {
+            playGrill.borderscreen(playGrill.getScreen(), board, punteggio); // Pass score to drawBoard
+            next.drawNextTetramino(nextTetramino); // Draw the next tetromino
+            next.borderscreen();
+            wattron(gameWin, COLOR_PAIR(currentTetramino->getColor()));  // Apply the color for the current tetromino
+            for (int y = 0; y < 4; ++y) {
+                for (int x = 0; x < 4; ++x) {
+                    if (currentTetramino->getShape(y,x) == 'X') {
+                        if(board[currentTetramino->getY()+y][currentTetramino->getX()+x]!='X'){
+                            mvwprintw(gameWin, currentTetramino->getY() + y, 2 * (currentTetramino->getX() + x)-1, "XX");
+                        }else {
+                            gameRunning=false;
+                        }
+                    }
                 }
             }
-        }
-        wattroff(gameWin, COLOR_PAIR(currentTetramino->getColor()));  // Turn off the color
-        wrefresh(gameWin);
 
-        ch = getch();
-        gameRunning = !moving(ch, punteggio);
+            wattroff(gameWin, COLOR_PAIR(currentTetramino->getColor()));  // Turn off the color
+            wrefresh(gameWin);
+        }
+        /*time_t current_time = time(0);
+        if (difftime(current_time, last_fall_time) >= (double)fall_speed / 100.0) { //Adattato per il nuovo fall_speed
+            last_fall_time = current_time;
+            ch = KEY_DOWN;
+            gameRunning = !moving(ch, punteggio);
+        }else {
+            ch = getch();
+            gameRunning = !moving(ch, punteggio);
+        }*/
 
     }
     GameOver gameover(20,40);
