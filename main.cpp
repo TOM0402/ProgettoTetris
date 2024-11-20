@@ -66,5 +66,5 @@ int main() {
     getch();
     endwin();
 
-    return 0;
+    return 0; //prova linux
 }
