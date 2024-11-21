@@ -39,9 +39,9 @@ void Screen::borderscreen(WINDOW* screen, char board[GRID_HEIGHT][GRID_WIDTH], i
     for (int y = 0; y < GRID_HEIGHT; ++y) {
         for (int x = 0; x < GRID_WIDTH; ++x) {
             if (board[y][x] == 'X') {
-            mvwprintw(screen, y + 1, 2 * x + 1, "XX"); // Aggiunto +1 per spazio del bordo
+            mvwprintw(screen, y + 1, 2 * x + 1, "X"); // Aggiunto +1 per spazio del bordo
             } else {
-            mvwprintw(screen, y + 1, 2 * x + 1, "  "); // Aggiunto +1 per spazio del bordo
+            mvwprintw(screen, y + 1, 2 * x + 1, " "); // Aggiunto +1 per spazio del bordo
             }
         }
     }

@@ -54,7 +54,7 @@ TetraminoNuovo* Engine::createTetramino() {
             t->setShape(y,x,t->getTetramini(index, y, x));
         }
     }
-    t->setX(GRID_WIDTH / 2 - 2); // Center the tetromino
+    t->setX(GRID_WIDTH / 2 - 1); // Center the tetromino
     t->setY(1); // Start at the top
     t->setColor(index + 7); // Assign color based on tetromino index (1-7)
     return t;
@@ -114,18 +114,13 @@ bool Engine::moving(int ch, int &punteggio){
             break;
         case 's': // Move down
         case KEY_DOWN:
-            //mvwprintw(stdscr,12,3, "altezza current: %d  ",currentTetramino->getY());
-            //mvwprintw(stdscr,2,3, "Prima di spostare in basso: %d",currentTetramino->getY());
             currentTetramino->setY(currentTetramino->getY()+1);
-            //mvwprintw(stdscr,3,3, "dopo di spostare in basso: %d",currentTetramino->getY());
             if (C->checkCollisioni(board, currentTetramino)) {
                 currentTetramino->setY(currentTetramino->getY()-1);
 
                 currentTetramino->placeTetramino(board, currentTetramino); //placeTetramino va implementato anche visualmente (credo)
 
                 punteggio += clearLines();
-                /*mvwprintw(stdscr,8,3, "altezza next: %d  ",nextTetramino->getY());
-                mvwprintw(stdscr,9,3, "xx next: %d  ",nextTetramino->getX());*/
                 currentTetramino = nextTetramino;
                 nextTetramino = createTetramino();
 
@@ -207,18 +202,16 @@ void Engine::play(Game playGrill, NextT next) {
                 }
             }
 
+            for(int y=0; y<GRID_HEIGHT; ++y) {
+                for(int x=0; x<GRID_WIDTH; ++x) {
+                    if(board[y][x]=='X') {
+                        mvwprintw(gameWin,y,x,"X");
+                    }
+                }
+            }
             wattroff(gameWin, COLOR_PAIR(currentTetramino->getColor()));  // Turn off the color
             wrefresh(gameWin);
         }
-        /*time_t current_time = time(0);
-        if (difftime(current_time, last_fall_time) >= (double)fall_speed / 100.0) { //Adattato per il nuovo fall_speed
-            last_fall_time = current_time;
-            ch = KEY_DOWN;
-            gameRunning = !moving(ch, punteggio);
-        }else {
-            ch = getch();
-            gameRunning = !moving(ch, punteggio);
-        }*/
 
     }
     GameOver gameover(20,40);
