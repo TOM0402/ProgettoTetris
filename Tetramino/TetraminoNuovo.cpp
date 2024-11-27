@@ -9,11 +9,11 @@ TetraminoNuovo::TetraminoNuovo() {
 char TetraminoNuovo::getTetramini(int x, int y, int z) {
     return tetramini[x][y][z];
 }
-char TetraminoNuovo::getShape(int x, int y) {
+char TetraminoNuovo::getShape(int y, int x) {
     return shape[y][x];
 }
 
-void TetraminoNuovo::setShape(int x, int y, char a){
+void TetraminoNuovo::setShape(int y, int x, char a){
     shape[y][x]=a;
 }
 
@@ -59,9 +59,9 @@ void TetraminoNuovo::placeTetramino(char board[GRID_HEIGHT][GRID_WIDTH], Tetrami
     for (int y = 0; y < 4; ++y) {
         for (int x = 0; x < 4; ++x) {
             if (t->shape[y][x] == 'X') {
-                int boardX = t->x + x;
+                int boardX = t->x + x-1;
                 int boardY = t->y + y;
-                if (boardX >= 0 && boardX <= GRID_WIDTH && boardY >= 0 && boardY <= GRID_HEIGHT+2) {
+                if (boardX >= 0 && boardX < GRID_WIDTH && boardY >= 0 && boardY < GRID_HEIGHT-2) {
                     board[boardY][boardX] = 'X';
                 } else if(boardY < 0){
                     //gameover

@@ -60,7 +60,18 @@ TetraminoNuovo* Engine::createTetramino() {
     return t;
 }
 
-
+void Engine::printBoard() {
+    for (int i = 0; i < GRID_HEIGHT; ++i) {
+        for (int j = 0; j < GRID_WIDTH; ++j) {
+            if(board[i][j]=='X') {
+                mvwprintw(stdscr, i, j,"X");
+            }else {
+                mvwprintw(stdscr, i, j,".");
+            }
+        }
+        wrefresh(stdscr); // Aggiorna la finestra per visualizzare il contenuto
+    }
+}
 
 
 
@@ -159,7 +170,7 @@ void Engine::play(Game playGrill, NextT next) {
     WINDOW *gameWin = playGrill.getScreen();
     WINDOW *nextWin = next.getScreen();
 
-    char board[GRID_HEIGHT][GRID_WIDTH];
+    //char board[GRID_HEIGHT][GRID_WIDTH];
     initBoard();
 
     currentTetramino = createTetramino();
@@ -174,6 +185,7 @@ void Engine::play(Game playGrill, NextT next) {
     bool gameRunning = true;
     int last_pos_x, last_pos_y;
     while (gameRunning) {
+        printBoard();
         last_pos_x=currentTetramino->getX();
         last_pos_y=currentTetramino->getY();
         ch = getch();
@@ -229,4 +241,17 @@ void Engine::play(Game playGrill, NextT next) {
         int ch = getch();
         gameRunning = !moving(ch, gameWin, nextWin, currentTetramino, nextTetramino, board, C, punteggio);
     }
+void Engine::printBoard() {
+    for (int i = 0; i < GRID_HEIGHT; ++i) {
+        for (int j = 0; j < GRID_WIDTH; ++j) {
+            if(board[i][j]=='X') {
+                mvwprintw(stdscr, i, j,"X");
+            }else {
+                mvwprintw(stdscr, i, j,".");
+            }
+        }
+        wrefresh(stdscr); // Aggiorna la finestra per visualizzare il contenuto
+    }
+}
 */
+

@@ -6,7 +6,7 @@
 #define PROGETTOTETRIS_TETRAMINONUOVO_HPP
 
 #define GRID_WIDTH 10
-#define GRID_HEIGHT 20
+#define GRID_HEIGHT 22
 #include <ncurses.h>
 class TetraminoNuovo {
 protected:

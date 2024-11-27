@@ -23,6 +23,7 @@ public:
     Engine();
     void init();
     bool setup();
+    void printBoard();
     void play(Game playgrill, NextT);
     bool moving(int ch ,  int &punteggio);
     void initBoard();
