@@ -15,17 +15,18 @@ bool CollisioniNuovo::checkCollisioni(char board[GRID_HEIGHT][GRID_WIDTH], Tetra
                 int boardX = t->getX() + x;
                 int boardY = t->getY() + y;
 
-                // Controllo bordi
-            if (boardX < 0 || boardX >=  GRID_WIDTH || boardY <= 0 || boardY >= GRID_HEIGHT-2) {
+                // Modifica qui: controllo più rigoroso dei bordi
+                // Permettiamo il posizionamento nella prima colonna (boardX == 0)
+                if (boardX < 0 || boardX >= GRID_WIDTH || boardY < 0 || boardY >= GRID_HEIGHT-2) {
                     return true; // Collisione con i bordi
                 }
 
                 // Controllo collisione con altri blocchi
-                if (board[boardY][boardX] == 'X') {
+                if (boardY >= 0 && board[boardY][boardX] == 'X') {
                     return true;
                 }
             }
         }
     }
-    return false; // No collision
+    return false;
 }

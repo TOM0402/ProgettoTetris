@@ -251,7 +251,7 @@ void Engine::play(Game playGrill, NextT next, SideBar& sidebar) {
                         int displayY = currentTetramino->getY() + y;
                         if (displayY >= 0 && displayY < GRID_HEIGHT &&
                             displayX >= 0 && displayX < GRID_WIDTH) {
-                            mvwprintw(gameWin, displayY, 2 * displayX, "XX");
+                            mvwprintw(gameWin, displayY, 2 * displayX + 1, "XX");
                         }
                     }
                 }
