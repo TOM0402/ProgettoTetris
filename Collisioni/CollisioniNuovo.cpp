@@ -17,7 +17,7 @@ bool CollisioniNuovo::checkCollisioni(char board[GRID_HEIGHT][GRID_WIDTH], Tetra
 
                 //Corrected Boundary Checks
 
-                if (boardX <= 0 || boardX > GRID_WIDTH || boardY <= 0 || boardY > GRID_HEIGHT) {
+                if (boardX <= 0 || boardX > GRID_WIDTH || boardY <= 0 || boardY >= GRID_HEIGHT-2) {
                     return true; // Collision with wall
                 }
 
