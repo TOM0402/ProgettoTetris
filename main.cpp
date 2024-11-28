@@ -1,7 +1,6 @@
 #include "fileManagement/file.hpp"
 #include <ncurses.h>
 //#include <stdlib.h>
-#include "Collisioni/Collisioni.hpp"
 #include "Screen/Game.hpp"
 #include "Screen/Leaderboard.hpp"
 #include "Screen/Name.hpp"
@@ -38,13 +37,13 @@ int main() {
 
         clear();
 
-        SideBar sideGrill(GRID_HIGH, GRID_WIDE, name);
+        SideBar sideGrill(22, 22, name);
         sideGrill.printScores();
         sideGrill.borderscreen();
 
-        NextT next(GRID_WIDE/2,GRID_WIDE);
+        NextT next(22/2,22);
 
-        Game playGrill(GRID_HIGH,GRID_WIDE);
+        Game playGrill(22,22);
         playGrill.borderscreen();
 
         engine.play(playGrill, next);
