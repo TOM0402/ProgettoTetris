@@ -31,22 +31,21 @@ void Screen::borderscreen(){
     wrefresh(screen);
 }
 
-void Screen::borderscreen(WINDOW* screen, char board[GRID_HEIGHT][GRID_WIDTH], int punteggio) {
-    werase(screen); // Pulisci la finestra
-
-    // Disegna il tabellone
+void Screen::borderscreen(WINDOW* screen, char board[GRID_HEIGHT][GRID_WIDTH], int score) {
+    box(screen, 0, 0);
     for (int y = 0; y < GRID_HEIGHT; ++y) {
         for (int x = 0; x < GRID_WIDTH; ++x) {
-            if (board[y][x] == 'X') {
-            mvwprintw(screen, y + 1, 2 * x + 1, "X"); // Aggiunto +1 per spazio del bordo
+            if (board[y][x] != '.') {
+                wattron(screen, COLOR_PAIR(board[y][x]));
+                mvwprintw(screen, y+1, 2*x+1, "XX");
+                wattroff(screen, COLOR_PAIR(board[y][x]));
             } else {
-            mvwprintw(screen, y + 1, 2 * x + 1, " "); // Aggiunto +1 per spazio del bordo
+                mvwprintw(screen, y+1, 2*x+1, "  ");
             }
         }
     }
-
-    // Disegna il punteggio (aggiustata la posizione per il bordo)
-    mvwprintw(screen, 0, GRID_WIDTH * 2 + 3, "Score: %d", punteggio);
+     // Disegna il punteggio (aggiustata la posizione per il bordo)
+    mvwprintw(screen, 0, GRID_WIDTH * 2 + 3, "Score: %d", score);
 
     // Disegna il bordo dopo aver disegnato il tabellone
     wattron(screen, COLOR_PAIR(2));

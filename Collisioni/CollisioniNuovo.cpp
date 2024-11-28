@@ -22,7 +22,7 @@ bool CollisioniNuovo::checkCollisioni(char board[GRID_HEIGHT][GRID_WIDTH], Tetra
                 }
 
                 // Controllo collisione con altri blocchi
-                if (boardY >= 0 && board[boardY][boardX] == 'X') {
+                if (boardY >= 0 && board[boardY][boardX] != '.') {
                     return true;
                 }
             }

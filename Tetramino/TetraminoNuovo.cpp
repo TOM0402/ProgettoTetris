@@ -63,9 +63,7 @@ void TetraminoNuovo::placeTetramino(char board[GRID_HEIGHT][GRID_WIDTH], Tetrami
                 int boardY = t->getY() + y;
                 if (boardX >= 0 && boardX < GRID_WIDTH &&
                     boardY >= 0 && boardY < GRID_HEIGHT) {
-                    board[boardY][boardX] = 'X';
-                } else if(boardY < 0){
-                    //gameover
+                    board[boardY][boardX] = t->getColor();
                 }
             }
         }
