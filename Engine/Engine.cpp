@@ -155,8 +155,16 @@ bool Engine::moving(int ch, int &punteggio, bool isAutomatic) {
         case KEY_UP:
             currentTetramino->rotateTetramino(currentTetramino);
             if (C->checkCollisioni(board, currentTetramino)) {
-                currentTetramino->rotateTetramino(currentTetramino);
-                currentTetramino->rotateTetramino(currentTetramino);
+                currentTetramino->setX(currentTetramino->getX() + 1);
+                if (C->checkCollisioni(board, currentTetramino)) {
+                    currentTetramino->setX(currentTetramino->getX() - 2);
+                    if (C->checkCollisioni(board, currentTetramino)) {
+                        currentTetramino->setX(currentTetramino->getX() + 1);
+                        currentTetramino->rotateTetramino(currentTetramino);
+                        currentTetramino->rotateTetramino(currentTetramino);
+                        currentTetramino->rotateTetramino(currentTetramino);
+                    }
+                }
             }
             break;
         case ' ': // Spazio per hard drop
@@ -239,19 +247,12 @@ void Engine::play(Game playGrill, NextT next, SideBar& sidebar) {
             for (int y = 0; y < 4; ++y) {
                 for (int x = 0; x < 4; ++x) {
                     if (currentTetramino->getShape(y,x) == 'X') {
-                        if(board[currentTetramino->getY()+y][currentTetramino->getX()+x]!='X'){
-                            mvwprintw(gameWin, currentTetramino->getY() + y, 2 * (currentTetramino->getX() + x)-1, "XX");
-                        }else {
-                            gameRunning=false;
+                        int displayX = currentTetramino->getX() + x;
+                        int displayY = currentTetramino->getY() + y;
+                        if (displayY >= 0 && displayY < GRID_HEIGHT &&
+                            displayX >= 0 && displayX < GRID_WIDTH) {
+                            mvwprintw(gameWin, displayY, 2 * displayX, "XX");
                         }
-                    }
-                }
-            }
-
-            for(int y=0; y<GRID_HEIGHT; ++y) {
-                for(int x=0; x<GRID_WIDTH; ++x) {
-                    if(board[y][x]=='X') {
-                        mvwprintw(gameWin,y,x,"X");
                     }
                 }
             }
