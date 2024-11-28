@@ -35,5 +35,7 @@ add_executable(ProgettoTetris
         Screen/GameOver.hpp
         Screen/NextT.cpp
         Screen/NextT.hpp
+        ScoreManager/ScoreManager.cpp
+        ScoreManager/ScoreManager.hpp
 )
 target_link_libraries( ProgettoTetris ${CURSES_LIBRARIES} )

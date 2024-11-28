@@ -77,7 +77,7 @@ void Engine::printBoard() {
 
 //AUMENTA IL PUNTEGGIO
 int Engine::clearLines() {
-    int punteggio = 0;
+    int linesCleared = 0;
     for (int y = GRID_HEIGHT - 1; y >= 0; --y) {
         bool lineaPiena = true;
         for (int x = 0; x < GRID_WIDTH; ++x) {
@@ -87,7 +87,7 @@ int Engine::clearLines() {
             }
         }
         if (lineaPiena) {
-            punteggio++; // Incrementa il punteggio
+            linesCleared++; // Conta le linee pulite
             // CANCELLA LA LINEA
             for (int i = y; i > 0; --i) {
                 for (int x = 0; x < GRID_WIDTH; ++x) {
@@ -100,52 +100,82 @@ int Engine::clearLines() {
             ++y; // Check the same line again after shifting down
         }
     }
-    return punteggio; // Return the total score for cleared lines
+    if (linesCleared > 0) {
+        scoreManager.addLinesClearedPoints(linesCleared);
+    }
+    return linesCleared;
 }
 
+void Engine::updateSideBar() {
+    if (sideBar != nullptr) {
+        sideBar->printScores(scoreManager.getScore(), scoreManager.getLevel());
+    }
+}
 
-bool Engine::moving(int ch, int &punteggio){
-    bool gameOver = false; // Variabile flag per indicare la fine del gioco
+bool Engine::moving(int ch, int &punteggio) {
+    bool gameOver = false;
     switch (ch) {
         case 'q':
-            gameOver = true; // Imposta il flag a true per indicare che il gioco è finito
+            gameOver = true;
             break;
-        case 'a': // Move left
+        case 'a':
         case KEY_LEFT:
             currentTetramino->setX(currentTetramino->getX()-1);
             if (C->checkCollisioni(board, currentTetramino)) currentTetramino->setX(currentTetramino->getX()+1);
             break;
-        case 'd': // Move right
+        case 'd':
         case KEY_RIGHT:
-
-            //mvwprintw(stdscr,19,3, "prima di spostare a destra: %d",currentTetramino->getX());
             currentTetramino->setX(currentTetramino->getX()+1);
-            //mvwprintw(stdscr,20,3, "dopo di spostare a destra: %d",currentTetramino->getX());
             if (C->checkCollisioni(board, currentTetramino)) currentTetramino->setX(currentTetramino->getX()-1);
             break;
-        case 's': // Move down
+        case 's':
         case KEY_DOWN:
             currentTetramino->setY(currentTetramino->getY()+1);
             if (C->checkCollisioni(board, currentTetramino)) {
                 currentTetramino->setY(currentTetramino->getY()-1);
+                currentTetramino->placeTetramino(board, currentTetramino);
 
-                currentTetramino->placeTetramino(board, currentTetramino); //placeTetramino va implementato anche visualmente (credo)
+                clearLines();
+                punteggio = scoreManager.getScore();
+                updateSideBar(); // Aggiorna la sidebar dopo ogni mossa che modifica il punteggio
 
-                punteggio += clearLines();
                 currentTetramino = nextTetramino;
                 nextTetramino = createTetramino();
 
                 if (C->checkCollisioni(board, currentTetramino)) {
-                    gameOver = true; // Game over
+                    gameOver = true;
                 }
+            } else {
+                scoreManager.addSoftDropPoints(1);
+                punteggio = scoreManager.getScore();
+                updateSideBar();
             }
             break;
-        case 'w': // Rotate
+        case 'w':
         case KEY_UP:
             currentTetramino->rotateTetramino(currentTetramino);
             if (C->checkCollisioni(board, currentTetramino)) {
                 currentTetramino->rotateTetramino(currentTetramino);
                 currentTetramino->rotateTetramino(currentTetramino);
+            }
+            break;
+        case ' ': // Spazio per hard drop
+            int cellsMoved = 0;
+            while (!C->checkCollisioni(board, currentTetramino)) {
+                currentTetramino->setY(currentTetramino->getY()+1);
+                cellsMoved++;
+            }
+            currentTetramino->setY(currentTetramino->getY()-1);
+            if (cellsMoved > 0) {
+                scoreManager.addHardDropPoints(cellsMoved);
+                punteggio = scoreManager.getScore();
+            }
+            currentTetramino->placeTetramino(board, currentTetramino);
+            clearLines();
+            currentTetramino = nextTetramino;
+            nextTetramino = createTetramino();
+            if (C->checkCollisioni(board, currentTetramino)) {
+                gameOver = true;
             }
             break;
     }
@@ -155,10 +185,11 @@ bool Engine::moving(int ch, int &punteggio){
         delwin(nextWin);
         endwin();
     }
-    return gameOver; // Restituisce true se il gioco è finito, false altrimenti
+    return gameOver;
 }
 
-void Engine::play(Game playGrill, NextT next) {
+void Engine::play(Game playGrill, NextT next, SideBar& sidebar) {
+    sideBar = &sidebar;
     int ch;
     mvwprintw(playGrill.getScreen(), playGrill.getWide()/2,3 ,"premi un tasto");
     wrefresh(playGrill.getScreen());
@@ -166,17 +197,16 @@ void Engine::play(Game playGrill, NextT next) {
     mvwprintw(playGrill.getScreen(), playGrill.getWide()/2,3 ,"                 ");
     wrefresh(playGrill.getScreen());
 
-    //Finestra per il gioco
-    WINDOW *gameWin = playGrill.getScreen();
-    WINDOW *nextWin = next.getScreen();
+    gameWin = playGrill.getScreen();
+    nextWin = next.getScreen();
 
-    //char board[GRID_HEIGHT][GRID_WIDTH];
     initBoard();
+    scoreManager.resetScore();
+    updateSideBar(); // Inizializza la sidebar con il punteggio iniziale
 
     currentTetramino = createTetramino();
-    nextTetramino = createTetramino(); // PROSSIMO TETRAMINO
-    C= new CollisioniNuovo;
-
+    nextTetramino = createTetramino();
+    C = new CollisioniNuovo;
 
     time_t tempo_ultima = time(0);
     int velocità_caduta = 100;
@@ -233,25 +263,4 @@ void Engine::play(Game playGrill, NextT next) {
 }
 
 
-
-/*Usare con:
- *
-    bool gameRunning = true;
-    while (gameRunning) {
-        int ch = getch();
-        gameRunning = !moving(ch, gameWin, nextWin, currentTetramino, nextTetramino, board, C, punteggio);
-    }
-void Engine::printBoard() {
-    for (int i = 0; i < GRID_HEIGHT; ++i) {
-        for (int j = 0; j < GRID_WIDTH; ++j) {
-            if(board[i][j]=='X') {
-                mvwprintw(stdscr, i, j,"X");
-            }else {
-                mvwprintw(stdscr, i, j,".");
-            }
-        }
-        wrefresh(stdscr); // Aggiorna la finestra per visualizzare il contenuto
-    }
-}
-*/
 

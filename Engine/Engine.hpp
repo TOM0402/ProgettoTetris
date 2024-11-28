@@ -8,10 +8,10 @@
 #include "../Screen/Screen.hpp"
 #include "../Screen/NextT.hpp"
 #include "../Screen/GameOver.hpp"
+#include "../ScoreManager/ScoreManager.hpp"
+#include "../Screen/SideBar.hpp"
 
-
-
-class Engine{
+class Engine {
 private:
     WINDOW* gameWin;
     WINDOW* nextWin;
@@ -19,17 +19,20 @@ private:
     CollisioniNuovo* C;
     TetraminoNuovo* currentTetramino;
     TetraminoNuovo* nextTetramino;
+    ScoreManager scoreManager;
+    SideBar* sideBar;
 public:
     Engine();
     void init();
     bool setup();
     void printBoard();
-    void play(Game playgrill, NextT);
-    bool moving(int ch ,  int &punteggio);
+    void play(Game playgrill, NextT, SideBar&);
+    bool moving(int ch, int &punteggio);
     void initBoard();
     void drawNextTetramino(TetraminoNuovo*);
     TetraminoNuovo* createTetramino();
     int clearLines();
+    void updateSideBar();
 };
 
 #endif

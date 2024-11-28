@@ -7,7 +7,7 @@ protected:
     char* username;
 public:
     SideBar(int h, int w, char* usName);
-    void printScores();
+    void printScores(int score, int level);
 };
 
 
