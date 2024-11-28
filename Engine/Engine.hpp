@@ -27,7 +27,7 @@ public:
     bool setup();
     void printBoard();
     void play(Game playgrill, NextT, SideBar&);
-    bool moving(int ch, int &punteggio);
+    bool moving(int ch, int &punteggio, bool isAutomatic = false);
     void initBoard();
     void drawNextTetramino(TetraminoNuovo*);
     TetraminoNuovo* createTetramino();

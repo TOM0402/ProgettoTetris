@@ -112,7 +112,7 @@ void Engine::updateSideBar() {
     }
 }
 
-bool Engine::moving(int ch, int &punteggio) {
+bool Engine::moving(int ch, int &punteggio, bool isAutomatic) {
     bool gameOver = false;
     switch (ch) {
         case 'q':
@@ -137,7 +137,7 @@ bool Engine::moving(int ch, int &punteggio) {
 
                 clearLines();
                 punteggio = scoreManager.getScore();
-                updateSideBar(); // Aggiorna la sidebar dopo ogni mossa che modifica il punteggio
+                updateSideBar();
 
                 currentTetramino = nextTetramino;
                 nextTetramino = createTetramino();
@@ -145,7 +145,7 @@ bool Engine::moving(int ch, int &punteggio) {
                 if (C->checkCollisioni(board, currentTetramino)) {
                     gameOver = true;
                 }
-            } else {
+            } else if (!isAutomatic) {
                 scoreManager.addSoftDropPoints(1);
                 punteggio = scoreManager.getScore();
                 updateSideBar();
@@ -167,11 +167,15 @@ bool Engine::moving(int ch, int &punteggio) {
             }
             currentTetramino->setY(currentTetramino->getY()-1);
             if (cellsMoved > 0) {
-                scoreManager.addHardDropPoints(cellsMoved);
+                scoreManager.addHardDropPoints(cellsMoved - 1); // -1 perché l'ultima mossa viene annullata
                 punteggio = scoreManager.getScore();
+                updateSideBar();
             }
             currentTetramino->placeTetramino(board, currentTetramino);
-            clearLines();
+            clearLines(); // Questo aggiunge punti per le linee completate
+            punteggio = scoreManager.getScore(); // Aggiorna il punteggio dopo il clearLines
+            updateSideBar(); // Aggiorna la sidebar con il punteggio finale
+
             currentTetramino = nextTetramino;
             nextTetramino = createTetramino();
             if (C->checkCollisioni(board, currentTetramino)) {
@@ -220,12 +224,12 @@ void Engine::play(Game playGrill, NextT next, SideBar& sidebar) {
         last_pos_y=currentTetramino->getY();
         ch = getch();
         if (ch != ERR) {
-            gameRunning = !moving(ch, punteggio);
+            gameRunning = !moving(ch, punteggio, false); // Input manuale
         }
         time_t tempo_corrente = time(0);
         if (difftime(tempo_corrente, tempo_ultima) >= (double)velocità_caduta / 100.0) {
-            gameRunning = !moving(KEY_DOWN, punteggio); // KEY_DOWN è una costante di ncurses
-            tempo_ultima = tempo_corrente; // Aggiorna l'ultimo tempo di caduta
+            gameRunning = !moving(KEY_DOWN, punteggio, true); // Discesa automatica
+            tempo_ultima = tempo_corrente;
         }
         if(last_pos_x!=currentTetramino->getX()||last_pos_y!=currentTetramino->getY()) {
             playGrill.borderscreen(playGrill.getScreen(), board, punteggio); // Pass score to drawBoard
