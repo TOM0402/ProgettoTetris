@@ -112,6 +112,7 @@ void Engine::updateSideBar() {
     if (sideBar != nullptr) {
         sideBar->printScores(scoreManager.getScore(), scoreManager.getLevel());
     }
+    sideBar->borderscreen();
 }
 
 bool Engine::moving(int ch, int &punteggio, bool isAutomatic) {

@@ -32,6 +32,7 @@ int main() {
         Game playGrill(22,22);
         
         playGrill.borderscreen();
+        sideGrill.borderscreen();
         sideGrill.printScores(0, 1); // Inizializza la sidebar con punteggio 0 e livello 1
 
         engine.play(playGrill, next, sideGrill);
