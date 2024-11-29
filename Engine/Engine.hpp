@@ -10,6 +10,8 @@
 #include "../Screen/GameOver.hpp"
 #include "../ScoreManager/ScoreManager.hpp"
 #include "../Screen/SideBar.hpp"
+#include "../Screen/Leaderboard.hpp"
+#include "../Screen/Name.hpp"
 
 class Engine {
 private:
@@ -21,6 +23,8 @@ private:
     TetraminoNuovo* nextTetramino;
     ScoreManager scoreManager;
     SideBar* sideBar;
+    void startGame(char* playerName);
+    void showLeaderboard();
 public:
     Engine();
     void init();
@@ -33,6 +37,7 @@ public:
     TetraminoNuovo* createTetramino();
     int clearLines();
     void updateSideBar();
+    void run();
 };
 
 #endif

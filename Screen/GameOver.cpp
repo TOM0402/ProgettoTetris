@@ -1,7 +1,7 @@
 #include "GameOver.hpp"
 
 GameOver::GameOver(int h, int w):Screen(h,w) {
-    scelte[0]={"Retry"};
+    scelte[0]={"Quit"};
     scelte[1]={"Home"};
 }
 

@@ -7,6 +7,7 @@ Engine::Engine() {
 }
 
 void Engine::init() {
+    srand(time(NULL));
     initscr(); // Inizializza la libreria curses
     noecho(); // Disabilita l'echo delle caratteri
     curs_set(0); // Nasconde il cursore
@@ -54,7 +55,7 @@ TetraminoNuovo* Engine::createTetramino() {
             t->setShape(y,x,t->getTetramini(index, y, x));
         }
     }
-    t->setX(GRID_WIDTH / 2 - 1); // Center the tetromino
+    t->setX(GRID_WIDTH / 2 - 2); // Center the tetromino
     t->setY(1); // Start at the top
     t->setColor(index + 7); // Assign color based on tetromino index (1-7)
     return t;
@@ -195,11 +196,6 @@ bool Engine::moving(int ch, int &punteggio, bool isAutomatic) {
             break;
     }
 
-    if (gameOver) {
-        delwin(gameWin);
-        delwin(nextWin);
-        endwin();
-    }
     return gameOver;
 }
 
@@ -217,7 +213,7 @@ void Engine::play(Game playGrill, NextT next, SideBar& sidebar) {
 
     initBoard();
     scoreManager.resetScore();
-    updateSideBar(); // Inizializza la sidebar con il punteggio iniziale
+    updateSideBar();
 
     currentTetramino = createTetramino();
     nextTetramino = createTetramino();
@@ -229,16 +225,17 @@ void Engine::play(Game playGrill, NextT next, SideBar& sidebar) {
     nodelay(stdscr, TRUE);
     bool gameRunning = true;
     int last_pos_x, last_pos_y;
+    
     while (gameRunning) {
         last_pos_x = currentTetramino->getX();
         last_pos_y = currentTetramino->getY();
         ch = getch();
         if (ch != ERR) {
-            gameRunning = !moving(ch, punteggio, false); // Input manuale
+            gameRunning = !moving(ch, punteggio, false);
         }
         time_t tempo_corrente = time(0);
         if (difftime(tempo_corrente, tempo_ultima) >= (double)velocità_caduta / 100.0) {
-            gameRunning = !moving(KEY_DOWN, punteggio, true); // Discesa automatica
+            gameRunning = !moving(KEY_DOWN, punteggio, true);
             tempo_ultima = tempo_corrente;
         }
         if(last_pos_x != currentTetramino->getX() || last_pos_y != currentTetramino->getY()) {
@@ -262,10 +259,77 @@ void Engine::play(Game playGrill, NextT next, SideBar& sidebar) {
             wrefresh(gameWin);
         }
     }
+
+    // Prima liberiamo la memoria
+    delete C;
+    delete currentTetramino;
+    delete nextTetramino;
+
+    // Poi gestiamo il game over
+    nodelay(stdscr, FALSE); // Riattiva l'input bloccante
     GameOver gameover(20,40);
     gameover.printLogo();
     gameover.borderscreen();
-    int s2 =gameover.menu();
+    int choice = gameover.menu();
+    
+    clear();
+    refresh();
+    
+    if (choice == 0) { // Quit
+        endwin(); // Chiamiamo endwin() solo una volta prima di uscire
+        exit(0);
+    } else { // Home
+        run();
+    }
+}
+
+void Engine::startGame(char* playerName) {
+    SideBar sideGrill(22, 22, playerName);
+    NextT next(22/2, 22);
+    Game playGrill(22, 22);
+    
+    playGrill.borderscreen();
+    sideGrill.borderscreen();
+    sideGrill.printScores(0, 1);
+
+    play(playGrill, next, sideGrill);
+}
+
+void Engine::showLeaderboard() {
+    Leaderboard lead(27, 46);
+    lead.borderscreen();
+    lead.printLead();
+    
+    // Aspetta che l'utente prema ENTER per tornare al menu
+    int ch;
+    while ((ch = getch()) != '\n' && ch != KEY_ENTER) {
+        // Continua ad aspettare finché non viene premuto ENTER
+    }
+    
+    clear();
+    run(); // Torna al menu principale
+}
+
+void Engine::run() {
+    Home home(28, 62);
+    home.printLogo();
+    home.borderscreen();
+    int choice = home.menu();
+
+    clear();
+    
+    if (choice == 0) {
+        Name insName(5, 34);
+        insName.borderscreen();
+        insName.insert();
+        char* playerName = insName.getName();
+        
+        clear();
+        startGame(playerName);
+    }
+    else {
+        showLeaderboard();
+    }
 }
 
 
