@@ -7,7 +7,6 @@ Engine::Engine() {
 }
 
 void Engine::init() {
-    srand(time(NULL));
     initscr(); // Inizializza la libreria curses
     noecho(); // Disabilita l'echo delle caratteri
     curs_set(0); // Nasconde il cursore
@@ -30,11 +29,14 @@ void Engine::init() {
     init_pair(12,COLOR_MAGENTA, COLOR_MAGENTA);
     init_pair(13,COLOR_WHITE, COLOR_WHITE);
 }
-
+/*
 bool Engine::setup() {
-    bool a=true;
+    Home home(32,62);
+    home.printLogo();
+    home.borderscreen();
+    int a =home.menu();
     return a;
-}
+}*/
 
 void Engine::initBoard() {
     for (int y = 0; y < GRID_HEIGHT; ++y) {
@@ -52,7 +54,7 @@ TetraminoNuovo* Engine::createTetramino() {
             t->setShape(y,x,t->getTetramini(index, y, x));
         }
     }
-    t->setX(GRID_WIDTH / 2 - 2); // Center the tetromino
+    t->setX(GRID_WIDTH / 2 - 1); // Center the tetromino
     t->setY(1); // Start at the top
     t->setColor(index + 7); // Assign color based on tetromino index (1-7)
     return t;
@@ -194,8 +196,6 @@ bool Engine::moving(int ch, int &punteggio, bool isAutomatic) {
     }
 
     if (gameOver) {
-
-
         delwin(gameWin);
         delwin(nextWin);
         endwin();
@@ -203,8 +203,7 @@ bool Engine::moving(int ch, int &punteggio, bool isAutomatic) {
     return gameOver;
 }
 
-int Engine::play(Screen playGrill, NextT next, SideBar& sidebar) {
-
+void Engine::play(Game playGrill, NextT next, SideBar& sidebar) {
     sideBar = &sidebar;
     int ch;
     mvwprintw(playGrill.getScreen(), playGrill.getWide()/2,3 ,"premi un tasto");
@@ -266,8 +265,7 @@ int Engine::play(Screen playGrill, NextT next, SideBar& sidebar) {
     GameOver gameover(20,40);
     gameover.printLogo();
     gameover.borderscreen();
-    int c = gameover.menu();
-    return c;
+    int s2 =gameover.menu();
 }
 
 

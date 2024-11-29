@@ -3,7 +3,6 @@
 Home::Home(int h, int w):Screen(h,w) {
     scelte[0]={"PLAY"};
     scelte[1]={"Leaderboard"};
-    scelte[2]={"Quit Game"};
 }
 
 void Home::printLogo(){
@@ -53,8 +52,8 @@ void Home::printLogo(){
 };
 
 int Home::menu() {
-    int nc=3;
-    //scelte[nc]={"PLAY","Leaderboard","Quit Game"};
+    int nc=2;
+    //scelte[nc]={"PLAY","Leaderboard"};
     int scelta;
     int highlight=0;
     keypad(screen, true);
@@ -65,7 +64,7 @@ int Home::menu() {
         for (int i = 0; i < nc; i++) {
             if(i==highlight)
                 wattron(screen, A_BOLD | A_UNDERLINE);
-            mvwprintw(screen, high/2+i*4+1, (wide/2)-std::strlen(scelte[i])/2, scelte[i] );
+            mvwprintw(screen, high/2+i*4+3, (wide/2)-((i+1)*2)-i, scelte[i]);
             wattroff(screen, A_BOLD | A_UNDERLINE);
         }
         scelta=wgetch(screen);

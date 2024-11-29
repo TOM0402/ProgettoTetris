@@ -6,7 +6,7 @@ GameOver::GameOver(int h, int w):Screen(h,w) {
 }
 
 void GameOver::printLogo(){
-    int wl=21, delay=350;
+    int wl=21, delay=400;
     int y=3;
     int x=(wide-wl)/2;
     wattron(screen, COLOR_PAIR(1) | A_BOLD);
