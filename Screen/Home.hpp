@@ -4,7 +4,7 @@
 
 class Home:public Screen {
 protected:
-    char* scelte[]; //PLAY, Leaderboard
+    const char* scelte[2]; //PLAY, Leaderboard
 public:
     Home(int h, int w);
     void printLogo();
