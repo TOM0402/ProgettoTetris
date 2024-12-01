@@ -11,6 +11,10 @@ SideBar::SideBar(int h, int w, char* usName):Screen(h,w) {
     username=usName;
 }
 
+char* SideBar::getPlayerName() {
+    return this->username;
+}
+
 void SideBar::printScores(int score, int level) {
     int i=2;
     wattron(screen, COLOR_PAIR(2));

@@ -3,6 +3,8 @@
 #include "ctime"
 using namespace std;
 Engine::Engine() {
+    char filename[] = "classifica.txt";
+    classificaHandler = new HandlerClassifica(filename);
     init();
 }
 
@@ -226,6 +228,7 @@ void Engine::play(Game playGrill, NextT next, SideBar& sidebar) {
     bool gameRunning = true;
     int last_pos_x, last_pos_y;
     
+
     while (gameRunning) {
         last_pos_x = currentTetramino->getX();
         last_pos_y = currentTetramino->getY();
@@ -267,6 +270,13 @@ void Engine::play(Game playGrill, NextT next, SideBar& sidebar) {
 
     // Poi gestiamo il game over
     nodelay(stdscr, FALSE); // Riattiva l'input bloccante
+    
+    // Creiamo un oggetto Giocatore con i dati attuali
+    Giocatore g;
+    g.setNome(sidebar.getPlayerName());
+    g.setPunteggio(scoreManager.getScore());
+    classificaHandler->aggiungi(g);
+
     GameOver gameover(20,40);
     gameover.printLogo();
     gameover.borderscreen();
@@ -284,6 +294,12 @@ void Engine::play(Game playGrill, NextT next, SideBar& sidebar) {
 }
 
 void Engine::startGame(char* playerName) {
+    // Se classificaHandler non è stato ancora inizializzato
+    if (classificaHandler == nullptr) {
+        char filename[] = "classifica.txt";
+        classificaHandler = new HandlerClassifica(filename);
+    }
+    
     SideBar sideGrill(22, 22, playerName);
     NextT next(22/2, 22);
     Game playGrill(22, 22);

@@ -10,9 +10,9 @@ add_executable(ProgettoTetris
         fileManagement/file.hpp
         Giocatore/Giocatore.cpp
         Giocatore/Giocatore.hpp
-        prova.txt
-        Classifica/classifica.cpp
-        Classifica/classifica.hpp
+        classifica.txt
+        HandlerClassifica/HandlerClassifica.cpp
+        HandlerClassifica/HandlerClassifica.hpp
         Screen/Screen.cpp
         Screen/Screen.hpp
         Screen/Leaderboard.cpp

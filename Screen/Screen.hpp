@@ -1,7 +1,7 @@
 #ifndef SCREENG_HPP
 #define SCREENG_HPP
 #include <ncurses.h>
-#include "../Classifica/classifica.hpp"
+#include "../HandlerClassifica/HandlerClassifica.hpp"
 #include "../Collisioni/CollisioniNuovo.hpp"
 
 const int N=11;

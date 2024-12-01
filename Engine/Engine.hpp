@@ -12,6 +12,7 @@
 #include "../Screen/SideBar.hpp"
 #include "../Screen/Leaderboard.hpp"
 #include "../Screen/Name.hpp"
+#include "../HandlerClassifica/HandlerClassifica.hpp"
 
 class Engine {
 private:
@@ -23,6 +24,7 @@ private:
     TetraminoNuovo* nextTetramino;
     ScoreManager scoreManager;
     SideBar* sideBar;
+    HandlerClassifica* classificaHandler;
     void startGame(char* playerName);
     void showLeaderboard();
 public:

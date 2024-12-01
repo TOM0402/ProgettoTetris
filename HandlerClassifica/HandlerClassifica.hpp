@@ -1,7 +1,8 @@
+#ifndef HANDLER_CLASSIFICA_HPP
+#define HANDLER_CLASSIFICA_HPP
+
 #include "../Giocatore/Giocatore.hpp"
 #include "../fileManagement/file.hpp"
-
-
 
 struct classifica{
     Giocatore giocatori[ngiocatori];
@@ -20,5 +21,7 @@ private:
     int find(Giocatore g);
     int currentplayer;
 };
+
+#endif // HANDLER_CLASSIFICA_HPP
 
 
