@@ -26,31 +26,38 @@ bool HandlerClassifica::aggiungi(Giocatore g){
     bool found = false;
     int index = 0;
     int findex = find(g);
+    
+    // Se il giocatore esiste già
     if(findex != -1){
         if(this->data.giocatori[findex].getPunteggio() >= g.getPunteggio()) return true;
         else rimuovi(g);
     }
-    if(this->getCurrentPlayer()==ngiocatori){
-        //check se ultimo ha punteggio maggiore
-        if(this->data.giocatori[ngiocatori-1].getPunteggio()>=g.getPunteggio()){
-            return false;
-        }else{
-            this->data.giocatori[ngiocatori-1] = g;
-            index = 11; // per non entrare nel while
-        }
+    
+    // Trova la posizione corretta per il nuovo punteggio
+    while(index < this->getCurrentPlayer() && 
+          this->data.giocatori[index].getPunteggio() >= g.getPunteggio()) {
+        index++;
     }
-    while(!found && index < ngiocatori ){
-        if(this->data.giocatori[index].getPunteggio()>=g.getPunteggio())index++; // va dopo
-        else {
-            // slide array
-            int i = currentplayer;
-            while(i > index){
-                this->data.giocatori[i] = this->data.giocatori[i-1];
-                i--;
-            }
-            this->data.giocatori[index] = g;
-            found = true;
+    // Se la classifica è piena
+    if(this->getCurrentPlayer() == ngiocatori) {
+        // Se il nuovo punteggio è peggiore dell'ultimo, non fare nulla
+        if(index >= ngiocatori) {
+            return false;
         }
+        // Altrimenti, fai spazio per il nuovo punteggio
+        for(int i = ngiocatori-1; i > index; i--) {
+            this->data.giocatori[i] = this->data.giocatori[i-1];
+        }
+        this->data.giocatori[index] = g;
+        found = true;
+    } else {
+        // Se c'è ancora spazio nella classifica
+        for(int i = this->getCurrentPlayer(); i > index; i--) {
+            this->data.giocatori[i] = this->data.giocatori[i-1];
+        }
+        this->data.giocatori[index] = g;
+        found = true;
+        currentplayer++;
     }
 
     if(found)currentplayer++;
