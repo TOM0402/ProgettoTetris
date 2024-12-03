@@ -33,11 +33,11 @@ bool HandlerClassifica::aggiungi(Giocatore g){
         else rimuovi(g);
     }
     
-    // Trova la posizione corretta per il nuovo punteggio
-    while(index < this->getCurrentPlayer() && 
-          this->data.giocatori[index].getPunteggio() >= g.getPunteggio()) {
+    // Trova la posizione corretta per il nuovo punteggio partendo dall alto
+    while(index < this->getCurrentPlayer() && this->data.giocatori[index].getPunteggio() >= g.getPunteggio()) {
         index++;
     }
+    
     // Se la classifica è piena
     if(this->getCurrentPlayer() == ngiocatori) {
         // Se il nuovo punteggio è peggiore dell'ultimo, non fare nulla
@@ -60,11 +60,7 @@ bool HandlerClassifica::aggiungi(Giocatore g){
         currentplayer++;
     }
 
-    if(found)currentplayer++;
-
     //salvo su file solo giocatori esistenti non quelli vuoti
-    found = false;
-    index = 0;
     Giocatore gio[this->currentplayer];
     for (int i = 0; i < this->currentplayer; i++) {
         gio[i] = this->data.giocatori[i];
