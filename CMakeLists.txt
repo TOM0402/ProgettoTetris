@@ -27,10 +27,8 @@ add_executable(ProgettoTetris
         Screen/SideBar.hpp
         Engine/Engine.cpp
         Engine/Engine.hpp
-        Tetramino/TetraminoNuovo.cpp
-        Tetramino/TetraminoNuovo.hpp
-        Collisioni/CollisioniNuovo.cpp
-        Collisioni/CollisioniNuovo.hpp
+        Tetramino/Tetramino.cpp
+        Tetramino/Tetramino.hpp
         Screen/GameOver.cpp
         Screen/GameOver.hpp
         Screen/NextT.cpp

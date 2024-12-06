@@ -10,7 +10,7 @@ NextT::NextT(int h, int w):Screen(h,w) {
     screen=newwin(high,wide, startY,startX);
 }
 
-void NextT::drawNextTetramino(TetraminoNuovo *t) {
+void NextT::drawNextTetramino(Tetramino *t) {
     werase(screen);
     wattron(screen, COLOR_PAIR(t->getColor()));
     for (int y = 0; y < 4; ++y) {

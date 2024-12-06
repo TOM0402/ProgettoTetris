@@ -1,5 +1,4 @@
 #include "Engine.hpp"
-#include "iostream"
 #include "ctime"
 using namespace std;
 Engine::Engine() {
@@ -49,8 +48,8 @@ void Engine::initBoard() {
     }
 }
 
-TetraminoNuovo* Engine::createTetramino() {
-    TetraminoNuovo* t=new TetraminoNuovo();
+Tetramino* Engine::createTetramino() {
+    Tetramino* t=new Tetramino();
     int index = rand() % 7;
     for (int y = 0; y < 4; ++y) {
         for (int x = 0; x < 4; ++x) {
@@ -84,14 +83,14 @@ void Engine::printBoard() {
 int Engine::clearLines() {
     int linesCleared = 0;
     for (int y = GRID_HEIGHT - 1; y >= 0; --y) {
-        bool lineaPiena = true;
+        bool full_line = true;
         for (int x = 0; x < GRID_WIDTH; ++x) {
             if (board[y][x] == '.') {
-                lineaPiena = false;
+                full_line = false;
                 break;
             }
         }
-        if (lineaPiena) {
+        if (full_line) {
             linesCleared++; // Conta le linee pulite
             // CANCELLA LA LINEA
             for (int i = y; i > 0; --i) {
@@ -118,7 +117,7 @@ void Engine::updateSideBar() {
     sideBar->borderscreen();
 }
 
-bool Engine::moving(int ch, int &punteggio, bool isAutomatic) {
+bool Engine::moving(int ch, int &score, bool isAutomatic) {
     bool gameOver = false;
     switch (ch) {
         case 'q':
@@ -127,44 +126,44 @@ bool Engine::moving(int ch, int &punteggio, bool isAutomatic) {
         case 'a':
         case KEY_LEFT:
             currentTetramino->setX(currentTetramino->getX()-1);
-            if (C->checkCollisioni(board, currentTetramino)) currentTetramino->setX(currentTetramino->getX()+1);
+            if (currentTetramino->checkCollisioni(board, currentTetramino)) currentTetramino->setX(currentTetramino->getX()+1);
             break;
         case 'd':
         case KEY_RIGHT:
             currentTetramino->setX(currentTetramino->getX()+1);
-            if (C->checkCollisioni(board, currentTetramino)) currentTetramino->setX(currentTetramino->getX()-1);
+            if (currentTetramino->checkCollisioni(board, currentTetramino)) currentTetramino->setX(currentTetramino->getX()-1);
             break;
         case 's':
         case KEY_DOWN:
             currentTetramino->setY(currentTetramino->getY()+1);
-            if (C->checkCollisioni(board, currentTetramino)) {
+            if (currentTetramino->checkCollisioni(board, currentTetramino)) {
                 currentTetramino->setY(currentTetramino->getY()-1);
                 currentTetramino->placeTetramino(board, currentTetramino);
 
                 clearLines();
-                punteggio = scoreManager.getScore();
+                score = scoreManager.getScore();
                 updateSideBar();
 
                 currentTetramino = nextTetramino;
                 nextTetramino = createTetramino();
 
-                if (C->checkCollisioni(board, currentTetramino)) {
+                if (currentTetramino->checkCollisioni(board, currentTetramino)) {
                     gameOver = true;
                 }
             } else if (!isAutomatic) {
                 scoreManager.addSoftDropPoints(1);
-                punteggio = scoreManager.getScore();
+                score = scoreManager.getScore();
                 updateSideBar();
             }
             break;
         case 'w':
         case KEY_UP:
             currentTetramino->rotateTetramino(currentTetramino);
-            if (C->checkCollisioni(board, currentTetramino)) {
+            if (currentTetramino->checkCollisioni(board, currentTetramino)) {
                 currentTetramino->setX(currentTetramino->getX() + 1);
-                if (C->checkCollisioni(board, currentTetramino)) {
+                if (currentTetramino->checkCollisioni(board, currentTetramino)) {
                     currentTetramino->setX(currentTetramino->getX() - 2);
-                    if (C->checkCollisioni(board, currentTetramino)) {
+                    if (currentTetramino->checkCollisioni(board, currentTetramino)) {
                         currentTetramino->setX(currentTetramino->getX() + 1);
                         currentTetramino->rotateTetramino(currentTetramino);
                         currentTetramino->rotateTetramino(currentTetramino);
@@ -175,24 +174,24 @@ bool Engine::moving(int ch, int &punteggio, bool isAutomatic) {
             break;
         case ' ': // Spazio per hard drop
             int cellsMoved = 0;
-            while (!C->checkCollisioni(board, currentTetramino)) {
+            while (!currentTetramino->checkCollisioni(board, currentTetramino)) {
                 currentTetramino->setY(currentTetramino->getY()+1);
                 cellsMoved++;
             }
             currentTetramino->setY(currentTetramino->getY()-1);
             if (cellsMoved > 0) {
                 scoreManager.addHardDropPoints(cellsMoved - 1); // -1 perché l'ultima mossa viene annullata
-                punteggio = scoreManager.getScore();
+                score = scoreManager.getScore();
                 updateSideBar();
             }
             currentTetramino->placeTetramino(board, currentTetramino);
             clearLines(); // Questo aggiunge punti per le linee completate
-            punteggio = scoreManager.getScore(); // Aggiorna il punteggio dopo il clearLines
-            updateSideBar(); // Aggiorna la sidebar con il punteggio finale
+            score = scoreManager.getScore(); // Aggiorna il score dopo il clearLines
+            updateSideBar(); // Aggiorna la sidebar con il score finale
 
             currentTetramino = nextTetramino;
             nextTetramino = createTetramino();
-            if (C->checkCollisioni(board, currentTetramino)) {
+            if (currentTetramino->checkCollisioni(board, currentTetramino)) {
                 gameOver = true;
             }
             break;
@@ -219,30 +218,29 @@ void Engine::play(Game playGrill, NextT next, SideBar& sidebar) {
 
     currentTetramino = createTetramino();
     nextTetramino = createTetramino();
-    C = new CollisioniNuovo;
 
-    time_t tempo_ultima = time(0);
-    int velocità_caduta = 100;
-    int punteggio = 0;
+    time_t last_time = time(0);
+    int fall_speed = 100;
+    int score = 0;
     nodelay(stdscr, TRUE);
     bool gameRunning = true;
     int last_pos_x, last_pos_y;
-    
+
 
     while (gameRunning) {
         last_pos_x = currentTetramino->getX();
         last_pos_y = currentTetramino->getY();
         ch = getch();
         if (ch != ERR) {
-            gameRunning = !moving(ch, punteggio, false);
+            gameRunning = !moving(ch, score, false);
         }
-        time_t tempo_corrente = time(0);
-        if (difftime(tempo_corrente, tempo_ultima) >= (double)velocità_caduta / 100.0) {
-            gameRunning = !moving(KEY_DOWN, punteggio, true);
-            tempo_ultima = tempo_corrente;
+        time_t current_time = time(0);
+        if (difftime(current_time, last_time) >= (double)fall_speed / 100.0) {
+            gameRunning = !moving(KEY_DOWN, score, true);
+            last_time = current_time;
         }
         if(last_pos_x != currentTetramino->getX() || last_pos_y != currentTetramino->getY()) {
-            playGrill.borderscreen(playGrill.getScreen(), board, punteggio);
+            playGrill.borderscreen(playGrill.getScreen(), board, score);
             next.drawNextTetramino(nextTetramino);
             next.borderscreen();
             wattron(gameWin, COLOR_PAIR(currentTetramino->getColor()));
@@ -264,7 +262,6 @@ void Engine::play(Game playGrill, NextT next, SideBar& sidebar) {
     }
 
     // Prima liberiamo la memoria
-    delete C;
     delete currentTetramino;
     delete nextTetramino;
 

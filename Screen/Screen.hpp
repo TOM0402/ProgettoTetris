@@ -2,7 +2,7 @@
 #define SCREENG_HPP
 #include <ncurses.h>
 #include "../HandlerClassifica/HandlerClassifica.hpp"
-#include "../Collisioni/CollisioniNuovo.hpp"
+#include "../Tetramino/Tetramino.hpp"
 
 const int N=11;
 

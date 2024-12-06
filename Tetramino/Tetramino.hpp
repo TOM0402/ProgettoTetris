@@ -1,14 +1,9 @@
-//
-// Created by kali on 10/28/24.
-//
-
 #ifndef PROGETTOTETRIS_TETRAMINONUOVO_HPP
 #define PROGETTOTETRIS_TETRAMINONUOVO_HPP
 
 #define GRID_WIDTH 10
 #define GRID_HEIGHT 22
-#include <ncurses.h>
-class TetraminoNuovo {
+class Tetramino {
 protected:
     char shape[4][4];
     int x, y;
@@ -24,7 +19,7 @@ protected:
     };
 
 public:
-    TetraminoNuovo();
+    Tetramino();
     char getTetramini(int, int, int);
     char getShape(int , int );
     void setShape(int , int , char );
@@ -34,8 +29,9 @@ public:
     int getY();
     void setX(int);
     void setY(int);
-    void rotateTetramino(TetraminoNuovo* t);
-    void placeTetramino(char board[GRID_HEIGHT][GRID_WIDTH], TetraminoNuovo* t);
+    void rotateTetramino(Tetramino* t);
+    void placeTetramino(char board[GRID_HEIGHT][GRID_WIDTH], Tetramino* t);
+    bool checkCollisioni(char board[GRID_HEIGHT][GRID_WIDTH], Tetramino *t);
 };
 
 

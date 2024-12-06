@@ -1,8 +1,6 @@
 #ifndef ENGINE_HPP
 #define ENGINE_HPP
 #include <ncurses.h>
-#include <ctime>
-#include <iostream>
 #include "../Screen/Home.hpp"
 #include "../Screen/Game.hpp"
 #include "../Screen/Screen.hpp"
@@ -19,9 +17,8 @@ private:
     WINDOW* gameWin;
     WINDOW* nextWin;
     char board[GRID_HEIGHT][GRID_WIDTH];
-    CollisioniNuovo* C;
-    TetraminoNuovo* currentTetramino;
-    TetraminoNuovo* nextTetramino;
+    Tetramino* currentTetramino;
+    Tetramino* nextTetramino;
     ScoreManager scoreManager;
     SideBar* sideBar;
     HandlerClassifica* classificaHandler;
@@ -33,10 +30,10 @@ public:
     bool setup();
     void printBoard();
     void play(Game playgrill, NextT, SideBar&);
-    bool moving(int ch, int &punteggio, bool isAutomatic = false);
+    bool moving(int ch, int &score, bool isAutomatic = false);
     void initBoard();
-    void drawNextTetramino(TetraminoNuovo*);
-    TetraminoNuovo* createTetramino();
+    void drawNextTetramino(Tetramino*);
+    Tetramino* createTetramino();
     int clearLines();
     void updateSideBar();
     void run();
