@@ -21,8 +21,6 @@ add_executable(ProgettoTetris
         Screen/Home.hpp
         Screen/Name.cpp
         Screen/Name.hpp
-        Screen/Game.cpp
-        Screen/Game.hpp
         Screen/SideBar.cpp
         Screen/SideBar.hpp
         Engine/Engine.cpp

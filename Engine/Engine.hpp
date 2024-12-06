@@ -2,7 +2,6 @@
 #define ENGINE_HPP
 #include <ncurses.h>
 #include "../Screen/Home.hpp"
-#include "../Screen/Game.hpp"
 #include "../Screen/Screen.hpp"
 #include "../Screen/NextT.hpp"
 #include "../Screen/GameOver.hpp"
@@ -29,7 +28,7 @@ public:
     void init();
     bool setup();
     void printBoard();
-    void play(Game playgrill, NextT, SideBar&);
+    void play(Screen playgrill, NextT, SideBar&);
     bool moving(int ch, int &score, bool isAutomatic = false);
     void initBoard();
     void drawNextTetramino(Tetramino*);

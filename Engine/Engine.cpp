@@ -200,7 +200,7 @@ bool Engine::moving(int ch, int &score, bool isAutomatic) {
     return gameOver;
 }
 
-void Engine::play(Game playGrill, NextT next, SideBar& sidebar) {
+void Engine::play(Screen playGrill, NextT next, SideBar& sidebar) {
     sideBar = &sidebar;
     int ch;
     mvwprintw(playGrill.getScreen(), playGrill.getWide()/2,3 ,"premi un tasto");
@@ -299,7 +299,7 @@ void Engine::startGame(char* playerName) {
     
     SideBar sideGrill(22, 22, playerName);
     NextT next(22/2, 22);
-    Game playGrill(22, 22);
+    Screen playGrill(22, 22);
     
     playGrill.borderscreen();
     sideGrill.borderscreen();
