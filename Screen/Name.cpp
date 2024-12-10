@@ -8,7 +8,7 @@ void Name::insert() {
 
 
     wattron(screen,COLOR_PAIR(2));
-    mvwprintw(screen,0,2,"Inserisci il tuo Nome:");
+    mvwprintw(screen,0,2,"Enter your Name:");
     wattroff(screen,COLOR_PAIR(2));
 
     wmove(screen,2,3);

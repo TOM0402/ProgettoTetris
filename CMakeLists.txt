@@ -6,13 +6,13 @@ find_package( Curses REQUIRED )
 include_directories( ${CURSES_INCLUDE_DIR} )
 add_executable(ProgettoTetris
         main.cpp
-        fileManagement/file.cpp
-        fileManagement/file.hpp
-        Giocatore/Giocatore.cpp
-        Giocatore/Giocatore.hpp
+        FileManagement/File.cpp
+        FileManagement/File.hpp
+        Player/Player.cpp
+        Player/Player.hpp
         classifica.txt
-        HandlerClassifica/HandlerClassifica.cpp
-        HandlerClassifica/HandlerClassifica.hpp
+        HandlerLeaderboard/HandlerLeaderboard.cpp
+        HandlerLeaderboard/HandlerLeaderboard.hpp
         Screen/Screen.cpp
         Screen/Screen.hpp
         Screen/Leaderboard.cpp

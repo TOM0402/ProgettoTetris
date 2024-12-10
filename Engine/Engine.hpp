@@ -9,7 +9,7 @@
 #include "../Screen/SideBar.hpp"
 #include "../Screen/Leaderboard.hpp"
 #include "../Screen/Name.hpp"
-#include "../HandlerClassifica/HandlerClassifica.hpp"
+#include "../HandlerLeaderboard/HandlerLeaderboard.hpp"
 
 class Engine {
 private:
@@ -20,7 +20,7 @@ private:
     Tetramino* nextTetramino;
     ScoreManager scoreManager;
     SideBar* sideBar;
-    HandlerClassifica* classificaHandler;
+    HandlerLeaderboard* leaderboardHandler;
     void startGame(char* playerName);
     void showLeaderboard();
 public:

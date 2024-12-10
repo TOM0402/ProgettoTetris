@@ -3,9 +3,9 @@
 #include <fstream>
 #include <iostream>
 #include <cstring>
-#include "../Giocatore/Giocatore.hpp"
-#define lpunteggio  6
-#define ngiocatori 10
+#include "../Player/Player.hpp"
+#define len_points  6
+#define num_players 10
 
 
 using namespace std;
@@ -13,9 +13,9 @@ using namespace std;
 class File {
 public:
     File(char filename[]);
-    bool write(Giocatore g[], int);
-    int read(Giocatore g[]);
+    bool write(Player g[], int);
+    int read(Player g[]);
 private:
-    char filename[lnome];
+    char filename[len_name];
 };
 #endif

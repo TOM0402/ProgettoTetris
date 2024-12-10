@@ -3,7 +3,7 @@
 using namespace std;
 Engine::Engine() {
     char filename[] = "classifica.txt";
-    classificaHandler = new HandlerClassifica(filename);
+    leaderboardHandler = new HandlerLeaderboard(filename);
     init();
 }
 
@@ -268,11 +268,11 @@ void Engine::play(Screen playGrill, NextT next, SideBar& sidebar) {
     // Poi gestiamo il game over
     nodelay(stdscr, FALSE); // Riattiva l'input bloccante
     
-    // Creiamo un oggetto Giocatore con i dati attuali
-    Giocatore g;
-    g.setNome(sidebar.getPlayerName());
-    g.setPunteggio(scoreManager.getScore());
-    classificaHandler->aggiungi(g);
+    // Creiamo un oggetto Player con i dati attuali
+    Player g;
+    g.setName(sidebar.getPlayerName());
+    g.setPoints(scoreManager.getScore());
+    leaderboardHandler->add_player(g);
 
     GameOver gameover(20,40);
     gameover.printLogo();
@@ -291,10 +291,10 @@ void Engine::play(Screen playGrill, NextT next, SideBar& sidebar) {
 }
 
 void Engine::startGame(char* playerName) {
-    // Se classificaHandler non è stato ancora inizializzato
-    if (classificaHandler == nullptr) {
-        char filename[] = "classifica.txt";
-        classificaHandler = new HandlerClassifica(filename);
+    // Se leaderboardHandler non è stato ancora inizializzato
+    if (leaderboardHandler == nullptr) {
+        char filename[] = "leaderboard.txt";
+        leaderboardHandler = new HandlerLeaderboard(filename);
     }
     
     SideBar sideGrill(22, 22, playerName);

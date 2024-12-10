@@ -2,15 +2,16 @@
 // Created by angelo on 7/16/24.
 //
 
+#include "../HandlerLeaderboard/HandlerLeaderboard.hpp"
 #include "Leaderboard.hpp"
 
 Leaderboard::Leaderboard(int h, int w):Screen(h,w){}
 
 void Leaderboard::printLead() {
-    HandlerClassifica lead("classifica.txt");
+    HandlerLeaderboard lead("classifica.txt");
     int lclass=lead.getCurrentPlayer();
-    Giocatore player[lclass];
-    lead.getClassifica(player);
+    Player player[lclass];
+    lead.getLeaderboard(player);
 
     wattron(screen, COLOR_PAIR(2));
     mvwprintw(screen,0,2,"Back(Enter)");
@@ -24,16 +25,16 @@ void Leaderboard::printLead() {
     for (int i = 0; i < lclass; i++) {
         mvwprintw(screen,i*2+6,3,"%d",i+1);
         wprintw(screen,". ");
-        wprintw(screen,player[i].getNome());
-        if(strlen(player[i].getNome())<3) {
+        wprintw(screen,player[i].getName());
+        if(strlen(player[i].getName())<3) {
             wprintw(screen,"\t\t\t");
         }
         else {
             wprintw(screen,"\t\t");
         }
-        wprintw(screen,"%d",player[i].getPunteggio());
+        wprintw(screen,"%d",player[i].getPoints());
         wprintw(screen,"\t");
-        wprintw(screen,player[i].getDataPunteggio());
+        wprintw(screen,player[i].getDatePoints());
     }
     wattroff(screen,COLOR_PAIR(5));
     refresh();

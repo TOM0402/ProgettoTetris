@@ -1,7 +1,7 @@
 #ifndef SCREENG_HPP
 #define SCREENG_HPP
 #include <ncurses.h>
-#include "../HandlerClassifica/HandlerClassifica.hpp"
+#include "../HandlerLeaderboard/HandlerLeaderboard.hpp"
 #include "../Tetramino/Tetramino.hpp"
 
 const int N=11;
