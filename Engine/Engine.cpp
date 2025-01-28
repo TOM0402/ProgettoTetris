@@ -56,27 +56,11 @@ Tetramino* Engine::createTetramino() {
             t->setShape(y,x,t->getTetramini(index, y, x));
         }
     }
-    t->setX(GRID_WIDTH / 2 - 2); // Center the tetromino
-    t->setY(1); // Start at the top
-    t->setColor(index + 7); // Assign color based on tetromino index (1-7)
+    t->setX(GRID_WIDTH / 2 - 2);
+    t->setY(1);
+    t->setColor(index + 7);
     return t;
 }
-
-void Engine::printBoard() {
-    for (int i = 0; i < GRID_HEIGHT; ++i) {
-        for (int j = 0; j < GRID_WIDTH; ++j) {
-            if(board[i][j] != '.') {
-                wattron(stdscr, COLOR_PAIR(board[i][j])); // Usa il colore salvato nella board
-                mvwprintw(stdscr, i, 2*j+1, "XX");
-                wattroff(stdscr, COLOR_PAIR(board[i][j]));
-            } else {
-                mvwprintw(stdscr, i, 2*j+1, "  ");
-            }
-        }
-        wrefresh(stdscr);
-    }
-}
-
 
 
 //AUMENTA IL PUNTEGGIO

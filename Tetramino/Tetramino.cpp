@@ -39,7 +39,7 @@ void Tetramino::setColor(int a) {
 }
 
 void Tetramino::rotateTetramino(Tetramino* currentTetramino) {
-    char temp[4][4]; // Dimensione corretta per forma 4x4
+    char temp[4][4];
     for (int y = 0; y < 4; ++y) {
         for (int x = 0; x < 4; ++x) {
             temp[x][3 - y] = currentTetramino->getShape(y, x);
@@ -74,8 +74,8 @@ bool Tetramino::checkCollisioni(char board[GRID_HEIGHT][GRID_WIDTH], Tetramino *
                 int boardX = t->getX() + x;
                 int boardY = t->getY() + y;
 
-                // Modifica qui: controllo più rigoroso dei bordi
-                // Permettiamo il posizionamento nella prima colonna (boardX == 0)
+
+
                 if (boardX < 0 || boardX >= GRID_WIDTH || boardY < 0 || boardY >= GRID_HEIGHT-2) {
                     return true; // Collisione con i bordi
                 }
