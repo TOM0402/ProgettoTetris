@@ -1,6 +1,6 @@
 # ProgettoTetris
 
-Project Programming course 2023/2024
+Programming Project for the 2023/2024 Course
 
 ## Description
 
