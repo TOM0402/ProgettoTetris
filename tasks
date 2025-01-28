@@ -1,33 +1,33 @@
-Tasks Da Fare:
+Tasks To Do:
 
 ANGELO
--grafica: 
-	-tetramini (una sottoclasse per ogni tetramino)
-	-griglia
-	-menu iniziale
-	-sidebar del gioco
-	-pagina per classifica
+-graphics: 
+	-grid
+	-initial menu
+	-game sidebar
+	-leaderboard page
 
 BERSA E ALE
--logica:
-	Classe pezzo:
-	   -collisioni
-	   -spawn pezzi
-	   -generazione random pezzi
+-logic:
+	Tetramino class:
+	   -collisions (ALE)
+	   -spawn pieces (ALE)
+	   -random piece generation (ALE)
 	
-		sottoclasse movimento:	
-	   		-movimento pezzi
-	   		-rotazione pezzi
+			movement:	
+			-tetramino movement (ALE)
+			-tetramino rotation (ALE)
    
-   Classe 2:
-   -punteggio
-   -fine gioco
-   -eliminazione delle righe
-   
-   Classe Giocatore:
-   -aggiungere nome giocatore
-   
-   Classifica:
-   -classifica su file
 
+  Player Class:
+   - player (BERSA)
+   
+  Leaderboard:
+   -leaderboard to file (BERSA)
 
+	Score Manager:
+	 -score management (BERSA)
+
+	-end game (BERSA e ALE)
+	-row elimination (ALE)
+   
