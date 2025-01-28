@@ -18,6 +18,7 @@ ProgettoTetris is a classic Tetris game developed in C++ as part of the 2023/202
 - C++ compiler (e.g., g++ version 7.0 or higher)
 - CMake (version 3.10 or higher)
 - Make
+- curses/ncurses.h (only graphical library allowed)
 
 ## Installation
 

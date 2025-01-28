@@ -28,8 +28,7 @@ void Player::setPoints(int points) {
     this->points = points;
     time_t now = std::time(nullptr);
     std::strftime(date, sizeof(date), "%d/%m/%Y", std::localtime(&now));
-    strcpy(this->date,date);
-
+    this->setDatePoints(date);
 }
 
 int Player::getPoints() {
