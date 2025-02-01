@@ -4,8 +4,7 @@ Programming Project for the 2023/2024 Course
 
 ## Description
 
-ProgettoTetris is a classic Tetris game developed in C++ as part of the 2023/2024 programming project.
-
+ProgettoTetris is a classic Tetris game developed in C++.
 ## Features
 
 - Classic Tetris mechanics
@@ -55,15 +54,15 @@ Use the arrow keys to move and rotate the Tetris blocks. Clear lines to earn poi
 ## Contributors
 
 Angelo Maggio, angelo.maggio3@studio.unibo.it;
-    Graphics: Grid, Initial Menu, Game Sidebar, Leaderboard Page
+- Graphics: Grid, Initial Menu, Game Sidebar, Leaderboard Page
 
 Tommaso Bersani Berselli, tommaso.bersani@studio.unibo.it;
-    Logic: Player,Score Manager, Leaderboard Management, File Saving, End Game
+- Logic: Player,Score Manager, Leaderboard Management, File Saving, End Game
 
 Alessio Atzeni, alessio.atzeni3@studio.unibo.it;
-    Logic: Tetramino Class: Collisions, Spawn Pieces, Random Piece Generation
-    Movement: Tetramino Movement, Tetramino Rotation
-    Row Elimination
+- Logic: Tetramino Class: Collisions, Spawn Pieces, Random Piece Generation
+- Movement: Tetramino Movement, Tetramino Rotation
+- Row Elimination
 
 
 
