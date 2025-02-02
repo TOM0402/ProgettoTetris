@@ -15,8 +15,6 @@ void Name::insert() {
 
     wgetnstr(screen,name,10);
 
-    // Stampa il nome inserito nella finestra principale
-    //mvprintw(high - 2, 0, "Nome inserito: %s", name);
 
     wrefresh(screen);
     refresh();

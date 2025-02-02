@@ -13,7 +13,6 @@ void Engine::init() {
     noecho(); // Disabilita l'echo delle caratteri
     curs_set(0); // Nasconde il cursore
     keypad(stdscr, TRUE); // Abilita la lettura delle tasti speciali
-    //timeout(100); // Imposta un timeout per la lettura delle tasti
     start_color();
 
     init_pair(1,COLOR_RED,COLOR_BLACK);
@@ -31,14 +30,6 @@ void Engine::init() {
     init_pair(12,COLOR_MAGENTA, COLOR_MAGENTA);
     init_pair(13,COLOR_WHITE, COLOR_WHITE);
 }
-/*
-bool Engine::setup() {
-    Home home(32,62);
-    home.printLogo();
-    home.borderscreen();
-    int a =home.menu();
-    return a;
-}*/
 
 void Engine::initBoard() {
     for (int y = 0; y < GRID_HEIGHT; ++y) {

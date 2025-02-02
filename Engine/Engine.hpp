@@ -26,7 +26,6 @@ private:
 public:
     Engine();
     void init();
-    bool setup();
     void play(Screen playgrill, NextT, SideBar&);
     bool moving(int ch, int &score, bool isAutomatic = false);
     void initBoard();

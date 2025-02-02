@@ -1,7 +1,3 @@
-//
-// Created by angelo on 7/16/24.
-//
-
 #include "../HandlerLeaderboard/HandlerLeaderboard.hpp"
 #include "Leaderboard.hpp"
 

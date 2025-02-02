@@ -4,7 +4,7 @@
 
 class GameOver:public Screen {
 protected:
-    const char* scelte[2]; // Cambia il tipo in const char*
+    const char* scelte[2];
 public:
     GameOver(int h, int w);
     void printLogo();

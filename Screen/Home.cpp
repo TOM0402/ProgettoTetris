@@ -16,8 +16,6 @@ void Home::printLogo(){
     mvwprintw(screen,y+4,x,"  |____| \\___  >__|  |__|  |__/____  >\n");
     mvwprintw(screen,y+5,x,"             \\/                    \\/ \n");
 
-    //Red Blue Yellow Green Cyan Magenta // 38x6
-
     //colora lettere
     int tot, shift;
     for (int i=0; i< hl; i++) {
@@ -88,6 +86,5 @@ int Home::menu() {
     }
     wattroff(screen,COLOR_PAIR(2));
 
-    //printw("La tua scelta: %s", scelte[highlight]);
     return highlight;
 }

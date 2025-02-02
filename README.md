@@ -54,16 +54,14 @@ Use the arrow keys to move and rotate the Tetris blocks. Clear lines to earn poi
 ## Contributors
 
 Angelo Maggio, angelo.maggio3@studio.unibo.it;
-- Graphics: Grid, Initial Menu, Game Sidebar, Leaderboard Page
+- Graphics: Game Grid, Initial Menu, Game Sidebar, Leaderboard Page, Game Over Menu, Colors, Gaphical Interfaces
 
 Tommaso Bersani Berselli, tommaso.bersani@studio.unibo.it;
 - Logic: Player,Score Manager, Leaderboard Management, File Saving, End Game
 
 Alessio Atzeni, alessio.atzeni3@studio.unibo.it;
-- Logic: Tetramino Class: Collisions, Spawn Pieces, Random Piece Generation
+- Logic: Tetramino Class: Collisions, Spawn Pieces, Random Piece Generation, Row Elimination
 - Movement: Tetramino Movement, Tetramino Rotation
-- Row Elimination
-
 
 
 
