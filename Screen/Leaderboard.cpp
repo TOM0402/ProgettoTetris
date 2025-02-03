@@ -4,7 +4,7 @@
 Leaderboard::Leaderboard(int h, int w):Screen(h,w){}
 
 void Leaderboard::printLead() {
-    HandlerLeaderboard lead("classifica.txt");
+    HandlerLeaderboard lead("../classifica.txt");
     int lclass=lead.getCurrentPlayer();
     Player player[lclass];
     lead.getLeaderboard(player);
