@@ -77,10 +77,10 @@ bool Tetramino::checkCollisioni(char board[GRID_HEIGHT][GRID_WIDTH], Tetramino *
 
 
                 if (boardX < 0 || boardX >= GRID_WIDTH || boardY < 0 || boardY >= GRID_HEIGHT-2) {
-                    return true; // Collisione con i bordi
+                    return true; // Board collision
                 }
 
-                // Controllo collisione con altri blocchi
+                // Block collision
                 if (boardY >= 0 && board[boardY][boardX] != '.') {
                     return true;
                 }

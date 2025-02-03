@@ -155,14 +155,14 @@ bool Engine::moving(int ch, int &score, bool isAutomatic) {
             }
             currentTetramino->setY(currentTetramino->getY()-1);
             if (cellsMoved > 0) {
-                scoreManager.addHardDropPoints(cellsMoved - 1); // -1 perché l'ultima mossa viene annullata
+                scoreManager.addHardDropPoints(cellsMoved - 1); // -1 last move cancelled
                 score = scoreManager.getScore();
                 updateSideBar();
             }
             currentTetramino->placeTetramino(board, currentTetramino);
-            clearLines(); // Questo aggiunge punti per le linee completate
-            score = scoreManager.getScore(); // Aggiorna il score dopo il clearLines
-            updateSideBar(); // Aggiorna la sidebar con il score finale
+            clearLines(); // Adds points for completed lines
+            score = scoreManager.getScore(); // Update score
+            updateSideBar(); // Update the sidebar with the new score
 
             currentTetramino = nextTetramino;
             nextTetramino = createTetramino();
@@ -294,7 +294,7 @@ void Engine::showLeaderboard() {
     }
     
     clear();
-    run(); // Torna al menu principale
+    run(); // Back to home menu
 }
 
 void Engine::run() {
