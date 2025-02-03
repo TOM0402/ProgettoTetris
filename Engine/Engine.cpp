@@ -9,10 +9,10 @@ Engine::Engine() {
 
 void Engine::init() {
     srand(time(NULL));
-    initscr(); // Inizializza la libreria curses
-    noecho(); // Disabilita l'echo delle caratteri
-    curs_set(0); // Nasconde il cursore
-    keypad(stdscr, TRUE); // Abilita la lettura delle tasti speciali
+    initscr(); // Initialize the ncurses library
+    noecho(); // Disable character echoing
+    curs_set(0); // Hides the cursor
+    keypad(stdscr, TRUE); // Enable reading of special keys
     start_color();
 
     init_pair(1,COLOR_RED,COLOR_BLACK);
@@ -54,7 +54,7 @@ Tetramino* Engine::createTetramino() {
 }
 
 
-//AUMENTA IL PUNTEGGIO
+//Increas the score
 int Engine::clearLines() {
     int linesCleared = 0;
     for (int y = GRID_HEIGHT - 1; y >= 0; --y) {
@@ -66,8 +66,8 @@ int Engine::clearLines() {
             }
         }
         if (full_line) {
-            linesCleared++; // Conta le linee pulite
-            // CANCELLA LA LINEA
+            linesCleared++;
+            // remove line
             for (int i = y; i > 0; --i) {
                 for (int x = 0; x < GRID_WIDTH; ++x) {
                     board[i][x] = board[i - 1][x];
@@ -147,7 +147,7 @@ bool Engine::moving(int ch, int &score, bool isAutomatic) {
                 }
             }
             break;
-        case ' ': // Spazio per hard drop
+        case ' ': // space for hard drop
             int cellsMoved = 0;
             while (!currentTetramino->checkCollisioni(board, currentTetramino)) {
                 currentTetramino->setY(currentTetramino->getY()+1);
@@ -236,14 +236,14 @@ void Engine::play(Screen playGrill, NextT next, SideBar& sidebar) {
         }
     }
 
-    // Prima liberiamo la memoria
+    // let's free our memory
     delete currentTetramino;
     delete nextTetramino;
 
-    // Poi gestiamo il game over
-    nodelay(stdscr, FALSE); // Riattiva l'input bloccante
+    // manage the game over
+    nodelay(stdscr, FALSE); // Re-enable blocking input
     
-    // Creiamo un oggetto Player con i dati attuali
+    //Player
     Player g;
     g.setName(sidebar.getPlayerName());
     g.setPoints(scoreManager.getScore());
@@ -257,16 +257,16 @@ void Engine::play(Screen playGrill, NextT next, SideBar& sidebar) {
     clear();
     refresh();
     
-    if (choice == 0) { // Quit
-        endwin(); // Chiamiamo endwin() solo una volta prima di uscire
+    if (choice == 0) {
+        endwin();
         exit(0);
-    } else { // Home
+    } else {
         run();
     }
 }
 
 void Engine::startGame(char* playerName) {
-    // Se leaderboardHandler non è stato ancora inizializzato
+    // if leaderboardHandler is not initialized yet
     if (leaderboardHandler == nullptr) {
         char filename[] = "leaderboard.txt";
         leaderboardHandler = new HandlerLeaderboard(filename);
@@ -287,11 +287,10 @@ void Engine::showLeaderboard() {
     Leaderboard lead(27, 46);
     lead.borderscreen();
     lead.printLead();
-    
-    // Aspetta che l'utente prema ENTER per tornare al menu
+
     int ch;
     while ((ch = getch()) != '\n' && ch != KEY_ENTER) {
-        // Continua ad aspettare finché non viene premuto ENTER
+        // It waits till ch is ENTER
     }
     
     clear();

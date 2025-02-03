@@ -16,7 +16,7 @@ void Home::printLogo(){
     mvwprintw(screen,y+4,x,"  |____| \\___  >__|  |__|  |__/____  >\n");
     mvwprintw(screen,y+5,x,"             \\/                    \\/ \n");
 
-    //colora lettere
+    //color the letters
     int tot, shift;
     for (int i=0; i< hl; i++) {
         tot=0; shift=8;
@@ -31,7 +31,7 @@ void Home::printLogo(){
         }
     }
 
-    //aggiustamenti
+    //adjustments
     mvwchgat(screen,y,x+8, 3, A_BOLD, 1, NULL);
     mvwchgat(screen,y+1,x+8, 3, A_BOLD, 1, NULL);
 

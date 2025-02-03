@@ -40,10 +40,10 @@ void Screen::borderscreen(WINDOW* screen, char board[GRID_HEIGHT][GRID_WIDTH], i
             }
         }
     }
-     // Disegna il punteggio (aggiustata la posizione per il bordo)
+    // update the score
     mvwprintw(screen, 0, GRID_WIDTH * 2 + 3, "Score: %d", score);
 
-    // Disegna il bordo dopo aver disegnato il tabellone
+    // draw/update the board
     wattron(screen, COLOR_PAIR(2));
     wattron(screen, A_ALTCHARSET);
     wborder(screen, 'x', 'x', 'q', 'q', 'l', 'k', 'm', 'j');
