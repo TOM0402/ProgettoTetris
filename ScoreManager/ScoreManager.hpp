@@ -12,7 +12,7 @@ private:
     const int POINTS_TETRIS = 800;    // 4 linee
     const int SOFT_DROP_POINTS = 1;   // Punti per soft drop
     const int HARD_DROP_POINTS = 2;   // Punti per hard drop
-    const int LINES_PER_LEVEL = 10;   // Linee necessarie per salire di livello
+    const int LINES_PER_LEVEL = 5;   // Linee necessarie per salire di livello
 
 public:
     ScoreManager();
