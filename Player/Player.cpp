@@ -27,7 +27,8 @@ char* Player::getName(){
 void Player::setPoints(int points) {
     this->points = points;
     time_t now = std::time(nullptr);
-    std::strftime(date, sizeof(date), "%d/%m/%Y", std::localtime(&now));
+    // Get current date and time and store it in date array in the format dd/mm/yyyy 
+    std::strftime(date, sizeof(date), "%d/%m/%Y", std::localtime(&now)); 
     this->setDatePoints(date);
 }
 
@@ -43,6 +44,11 @@ void Player::setDatePoints(char date[]) {
     strcpy(this->date,date);
 }
 
+/**
+ * This method checks if the provided points (p) are greater than the player's current points.
+ * If so, and if the provided points are positive, it adds the provided points to the player's
+ * current points and returns true. Otherwise, it returns false.
+ */
 bool Player::updatePoints(int p){
   if(p>this->points){
     if (p>0){

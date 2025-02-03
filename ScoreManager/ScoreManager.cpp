@@ -7,7 +7,8 @@ ScoreManager::ScoreManager() {
 }
 
 void ScoreManager::addScore(int points) {
-    currentScore += points * level; // Il punteggio è moltiplicato per il livello corrente
+    // The score is multiplied by the level
+    currentScore += points * level;
 }
 
 int ScoreManager::getScore() const {
@@ -25,6 +26,7 @@ int ScoreManager::getLevel() const {
 }
 
 void ScoreManager::updateLevel() {
+    // The level is calculated based on the number of lines cleared
     level = (linesCleared / LINES_PER_LEVEL) + 1;
 }
 
@@ -37,6 +39,12 @@ void ScoreManager::addLines(int lines) {
     updateLevel();
 }
 
+/**
+ * This method awards points according to the number of lines cleared in a single move.
+ * The points awarded are defined by the constants POINTS_SINGLE, POINTS_DOUBLE, 
+ * POINTS_TRIPLE, and POINTS_TETRIS for clearing 1, 2, 3, and 4 lines respectively.
+ * Additionally, it updates the total number of lines cleared.
+ */
 void ScoreManager::addLinesClearedPoints(int lines) {
     switch(lines) {
         case 1:
@@ -61,4 +69,4 @@ void ScoreManager::addSoftDropPoints(int cells) {
 
 void ScoreManager::addHardDropPoints(int cells) {
     currentScore += HARD_DROP_POINTS * cells;
-} 
+}

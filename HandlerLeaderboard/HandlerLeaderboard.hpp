@@ -22,6 +22,6 @@ private:
     int currentplayer;
 };
 
-#endif // HANDLER_CLASSIFICA_HPP
+#endif
 
 

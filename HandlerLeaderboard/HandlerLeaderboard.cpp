@@ -11,6 +11,11 @@ int HandlerLeaderboard::getCurrentPlayer() {
     return this->currentplayer;
 }
 
+/**
+ * This method searches for a player in the leaderboard by comparing the player's name
+ * with the names of players currently in the leaderboard. If the player is found, 
+ * the index of the player is returned. If the player is not found, -1 is returned.
+ */
 int HandlerLeaderboard::find(Player g) {
     bool found = false;
     int i = 0;
@@ -22,36 +27,41 @@ int HandlerLeaderboard::find(Player g) {
     else return -1;
 }
 
+/**
+ * This function attempts to add a player to the leaderboard. If the player already exists and has a lower score, 
+ * their score is updated. If the leaderboard is full, the function will only add the player if their score is 
+ * higher than the lowest score on the leaderboard.
+ */
 bool HandlerLeaderboard::add_player(Player g){
     bool found = false;
     int index = 0;
     int findex = find(g);
     
-    // Se il giocatore esiste già
+    // if the player is already in the leaderboard
     if(findex != -1){
         if(this->data.players[findex].getPoints() >= g.getPoints()) return true;
         else remove_player(g);
     }
     
-    // Trova la posizione corretta per il nuovo punteggio partendo dall alto
+    // Find the correct position for the new score starting from the top
     while(index < this->getCurrentPlayer() && this->data.players[index].getPoints() >= g.getPoints()) {
         index++;
     }
     
-    // Se la classifica è piena
+    // if the leaderboard is full
     if(this->getCurrentPlayer() == num_players) {
-        // Se il nuovo punteggio è peggiore dell'ultimo, non fare nulla
+        // if the player's score is lower than the lowest score on the leaderboard 
         if(index >= num_players) {
             return false;
         }
-        // Altrimenti, fai spazio per il nuovo punteggio
+        // otherwise, add the player to the leaderboard and remove the last player doing the slicing
         for(int i = num_players-1; i > index; i--) {
             this->data.players[i] = this->data.players[i-1];
         }
         this->data.players[index] = g;
         found = true;
     } else {
-        // Se c'è ancora spazio nella classifica
+        // if the leaderboard is not full, add the player to the leaderboard 
         for(int i = this->getCurrentPlayer(); i > index; i--) {
             this->data.players[i] = this->data.players[i-1];
         }
@@ -60,7 +70,7 @@ bool HandlerLeaderboard::add_player(Player g){
         currentplayer++;
     }
 
-    //salvo su file solo players esistenti non quelli vuoti
+    // write the updated leaderboard to the file
     Player gio[this->currentplayer];
     for (int i = 0; i < this->currentplayer; i++) {
         gio[i] = this->data.players[i];
@@ -77,6 +87,12 @@ void HandlerLeaderboard::getLeaderboard(Player g[]){
     }
 }
 
+/**
+ * This method searches for a player in the leaderboard by comparing the player's name.
+ * If the player is found, they are removed from the leaderboard and the remaining players
+ * are shifted to fill the gap. The total number of players is then decremented.
+ * Finally, the updated leaderboard is written to the file.
+ */
 void HandlerLeaderboard::remove_player(Player g) {
     int i = 0;
     bool found = false;
@@ -85,7 +101,7 @@ void HandlerLeaderboard::remove_player(Player g) {
             found = true;
         }else i++;
     }
-    //slide array a sinistra
+    //shift the players to fill the gap
     for(int a = i; a<this->currentplayer-1;a++){
         this->data.players[a] = this->data.players[a+1];
     }
